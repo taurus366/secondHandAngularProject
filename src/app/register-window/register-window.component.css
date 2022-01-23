@@ -1,0 +1,38 @@
+.popup-window-register-form-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup-window-register-form-names {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.popup-window-register-form-text > p {
+  font-weight: 600;
+}
+
+.popup-window-register-form-text > p:first-child {
+  margin-bottom: 0;
+}
+
+.popup-window-register-form-text > p:last-child {
+  margin-top: 0;
+}
+
+.popup-window-register-form-gender > label {
+  font-size: 20px;
+}
+
+#male-gender {
+  margin-left: 60px;
+}
+
+#male-gender , #female-gender {
+  transform: scale(1.5);
+  accent-color: #B38B45;
+  margin-bottom: 20px;
+
+}

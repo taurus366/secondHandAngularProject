@@ -1,0 +1,75 @@
+<div class="popup-window" (click)="testClick($event)">
+
+  <div class="popup-window-login">
+
+    <article class="popup-window-login-logo">
+      <img src="/assets/images/logo-inWhite2.png" alt="logo">
+    </article>
+
+    <section class="popup-window-login-register-section">
+
+      <!-- ACTIVE UNDERLINE [popup-active-btn] -->
+      <ul class="popup-windows-login-register-nav no-padding no-margin">
+        <li>
+          <a href="">
+            <p class="popup-login no-margin" [class.popup-active-btn]="isLoginOrRegister" (click)="isLoginOrRegister = true;preventDefault($event)">LOGIN</p>
+          </a>
+        </li>
+
+        <li>
+          <a href="">
+            <p class="popup-register no-margin" [class.popup-active-btn]="!isLoginOrRegister" (click)="isLoginOrRegister = false;preventDefault($event)">REGISTER</p>
+          </a>
+        </li>
+      </ul>
+
+    </section>
+
+    <!-- LOGIN FORM -->
+  <app-login-window *ngIf="isLoginOrRegister"></app-login-window>
+
+    <!-- REGISTER FORM -->
+    <app-register-window *ngIf="!isLoginOrRegister"></app-register-window>
+    <!-- <section class="popup-window-register-form">
+
+      <article class="popup-window-register-form-text">
+        <p>10 BGN DISCOUNT for new registrations!</p>
+        <p>-Apply code NEW10</p>
+      </article>
+
+      <form class="popup-window-register-form-form" action="#" method="post">
+
+       <article class="popup-window-register-form-names">
+        <input type="text" name="firstName" id="firstName" placeholder="First name">
+        <input type="text" name="thirdName" id="thirdName" placeholder="Third name">
+       </article>
+
+        <input type="email" name="email" id="email" placeholder="Email">
+
+        <input type="password" name="password" id="password" placeholder="Password">
+
+        <input type="password" name="repeatPassword" id="repeatPassword" placeholder="Confirm password">
+
+       <article class="popup-window-register-form-gender">
+
+         <input type="radio" name="gender" id="female-gender" value="female">
+        <label for="female">Female</label>
+
+         <input type="radio" name="gender" id="male-gender" value="male">
+         <label for="male">Male</label>
+
+       </article>
+
+        <input type="submit" value="REGISTER" id="submit-register">
+
+      </form>
+
+    </section> -->
+
+  </div>
+
+  <!-- <section class="popup-window-register">
+    test2
+  </section> -->
+
+</div>

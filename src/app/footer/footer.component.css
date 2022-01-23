@@ -1,0 +1,13 @@
+.contact-us-section > article {
+  margin-bottom: 5px;
+}
+
+.footer-mail,
+.footer-mobile,
+.footer-clock {
+  font-size: 25px;
+}
+
+.contact-us-section > article > span {
+  font-size: 20px;
+}

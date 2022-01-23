@@ -1,0 +1,251 @@
+/* WHY CHOOSE ADVICE */
+.why-choose-advice-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.why-choose-advice {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.why-choose-advice-title {
+  text-align: center;
+}
+
+.why-choose-advice-title > p {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.why-choose-advice-flex {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.why-choose-advice-shipping > i.fas,
+.why-choose-advice-load > i.fas,
+.why-choose-advice-percent > i.fas,
+.why-choose-advice-sale > i.fas,
+.why-choose-advice-products > i.fas {
+  font-size: 50px;
+  margin-bottom: 5px;
+}
+
+/* WHY CHOOSE ADVICE */
+
+/* BRAND CARD */
+
+.popular-brands-title-brands {
+  max-width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.brand-card,
+.brand-card-title,
+.brand-card-size {
+  text-align: center;
+  font-weight: 700;
+}
+
+.brand-card {
+  text-transform: uppercase;
+}
+
+.brand-card-title {
+  margin-bottom: 15px;
+  font-size: 25px;
+}
+
+.brand-card-size {
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+.brand-card-status {
+  font-weight: 500;
+  font-size: 17px;
+}
+.popular-brands {
+  margin-top: 100px;
+  background-color: #8080801c;
+  padding: 1px 0 40px 0;
+}
+
+.popular-brands-title {
+  text-align: center;
+}
+p.popular-brands-title-p {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+/* BRAND CARD */
+
+/* CHARGE CARD */
+.charge-card {
+  border: 1px solid rgba(0, 0, 0, 0.055);
+  /* width: 20%; */
+  margin-right: 1%;
+}
+
+.charge-slider > .charge-card:nth-child(5) {
+  margin-right: 0;
+}
+
+.charge-slider {
+  display: flex;
+  justify-content: space-between;
+}
+
+.charge-card-information-brand-size {
+  display: flex;
+  justify-content: space-between;
+}
+
+.charge-card-information-brand > span {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.charge-card-information-size > span {
+  text-transform: uppercase;
+  font-weight: 100;
+}
+
+.charge-card-information-startprice-newprice {
+  display: flex;
+  justify-content: space-between;
+}
+
+.charge-card-information-startprice {
+  color: grey;
+}
+
+.charge-card-information-newprice {
+  color: #b99b68;
+}
+
+.charge-card-saved-text-percent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.charge-card-saved-percent > p {
+  font-weight: 600;
+  background-color: #ff7c00;
+  color: white;
+  padding: 4px;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+.charge-card-btn {
+  text-align: center;
+  margin-top: 5px;
+}
+
+.btn-add,
+.nonbtn-added {
+  border-radius: 4px;
+  font-size: 20px;
+  padding: 5px;
+}
+
+.btn-add {
+  background-color: #eeeeee;
+  color: #b38e4d;
+  cursor: pointer;
+}
+.nonbtn-added {
+  background-color: #b38e4d;
+  color: white;
+}
+
+.charger-card-img > img {
+  width: 100%;
+}
+
+.charge-section-title {
+  text-align: center;
+}
+.charge-section-title-title {
+  font-size: 35px;
+  font-weight: 700;
+}
+/* CHARGE CARD */
+
+/* DISCOUNTS SECTION */
+.index-slogan-img-view {
+  width: 100%;
+}
+
+.index-slogan-img-view > img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: fill;
+}
+
+.index-discounts-img {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+img.discounts-img-ladies-img,
+img.discounts-img-mens-img {
+  border-radius: 10px;
+  width: 100%;
+}
+
+article.discounts-img-ladies {
+  margin-right: 1%;
+}
+
+section.index-text-box {
+  margin-top: 10px;
+  /* border: 1px solid grey; */
+  background-color: #8080801c;
+  padding: 1px;
+  width: 100%;
+}
+
+p.index-text-box-text {
+  font-size: 35px;
+  text-align: center;
+  font-weight: 800;
+}
+/* DISCOUNTS SECTION */
+
+.for-test {
+  /*opacity: 1;*/
+  animation: аnimation 15s linear infinite;
+}
+
+@keyframes аnimation {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

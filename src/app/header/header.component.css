@@ -1,0 +1,457 @@
+/* header */
+
+header {
+  /* position: fixed; */
+  /* width: 90%; */
+  /* z-index: 1; */
+  /* background-color: white; */
+}
+
+.logo-title-article {
+  width: 160px;
+}
+
+.logo-title-article > img {
+  width: 100%;
+}
+
+.logo-title-article > img:hover {
+  transition: transform 0.9s ease-in-out;
+  transform: rotate3d(0, 1, 0, -360deg);
+}
+
+.header-section {
+  top: 0;
+  position: fixed;
+  background-color: white;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+main {
+  margin-top: 170px;
+}
+
+.header-nav-article {
+  flex-grow: 5;
+}
+
+.header-nav-ul {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 30px;
+  list-style: none;
+}
+
+.user-info {
+  flex-grow: 1;
+}
+
+.user-info > .header-user-nav {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  font-size: 20px;
+}
+
+/* .header-user-nav > li:last-child::before {
+  content: url(images/assets/cart-arrow.png);
+  right: -5px;
+  bottom: -18px;
+  position: absolute;
+  z-index: 1;
+}
+
+.header-user-nav > li:last-child::after {
+  content: '';
+  border: solid 1px #E5E5E5;
+  position: absolute;
+  bottom: -49px;
+    left: -66px;
+    height: 35px;
+    width: 150px;
+} */
+
+.header-user-nav > li {
+  position: relative;
+}
+
+.header-logged-user-dropdown-box::before {
+  /*content: url("images/assets/cart-arrow.png");*/
+  content: url("/assets/images/assets/cart-arrow.png");
+  position: absolute;
+  right: -6px;
+  z-index: 1;
+  bottom: -28px;
+}
+
+.header-logged-user-dropdown-box {
+  position: relative;
+  display: none;
+}
+
+.header-logged-user-dropdown-box::after {
+  text-align: center;
+  font-size: 25px;
+  content: "Profil";
+  height: 30px;
+  width: 150px;
+  position: absolute;
+  border: solid 1px #e5e5e5;
+  right: -75px;
+  bottom: -54px;
+}
+
+.header-user-dropdown-box::before {
+  /*content: url("images/assets/cart-arrow.png");*/
+  content: url("/assets/images/assets/cart-arrow.png");
+  position: absolute;
+  right: -6px;
+  z-index: 1;
+  bottom: -28px;
+}
+
+/* ON - OFF the User drop text in box ------------------------- ON/OFF */
+.header-user-dropdown-box {
+  position: relative;
+  /*display: none;*/
+}
+.header-user-dropdown-box::after {
+  text-align: center;
+  font-size: 25px;
+  content: "Login";
+  height: 30px;
+  width: 150px;
+  position: absolute;
+  border: solid 1px #e5e5e5;
+  right: -75px;
+  bottom: -54px;
+}
+
+/* ON - OFF the Cart  integer in bubble ------------------------- ON/OFF  BUBBLES */
+.bubble-cart-border {
+  /* display: none; */
+  position: absolute;
+  border: 1px solid #b19971;
+  background-color: #b19971;
+  border-radius: 15px;
+  top: -10px;
+  left: -15px;
+  text-align: center;
+  min-width: 20px;
+  min-height: 20px;
+  font-size: 14px;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 20px;
+  z-index: 1;
+}
+
+.header-bag-dropdown-box::before {
+  /*content: url("images/assets/cart-arrow.png");*/
+  content: url("/assets/images/assets/cart-arrow.png");
+  position: absolute;
+  right: -5px;
+  z-index: 1;
+  bottom: -28px;
+}
+
+/* ON - OFF the Bag drop text in box ------------------------- ON/OFF */
+.header-bag-dropdown-box {
+  position: relative;
+  /* display: none; */
+}
+
+.header-bag-dropdown-box::after {
+  text-align: center;
+  font-size: 25px;
+  content: "Purchases";
+  height: 30px;
+  width: 150px;
+  position: absolute;
+  border: solid 1px #e5e5e5;
+  right: -68px;
+  bottom: -54px;
+}
+
+/* ON - OFF the Heart  integer in bubble ------------------------- ON/OFF  BUBBLES */
+.bubble-heart-border {
+  /* display: none; */
+  position: absolute;
+  border: 1px solid #b19971;
+  background-color: #b19971;
+  border-radius: 15px;
+  top: -10px;
+  left: -18px;
+  text-align: center;
+  min-width: 20px;
+  min-height: 20px;
+  font-size: 14px;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 20px;
+  z-index: 1;
+}
+
+.header-heart-dropdown-box::before {
+  /*content: url("images/assets/cart-arrow.png");*/
+  content: url("/assets/images/assets/cart-arrow.png");
+  position: absolute;
+  right: -4px;
+  z-index: 1;
+  bottom: -28px;
+}
+
+/* ON - OFF the Heart drop text in box ------------------------- ON/OFF */
+.header-heart-dropdown-box {
+  position: relative;
+  /*display: none;*/
+}
+
+.header-heart-dropdown-box::after {
+  text-align: center;
+  font-size: 25px;
+  content: "Likes";
+  height: 30px;
+  width: 150px;
+  position: absolute;
+  border: solid 1px #e5e5e5;
+  right: -66px;
+  bottom: -54px;
+}
+
+.header-user-nav > li:last-child {
+  margin-left: 100px;
+  /* position: relative; */
+}
+
+.header-user-nav > li:first-child {
+  margin-right: 50px;
+}
+
+/* header */
+
+/* HIDDEN LISTS */
+
+.hidden-section {
+  box-shadow: 0px 20px 20px 12px rgb(0 0 0 / 20%);
+  position: fixed;
+  z-index: 1;
+  background-color: white;
+  width: 90%;
+  top: 164px;
+
+}
+
+/* WOMEN */
+/* ON - OFF the Women dropdown box  ------------------------- ON/OFF */
+.hidden-women-article {
+  /*display: none;*/
+   display: flex;
+  justify-content: space-evenly;
+}
+
+.women-title-ul-article {
+  width: 303px;
+}
+
+h3.women-title-ul-article-title {
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 0.1rem solid black;
+  margin-bottom: 0;
+}
+
+.discounts-title-ul-article {
+  width: 303px;
+}
+
+h3.discounts-title-ul-article-title {
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 0.1rem solid black;
+  margin-bottom: 0;
+}
+
+.discounts-ul {
+  padding: 0;
+  margin-top: 10px;
+  list-style: none;
+}
+
+.discounts-ul > li {
+  margin-top: 5px;
+}
+
+.women-ul > li {
+  margin-top: 5px;
+}
+
+.women-ul {
+  margin-top: 10px;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  font-size: 18px;
+  height: 320px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+/* WOMEN */
+
+/* MEN */
+/* ON - OFF the Men dropdown box  ------------------------- ON/OFF */
+.hidden-men-article {
+  /*display: none;*/
+   display: flex;
+  justify-content: space-evenly;
+}
+
+.men-title-ul-article {
+  width: 303px;
+}
+
+h3.men-title-ul-article-title {
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 0.1rem solid black;
+  margin-bottom: 0;
+}
+
+.men-ul > li {
+  margin-top: 5px;
+}
+
+.men-ul {
+  margin-top: 10px;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  font-size: 18px;
+  height: 320px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+/* MEN */
+
+/* CHILDREN */
+/* ON - OFF the Children dropdown box  ------------------------- ON/OFF */
+.hidden-children-article {
+  /*display: none;*/
+   display: flex;
+  justify-content: space-evenly;
+}
+
+.children-title-ul-article {
+  width: 303px;
+}
+
+h3.children-title-ul-article-title {
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 0.1rem solid black;
+  margin-bottom: 0;
+}
+
+.children-ul > li {
+  margin-top: 5px;
+}
+
+.children-ul {
+  margin-top: 10px;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  font-size: 18px;
+  height: 320px;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+/* CHILDREN */
+
+/* SHOES */
+/* ON - OFF the Shoes dropdown box  ------------------------- ON/OFF */
+.hidden-shoes-article {
+  /*display: none;*/
+   display: flex;
+  justify-content: space-evenly;
+}
+
+.shoes-title-ul-article {
+  width: 303px;
+}
+
+h3.shoes-title-ul-article-title {
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 0.1rem solid black;
+  margin-bottom: 0;
+}
+
+.shoes-ul > li {
+  margin-top: 5px;
+}
+
+.shoes-ul {
+  margin-top: 10px;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  font-size: 18px;
+  height: 320px;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.shoes-ul > li:first-child > a:first-child ,.shoes-ul > li:last-child > a:first-child {
+  line-height: 25px;
+}
+/* SHOES */
+
+/* ACCESORIES */
+/* ON - OFF the Accessories dropdown box  ------------------------- ON/OFF */
+.hidden-accessories-article {
+  /*display: none;*/
+   display: flex;
+  justify-content: space-evenly;
+}
+
+.accessories-title-ul-article {
+  width: 303px;
+}
+
+h3.accessories-title-ul-article-title {
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 0.1rem solid black;
+  margin-bottom: 0;
+}
+
+.accessories-ul > li {
+  margin-top: 5px;
+}
+
+.accessories-ul {
+  margin-top: 10px;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  font-size: 18px;
+  height: 320px;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.accessories-ul > li:first-child > a:first-child ,.accessories-ul > li:last-child > a:first-child {
+  line-height: 25px;
+}
+/* ACCESORIES */
+
+/* HIDDEN LISTS */

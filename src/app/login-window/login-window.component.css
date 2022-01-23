@@ -1,0 +1,18 @@
+.popup-window-login-form-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup-window-login-form-text {
+  font-weight: 600;
+}
+
+.login-form-forgot-password {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.login-form-forgot-password > a > p {
+  float: right;
+}

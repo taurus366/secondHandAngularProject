@@ -1,0 +1,232 @@
+<section class="header-section">
+  <article class="logo-title-article">
+<!--    <img src="images/logo.png" alt="logo image" />-->
+    <img src="/assets/images/logo.png" alt="logo image" />
+  </article>
+  <article class="header-nav-article">
+    <ul class="header-nav-ul">
+      <li><a href="" #womenMenu (mouseover)="showItem(womenMenu)">Women</a></li>
+      <li><a href="" #menMenu (mouseover)="showItem(menMenu)">Men</a></li>
+      <li><a href="" #childrenMenu (mouseover)="showItem(childrenMenu)">Children</a></li>
+      <li><a href="" #shoesMenu (mouseover)="showItem(shoesMenu)" >Shoes</a></li>
+      <li><a href="" #accessoriesMenu (mouseover)="showItem(accessoriesMenu)">Accessories</a></li>
+    </ul>
+  </article>
+  <article class="user-info">
+    <ul class="header-user-nav">
+      <li>
+        <a href="">
+          <i #showElementHeart (mouseover)="showItem(showElementHeart)" (mouseleave)="hideHeartTextDropDown = false" class="fas fa-heart"></i>
+        </a>
+        <article *ngIf="likedItemCounter > 0" class="bubble-heart-border">{{likedItemCounter}}</article>
+        <article *ngIf="hideHeartTextDropDown" class="header-heart-dropdown-box"></article>
+      </li>
+      <li>
+        <a href="">
+          <i #showElementCart (mouseover)="showItem(showElementCart)" (mouseleave)="hideCartTextDropDown = false" class="fas fa-shopping-bag"></i>
+        </a>
+        <article *ngIf="cartItemCounter > 0" class="bubble-cart-border">{{cartItemCounter}}</article>
+        <article *ngIf="hideCartTextDropDown" class="header-bag-dropdown-box"></article>
+      </li>
+      <li>
+        <a href="">
+          <i #showElementUser class="fas fa-user" (mouseover)="showItem(showElementUser)" (mouseleave)="hideGuestUserTextDropDown = false" (click)="showLoginRegisterWindow($event)"></i>
+        </a>
+        <article *ngIf="hideGuestUserTextDropDown" class="header-user-dropdown-box"></article>
+      </li>
+      <!-- <li>
+                 <a href="">
+                  <i class="fas fa-user"></i>
+                 </a>
+                  <article class="header-logged-user-dropdown-box">
+                  </article>
+              </li> -->
+    </ul>
+  </article>
+</section>
+
+<section class="hidden-section" *ngIf="hideAccessoriesArticle || hideShoesArticle || hideChildrenArticle || hideMenArticle || hideWomenArticle">
+  <section *ngIf="hideWomenArticle" (mouseleave)="hideWomenArticle = false" class="hidden-women-article">
+    <article class="women-title-ul-article">
+      <h3 class="women-title-ul-article-title">Ladies clothes</h3>
+      <ul class="women-ul">
+        <li><a href="">Tracksuits</a></li>
+        <li><a href="">Swimwear</a></li>
+        <li><a href="">Underwear</a></li>
+        <li><a href="">Blouses</a></li>
+        <li><a href="">Jeans</a></li>
+        <li><a href="">Elets</a></li>
+        <li><a href="">Winter equipment</a></li>
+        <li><a href="">Vests</a></li>
+        <li><a href="">Wedges</a></li>
+        <li><a href="">Costumes</a></li>
+        <li><a href="">Shorts</a></li>
+        <li><a href="">Coats</a></li>
+        <li><a href="">Pants</a></li>
+        <li><a href="">Mountain equipment</a></li>
+        <li><a href="">Poly</a></li>
+        <li><a href="">T-shirts</a></li>
+        <li><a href="">Sweaters</a></li>
+        <li><a href="">Shirts</a></li>
+        <li><a href="">Dresses</a></li>
+        <li><a href="">Sportwear</a></li>
+        <li><a href="">Tunics</a></li>
+      </ul>
+    </article>
+    <article class="discounts-title-ul-article">
+      <h3 class="discounts-title-ul-article-title">discounts</h3>
+      <ul class="discounts-ul">
+        <li>
+          <a href="">From 0% to 30%</a>
+        </li>
+        <li>
+          <a href="">From 30% to 60%</a>
+        </li>
+        <li>
+          <a href="">Over 60%</a>
+        </li>
+      </ul>
+    </article>
+  </section>
+
+  <section *ngIf="hideMenArticle" (mouseleave)="hideMenArticle = false" class="hidden-men-article">
+    <article class="men-title-ul-article">
+      <h3 class="men-title-ul-article-title">Male clothes</h3>
+      <ul class="men-ul">
+        <li><a href="">Tracksuits</a></li>
+        <li><a href="">Swimwear</a></li>
+        <li><a href="">Underwear</a></li>
+        <li><a href="">Blouses</a></li>
+        <li><a href="">Bicycle equipment</a></li>
+        <li><a href="">Jeans</a></li>
+        <li><a href="">Winter equipment</a></li>
+        <li><a href="">Elets</a></li>
+        <li><a href="">Vests</a></li>
+        <li><a href="">Wedges</a></li>
+        <li><a href="">Costumes</a></li>
+        <li><a href="">Shorts</a></li>
+        <li><a href="">Coats</a></li>
+        <li><a href="">Pants</a></li>
+        <li><a href="">T-shirts</a></li>
+        <li><a href="">Sportwear</a></li>
+        <li><a href="">Footbal equipment</a></li>
+      </ul>
+    </article>
+
+    <article class="discounts-title-ul-article">
+      <h3 class="discounts-title-ul-article-title">discounts</h3>
+      <ul class="discounts-ul">
+        <li>
+          <a href="">From 0% to 30%</a>
+        </li>
+        <li>
+          <a href="">From 30% to 60%</a>
+        </li>
+        <li>
+          <a href="">Over 60%</a>
+        </li>
+      </ul>
+    </article>
+  </section>
+
+  <section *ngIf="hideChildrenArticle" (mouseleave)="hideChildrenArticle = false" class="hidden-children-article">
+    <article class="children-title-ul-article">
+      <h3 class="children-title-ul-article-title">Kids clothes</h3>
+      <ul class="children-ul">
+        <li>
+          <a href="">for girls</a>
+        </li>
+        <li>
+          <a href="">for boys</a>
+        </li>
+      </ul>
+    </article>
+
+    <article class="discounts-title-ul-article">
+      <h3 class="discounts-title-ul-article-title">discounts</h3>
+      <ul class="discounts-ul">
+        <li>
+          <a href="">From 0% to 30%</a>
+        </li>
+        <li>
+          <a href="">From 30% to 60%</a>
+        </li>
+        <li>
+          <a href="">Over 60%</a>
+        </li>
+      </ul>
+    </article>
+  </section>
+
+  <section *ngIf="hideShoesArticle" (mouseleave)="hideShoesArticle = false" class="hidden-shoes-article">
+    <article class="shoes-title-ul-article">
+      <h3 class="shoes-title-ul-article-title">Shoes</h3>
+      <ul class="shoes-ul">
+        <li>
+          <a href="">Ladies shoes</a>
+          <br>
+          <a href="">Male shoes</a>
+        </li>
+        <li>
+
+        </li>
+        <li>
+          <a href="">Girls shoes</a>
+          <br>
+          <a href="">Boys shoes</a>
+        </li>
+      </ul>
+    </article>
+
+    <article class="discounts-title-ul-article">
+      <h3 class="discounts-title-ul-article-title">discounts</h3>
+      <ul class="discounts-ul">
+        <li>
+          <a href="">From 0% to 30%</a>
+        </li>
+        <li>
+          <a href="">From 30% to 60%</a>
+        </li>
+        <li>
+          <a href="">Over 60%</a>
+        </li>
+      </ul>
+    </article>
+  </section>
+
+  <section *ngIf="hideAccessoriesArticle" (mouseleave)="hideAccessoriesArticle = false" class="hidden-accessories-article">
+    <article class="accessories-title-ul-article">
+      <h3 class="accessories-title-ul-article-title">Accessories</h3>
+      <ul class="accessories-ul">
+        <li>
+          <a href="">Ladies accessories</a>
+          <br>
+          <a href="">Male accessories</a>
+        </li>
+        <li>
+
+        </li>
+        <li>
+          <a href="">Girls accessories</a>
+          <br>
+          <a href="">Boys accessories</a>
+        </li>
+      </ul>
+    </article>
+
+    <article class="discounts-title-ul-article">
+      <h3 class="discounts-title-ul-article-title">discounts</h3>
+      <ul class="discounts-ul">
+        <li>
+          <a href="">From 0% to 30%</a>
+        </li>
+        <li>
+          <a href="">From 30% to 60%</a>
+        </li>
+        <li>
+          <a href="">Over 60%</a>
+        </li>
+      </ul>
+    </article>
+  </section>
+</section>
