@@ -8,6 +8,7 @@ import { MainComponent } from './main/main.component';
 import { LoginRegisterPopupComponent } from './login-register-popup/login-register-popup.component';
 import { LoginWindowComponent } from './login-window/login-window.component';
 import { RegisterWindowComponent } from './register-window/register-window.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { RegisterWindowComponent } from './register-window/register-window.compo
     MainComponent,
     LoginRegisterPopupComponent,
     LoginWindowComponent,
-    RegisterWindowComponent
+    RegisterWindowComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule

@@ -36,7 +36,8 @@
 }
 
 .popup-login,
-.popup-register {
+.popup-register,
+.popup-forgot-password {
   font-weight: 500;
   font-size: 22px;
   padding: 10px;
@@ -44,6 +45,7 @@
 
 .popup-active-btn {
   border-bottom: 2px solid #b38e4d;
+  color: #B38B45;
 }
 
 .popup-windows-login-register-nav {

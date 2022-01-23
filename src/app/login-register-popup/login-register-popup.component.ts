@@ -8,7 +8,7 @@ import {UserService} from "../user-service";
 })
 export class LoginRegisterPopupComponent implements OnInit {
   isLoginOrRegister: boolean = true;
-
+  isForgottenPassword : boolean = false;
 
 
   constructor(private userService:UserService) { }
@@ -23,5 +23,9 @@ export class LoginRegisterPopupComponent implements OnInit {
   testClick(event: MouseEvent) {
    let win =  document.querySelector(`.popup-window`);
    win === event.target ? this.userService.hideShowLoginRegisterWindow() : this.userService.unhideLoginRegisterWindow();
+  }
+
+  showForgottenPasswordWindow(): void {
+    this.isForgottenPassword = true;
   }
 }
