@@ -1,1 +1,114 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://use.fontawesome.com/releases/v5.15.4/css/all.css');
+/*<link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />*/
+
+
+* {
+  box-sizing: border-box;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.no-margin {
+  margin: 0;
+}
+body {
+  width: 99.92%;
+  margin: 0;
+  /* max-width: 90%; */
+  /* margin: auto; */
+  /* height: 3000px; */
+}
+
+main {
+  margin-top: 170px;
+}
+
+header {
+  margin: auto;
+  max-width: 90%;
+}
+
+.max-with90 {
+  max-width: 90%;
+  margin: auto;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: #b58e4a;
+}
+
+app-footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  border-top: 1px solid #8080801c;
+  background-color: #8080801c;
+}
+
+/*LOGIN / REGISTER POPUP WINDOW*/
+
+.popup-window-login,
+.popup-window-register {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  min-height: 100px;
+  background-color: #fff;
+}
+
+.popup-window-login-form-text,
+.popup-window-register-form-text {
+  text-align: center;
+  font-size: 20px;
+}
+
+.popup-window-login-form,
+.popup-window-register-form {
+  width: 90%;
+  margin: auto;
+  /* display: none; */
+}
+
+#email,
+#password,
+#repeatPassword {
+  width: 100%;
+}
+
+#submit-login , #submit-register {
+  width: 50%;
+  background-color: #B38B45;
+  color: white;
+  cursor: pointer;
+}
+
+#email,
+#password,
+#submit-register,
+#submit-login,
+#repeatPassword,
+#firstName,
+#thirdName {
+  margin-bottom: 20px;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 1rem;
+}
+
+
+/*LOGIN / REGISTER POPUP WINDOW*/
