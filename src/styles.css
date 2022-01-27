@@ -31,10 +31,10 @@ main {
   margin-top: 170px;
 }
 
-header {
-  margin: auto;
-  max-width: 90%;
-}
+/*header {*/
+/*  margin: auto;*/
+/*  max-width: 90%;*/
+/*}*/
 
 .max-with90 {
   max-width: 90%;
@@ -50,10 +50,10 @@ a:hover {
   color: #b58e4a;
 }
 
-app-footer {
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
+footer {
+  /*width: 100%;*/
+  /*display: flex;*/
+  /*justify-content: space-evenly;*/
   border-top: 1px solid #8080801c;
   background-color: #8080801c;
 }
@@ -103,7 +103,8 @@ app-footer {
 #submit-login,
 #repeatPassword,
 #firstName,
-#thirdName {
+#lastName,
+#phone {
   margin-bottom: 20px;
   border-radius: 5px;
   padding: 5px;
@@ -112,3 +113,69 @@ app-footer {
 
 
 /*LOGIN / REGISTER POPUP WINDOW*/
+
+/*HEADER WITH MAIN*/
+.max-with90 {
+  max-width: 90%;
+  margin: auto;
+}
+
+header {
+  margin: auto;
+  /* max-width: 90%; */
+  width: 1372px;
+}
+
+.main-1324 {
+  width: 1324px;
+  margin: 170px auto 0 auto;
+}
+
+
+.no-margin {
+  margin: 0;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.second-hand-btn {
+  width: 200px;
+  height: 30px;
+  background-color: #b38b45;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 1350px){
+
+  .main-1324 {
+    width: 100%;
+    padding: 0 20px 0 20px;
+    margin: 170px auto 0 auto;
+  }
+
+  header {
+    margin: auto;
+    width: 100%;
+    padding: 0 20px 0 20px;
+
+  }
+
+  main {
+    text-align: center;
+  }
+
+
+}
+
+/*HEADER WITH MAIN*/

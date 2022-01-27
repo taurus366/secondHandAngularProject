@@ -9,6 +9,7 @@ import { LoginRegisterPopupComponent } from './login-register-popup/login-regist
 import { LoginWindowComponent } from './login-window/login-window.component';
 import { RegisterWindowComponent } from './register-window/register-window.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import {UserService} from "./user-service";
 
 
 @NgModule({
@@ -25,7 +26,13 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    // UserService,
+  //   {
+  //   provide:UserService,
+  //   useClass:UserService
+  // }
+  ],
   bootstrap: [AppComponent,HeaderComponent,FooterComponent]
 })
 export class AppModule { }

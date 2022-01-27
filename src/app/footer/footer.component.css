@@ -11,3 +11,13 @@
 .contact-us-section > article > span {
   font-size: 20px;
 }
+
+.footer-contactus-delivery {
+  width: 1343px;
+  display: flex;
+  justify-content: space-evenly;
+  /*border-top: 1px solid #8080801c;*/
+  /*background-color: #8080801c;*/
+  margin: auto;
+
+}
