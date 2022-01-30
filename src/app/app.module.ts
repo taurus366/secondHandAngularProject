@@ -9,6 +9,7 @@ import { RegisterWindowComponent } from './register-window/register-window.compo
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import {UserService} from "./user-service";
 import {CoreModule} from "./core/core.module";
+import {UserProfileModule} from "./user-profile/user-profile.module";
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {CoreModule} from "./core/core.module";
   ],
   imports: [
     BrowserModule,
-    CoreModule
+    CoreModule,
+    UserProfileModule
   ],
   providers: [
     // UserService,

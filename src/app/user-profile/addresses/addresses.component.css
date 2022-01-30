@@ -1,0 +1,315 @@
+.address-card-edit,
+.address-card-delete {
+  text-decoration: underline;
+}
+
+.own-address,
+.office-address {
+  width: 100%;
+  border: 1px solid #e1e1e1;
+  margin-bottom: 30px;
+}
+
+.own-address-title,
+.office-address-title {
+  background-color: #e1e1e1;
+}
+.own-address-title > p,
+.office-address-title > p {
+  padding: 10px;
+  width: 94.1%;
+  margin: auto;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.own-address-addresses,
+.office-address-addresses {
+  display: flex;
+  padding: 15px 10px 70px 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+/* OWN CARD ADDRESS */
+
+.own-address-card,
+.office-address-card {
+  border-right: 1px solid #d2d2d2;
+}
+
+.own-address-card:last-child,
+.office-address-card:last-child {
+  border: none;
+}
+
+.address-card-buttons {
+  margin-top: 15px;
+}
+
+a.address-card-edit {
+  color: #b58e4a;
+}
+
+a.address-card-delete {
+  color: hsla(0, 0%, 7%, 0.5);
+  margin-left: 30px;
+}
+
+a.address-card-delete,
+a.address-card-edit {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.float-right {
+  float: right;
+  width: 89%;
+}
+.float-left {
+  float: left;
+  /* margin-right: 7px; */
+}
+
+.own-address-card,
+.office-address-card {
+  width: 300px;
+  font-size: 1.3rem;
+  font-weight: 100;
+}
+
+/* .address-card-address > article {
+    display: inline-block;
+} */
+
+.own-address-add-btn,
+.office-address-add-btn {
+  /* width: 200px; */
+  /* float: right; */
+  text-align: right;
+  padding-right: 20px;
+}
+
+@media only screen and (max-width: 1350px) {
+  .float-left {
+    right: -2%;
+    position: relative;
+  }
+
+  .own-address-card:last-child,
+  .office-address-card:last-child {
+    border-right: 1px solid #d2d2d2;
+    padding-top: 25px;
+  }
+
+  .own-address-card:nth-child(2),
+  .office-address-card:nth-child(2) {
+    border: none;
+  }
+
+  .own-address-card,
+  .office-address-card {
+    width: 50%;
+    font-size: 1.3rem;
+    font-weight: 100;
+  }
+}
+
+/* CHANGE ADDRESS OR ADD NEW ADDRESS */
+/* ADD ADDRESS FOR USER AND SPEEDY OFFICE ARE TOGETHER */
+.own-new-address-title-icon,
+.office-new-address-title-icon,
+.office-edit-address-title-icon,
+.own-edit-address-title-icon{
+  font-size: 17px;
+  left: 94%;
+  position: absolute;
+  top: 15px;
+}
+
+.own-new-address-title-icon:hover,
+.own-edit-address-title-icon:hover,
+.office-new-address-title-icon:hover,
+.office-edit-address-title-icon:hover {
+  cursor: pointer;
+}
+
+.own-new-address,
+.own-edit-address,
+.office-new-address,
+.office-edit-address {
+  width: 100%;
+  border: 1px solid black;
+  margin-bottom: 30px;
+}
+
+.own-new-address-title,
+.own-edit-address-title,
+.office-new-address-title,
+.office-edit-address-title {
+  background-color: #e1e1e1;
+  position: relative;
+
+}
+.own-new-address-title > p,
+.own-edit-address-title > p,
+.office-new-address-title > p,
+.office-edit-address-title > p {
+  padding: 10px;
+  width: 94.1%;
+  margin: auto;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.own-new-address-fields,
+.own-edit-address-fields {
+  display: flex;
+  padding: 15px 10px 70px 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.own-new-address-form,
+.own-edit-address-form,
+.office-new-address-form,
+.office-edit-address-form {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  position: relative;
+  align-items: flex-end;
+}
+
+.own-new-address-first-name,
+.own-new-address-last-name,
+.own-new-address-phonenumber,
+.own-new-address-municipality,
+.own-new-address-street,
+.own-edit-address-first-name,
+.own-edit-address-last-name,
+.own-edit-address-phonenumber,
+.own-edit-address-municipality,
+.own-edit-address-street,
+.office-new-address-first-name,
+.office-new-address-last-name,
+.office-new-address-phonenumber,
+.office-edit-address-first-name,
+.office-edit-address-last-name,
+.office-edit-address-phonenumber {
+  width: 33.33333%;
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.own-new-address-city,
+.own-new-address-neighborhood,
+.own-edit-address-city,
+.own-edit-address-neighborhood,
+.office-new-address-city,
+.office-new-address-office,
+.office-edit-address-city,
+.office-edit-address-office {
+  width: 50%;
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.own-new-address-postcode,
+.own-new-address-streetnumber,
+.own-edit-address-postcode,
+.own-edit-address-streetnumber {
+  width: 16.66667%;
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.own-new-address-block,
+.own-new-address-entry,
+.own-new-address-floor,
+.own-new-address-apartment,
+.own-edit-address-block,
+.own-edit-address-entry,
+.own-edit-address-floor,
+.own-edit-address-apartment {
+  width: 25%;
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.own-new-address-address-information,
+.own-edit-address-address-information {
+  width: 100%;
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#firstName,
+#lastName,
+#phoneNumber,
+#city,
+#postCode,
+#neighborhood,
+#street,
+#streetNumber,
+#block,
+#entry,
+#floor,
+#apartment,
+#municipality,
+#addressInformation,
+#officeSpeedy {
+  margin-bottom: 20px;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.own-new-address-address-text-btn-article,
+.own-edit-address-address-text-btn-article,
+.office-new-address-address-text-btn-article,
+.office-edit-address-address-text-btn-article {
+  width: 100%;
+}
+
+.own-new-address-address-text-btn-article > p,
+.own-edit-address-address-text-btn-article > p,
+.office-new-address-address-text-btn-article > p,
+.office-edit-address-address-text-btn-article > p {
+  padding-left: 10px;
+  color: #646464;
+}
+
+.own-new-address-save-btn,
+.own-edit-address-save-btn,
+.office-new-address-save-btn,
+.office-edit-address-save-btn {
+  float: right;
+  margin-right: 10px;
+}
+
+a.add-address-btn {
+  color: white;
+}
+
+#radio-address {
+  transform: scale(1.5);
+  accent-color: #b38b45;
+  margin-bottom: 20px;
+}
+
+.address-card-first-name,
+.address-card-last-name {
+  display: inline-block;
+  padding: 5px;
+}

@@ -1,0 +1,57 @@
+/*.menu-container {*/
+/*  width: 1324px;*/
+/*  !*margin: 170px auto 0 auto;*!*/
+/*  margin: auto;*/
+/*}*/
+
+/* NAV */
+.nav-container {
+  float: left;
+  /* min-width: 30%;
+    max-width: 30%; */
+  width: 250px;
+  border: 1px solid #e1e1e1;
+  margin-right: 10px;
+}
+
+.nav-container-section-nav-ul {
+  list-style: none;
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-container-section-nav-ul > li {
+  border-bottom: 1px solid #e1e1e1;;
+  padding: 10px;
+}
+
+.nav-container-section-nav-ul > li:hover {
+  /* color: #b38b45; */
+  cursor: pointer;
+}
+
+.nav-active-btn {
+  background-color: #b38b45;
+  color: white;
+}
+.nav-active-btn::after {
+  content: url("/assets/images/assets/arrow_profil.png");
+  /* display: block; */
+  float: right;
+}
+
+/* NAV */
+
+/* PROFILE CONTAINER */
+.profile-container {
+  width: 70%;
+  margin: auto auto 30px auto;
+}
+
+.profile-container {
+  float: right;
+}
+/* PROFILE CONTAINER */
+
+

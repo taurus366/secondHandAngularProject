@@ -1,0 +1,24 @@
+<div class="menu-container">
+
+  <div class="nav-container">
+    <section class="nav-container-section">
+      <nav class="nav-container-section-nav">
+        <ul class="nav-container-section-nav-ul">
+          <li [class.nav-active-btn]="showProfileWindow" (click)="visibleProfileWindow()">PROFILE</li>
+          <li>ORDERS</li>
+          <li [class.nav-active-btn]="showAddressesWindow" (click)="visibleAddressesWindow()">ADDRESSES</li>
+          <li>MY PROMO CODES</li>
+          <li [class.nav-active-btn]="showReturnWindow" (click)="visibleReturnWindow()">RETURN</li>
+          <li>EXIT</li>
+        </ul>
+      </nav>
+    </section>
+  </div>
+
+  <div class="profile-container">
+    <app-profile *ngIf="showProfileWindow"></app-profile>
+    <app-addresses *ngIf="showAddressesWindow"></app-addresses>
+    <app-return *ngIf="showReturnWindow"></app-return>
+  </div>
+
+</div>

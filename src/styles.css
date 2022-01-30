@@ -28,7 +28,8 @@ body {
 }
 
 main {
-  margin-top: 170px;
+  width: 1324px;
+  margin: 170px auto auto auto;
 }
 
 /*header {*/
@@ -51,10 +52,14 @@ a:hover,
   color: #b58e4a;
 }
 
+/*footer {*/
+/*  width: 100%;*/
+/*}*/
+/* I STOPPED FOOTER ABOUT BUG*/
 footer {
-  /*width: 100%;*/
-  /*display: flex;*/
-  /*justify-content: space-evenly;*/
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
   border-top: 1px solid #8080801c;
   background-color: #8080801c;
 }
@@ -154,11 +159,21 @@ header {
   font-size: 1rem;
 }
 
-* {
-  box-sizing: border-box;
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
- @media only screen and (max-width: 1350px){
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+html { scroll-behavior: smooth; }
+
+@media only screen and (max-width: 1350px){
 
   .main-1324 {
     width: 100%;
@@ -174,10 +189,15 @@ header {
   }
 
   main {
-    text-align: center;
+    width: 100%;
+    padding: 0 20px 0 20px;
   }
 
 
 }
 
 /*HEADER WITH MAIN*/
+
+.hidden {
+  display: none;
+}
