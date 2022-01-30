@@ -1,5 +1,5 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {UserService} from "../user-service";
+import { Component, OnInit } from '@angular/core';
+import {UserService} from "../../user-service";
 
 @Component({
   selector: 'app-header',
@@ -7,6 +7,7 @@ import {UserService} from "../user-service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+
   hideWomenArticle: boolean = false;
   hideMenArticle: boolean = false;
   hideChildrenArticle: boolean = false;

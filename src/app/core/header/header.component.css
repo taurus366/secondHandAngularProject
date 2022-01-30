@@ -258,7 +258,7 @@
 /* ON - OFF the Women dropdown box  ------------------------- ON/OFF */
 .hidden-women-article {
   /*display: none;*/
-   display: flex;
+  display: flex;
   justify-content: space-evenly;
 }
 
@@ -316,7 +316,7 @@ h3.discounts-title-ul-article-title {
 /* ON - OFF the Men dropdown box  ------------------------- ON/OFF */
 .hidden-men-article {
   /*display: none;*/
-   display: flex;
+  display: flex;
   justify-content: space-evenly;
 }
 
@@ -352,7 +352,7 @@ h3.men-title-ul-article-title {
 /* ON - OFF the Children dropdown box  ------------------------- ON/OFF */
 .hidden-children-article {
   /*display: none;*/
-   display: flex;
+  display: flex;
   justify-content: space-evenly;
 }
 
@@ -388,7 +388,7 @@ h3.children-title-ul-article-title {
 /* ON - OFF the Shoes dropdown box  ------------------------- ON/OFF */
 .hidden-shoes-article {
   /*display: none;*/
-   display: flex;
+  display: flex;
   justify-content: space-evenly;
 }
 
@@ -428,7 +428,7 @@ h3.shoes-title-ul-article-title {
 /* ON - OFF the Accessories dropdown box  ------------------------- ON/OFF */
 .hidden-accessories-article {
   /*display: none;*/
-   display: flex;
+  display: flex;
   justify-content: space-evenly;
 }
 

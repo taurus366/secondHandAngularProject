@@ -2,21 +2,18 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
 import { MainComponent } from './main/main.component';
 import { LoginRegisterPopupComponent } from './login-register-popup/login-register-popup.component';
 import { LoginWindowComponent } from './login-window/login-window.component';
 import { RegisterWindowComponent } from './register-window/register-window.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import {UserService} from "./user-service";
+import {CoreModule} from "./core/core.module";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent,
     MainComponent,
     LoginRegisterPopupComponent,
     LoginWindowComponent,
@@ -24,7 +21,8 @@ import {UserService} from "./user-service";
     ForgotPasswordComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    CoreModule
   ],
   providers: [
     // UserService,
@@ -33,6 +31,6 @@ import {UserService} from "./user-service";
   //   useClass:UserService
   // }
   ],
-  bootstrap: [AppComponent,HeaderComponent,FooterComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,15 +1,15 @@
 <section class="header-section">
   <article class="logo-title-article">
-<!--    <img src="images/logo.png" alt="logo image" />-->
+    <!--    <img src="images/logo.png" alt="logo image" />-->
     <img src="/assets/images/logo.png" alt="logo image" />
   </article>
   <article class="header-nav-article">
     <ul class="header-nav-ul">
-      <li><a href="" #womenMenu (mouseover)="showItem(womenMenu)">Women</a></li>
-      <li><a href="" #menMenu (mouseover)="showItem(menMenu)">Men</a></li>
-      <li><a href="" #childrenMenu (mouseover)="showItem(childrenMenu)">Children</a></li>
-      <li><a href="" #shoesMenu (mouseover)="showItem(shoesMenu)" >Shoes</a></li>
-      <li><a href="" #accessoriesMenu (mouseover)="showItem(accessoriesMenu)">Accessories</a></li>
+      <li><a href="" #womenMenu (mouseover)="showItem(womenMenu)" [class.active-hover]="hideWomenArticle">Women</a></li>
+      <li><a href="" #menMenu (mouseover)="showItem(menMenu)" [class.active-hover]="hideMenArticle">Men</a></li>
+      <li><a href="" #childrenMenu (mouseover)="showItem(childrenMenu)" [class.active-hover]="hideChildrenArticle">Children</a></li>
+      <li><a href="" #shoesMenu (mouseover)="showItem(shoesMenu)" [class.active-hover]="hideShoesArticle">Shoes</a></li>
+      <li><a href="" #accessoriesMenu (mouseover)="showItem(accessoriesMenu)" [class.active-hover]="hideAccessoriesArticle">Accessories</a></li>
     </ul>
   </article>
   <article class="user-info">
