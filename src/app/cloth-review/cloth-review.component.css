@@ -1,0 +1,147 @@
+.main-page-cloth-preview-container {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+}
+
+/* IMAGES SECTION */
+.cloth-preview {
+  width: 380px;
+}
+
+/* CLOTH FAVORITE(HEART) OPTION */
+
+.favorite-icon {
+  position: absolute;
+  top: 7px;
+  left: 7px;
+  z-index: 1;
+}
+
+.favorite-icon:hover {
+  cursor: pointer;
+}
+
+.cloth-favorite-off,
+.cloth-favorite-on {
+  width: 30px;
+
+}
+
+
+/* SMALL IMAGES */
+.cloth-preview-small-images {
+  width: 80px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.preview-small-image {
+  width: 75px;
+  border: 1px solid #e5e5e5;
+  margin-bottom: 2px;
+}
+
+/* BIG IMAGE */
+
+.cloth-preview-big-image {
+  width: 272px;
+  display: inline-block;
+  border: 1px solid #e5e5e5;
+  overflow: hidden;
+  position: relative;
+}
+
+.cloth-preview-big-image > img {
+  width: 100%;
+  /* width: 91%; */
+  height: 400px;
+  transition: transform 0.8s ease;
+}
+
+.cloth-preview-big-image > img:hover {
+  transform: scale(1.5);
+}
+
+/* <<<<<<<<<<>>>>>>>>>>>> */
+
+.cloth-preview,
+.cloth-information {
+  display: inline-block;
+}
+
+/* CLOTH INFORMATION SECTION */
+
+.cloth-information {
+  vertical-align: top;
+  padding-top: 20px;
+  width: 30%;
+  text-align: start;
+}
+
+.cloth-type-name {
+  font-weight: 100;
+  font-size: 20px;
+}
+
+.cloth-brand-name {
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: 1px;
+}
+
+/* .cloth-size {
+  margin-top: 11px;
+} */
+
+.cloth-underline {
+  width: auto;
+  height: 1px;
+  background-color: #e5e5e5;
+}
+
+.cloth-reccomend-price-from-supplier {
+  color: #a39d9d;
+}
+
+.cloth-price-from-secondhand {
+  color: #b19971;
+}
+
+.cloth-price-header {
+  color: black;
+  font-size: 14px;
+}
+
+.price-cloth-span {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.price-cloth-b {
+  font-size: 17px;
+}
+
+.cloth-add-bag-btn {
+  margin-top: 25px;
+}
+
+.cloth-add-btn {
+  width: 100%;
+  background-color: #33CC33;
+  border: none;
+}
+
+/* SECTION OF BRANDS */
+
+.count-all-clothes-brand {
+  margin: 20px 0 20px 0;
+}
+
+.h4-header-cloth,
+.h5-header-cloth {
+  margin-top: 5px;
+}
+
+
+

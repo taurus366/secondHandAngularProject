@@ -12,6 +12,15 @@
       <li><a href="" #accessoriesMenu (mouseover)="showItem(accessoriesMenu)" [class.active-hover]="hideAccessoriesArticle">Accessories</a></li>
     </ul>
   </article>
+  <article *ngIf="userService.showProfileTextOnHeader" class="profile-names">
+    <span>{{userService.setProfileTextName}}</span>
+    <span class="hidden">PROFILE</span>
+    <span class="hidden">ORDERS</span>
+    <span class="hidden">ADDRESSES</span>
+    <span class="hidden">MY PROMO CODES</span>
+<!--    <span>RETURN</span>-->
+
+  </article>
   <article class="user-info">
     <ul class="header-user-nav">
       <li>

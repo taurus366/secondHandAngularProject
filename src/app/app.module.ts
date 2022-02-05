@@ -10,6 +10,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import {UserService} from "./user-service";
 import {CoreModule} from "./core/core.module";
 import {UserProfileModule} from "./user-profile/user-profile.module";
+import { ClothesComponent } from './clothes/clothes.component';
+import { ClothReviewComponent } from './cloth-review/cloth-review.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import {UserProfileModule} from "./user-profile/user-profile.module";
     LoginRegisterPopupComponent,
     LoginWindowComponent,
     RegisterWindowComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ClothesComponent,
+    ClothReviewComponent
   ],
   imports: [
     BrowserModule,

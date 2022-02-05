@@ -1,0 +1,460 @@
+/* MAIN CONTAINER */
+.main-container {
+  margin-top: 200px;
+}
+/* WOMEN NAV SECTION */
+.main-nav-women-men-left {
+  float: left;
+  width: 190px;
+  position: relative;
+}
+
+.nav-ul-li {
+  list-style: none;
+  padding-bottom: 10px;
+}
+
+#cloth-type {
+  position: absolute;
+  left: 0;
+  transform: scale(1.5);
+  accent-color: #b38b45;
+}
+
+/* WOMEN NAV SECTION */
+
+/* PAGINATION */
+
+.main-pagination-section {
+  text-align: center;
+  float: right;
+  width: 100%;
+  margin: 25px 0 20px 0;
+}
+
+.pagination-article > a {
+  color: black;
+  padding: 0px 16px;
+  text-decoration: none;
+  font-size: 30px;
+  vertical-align: -2px;
+}
+
+#pagination-number-input {
+  border-radius: 5px;
+  border-color: #808080a6;
+  text-align: center;
+  width: 50px;
+  padding: 1px;
+  font-weight: 700;
+}
+
+/* PAGINATION */
+
+/* CLOTHES SECTION */
+
+/* HEART'S ICON , LIKE'S TEXT */
+.card-text-arrow-icon {
+  position: absolute;
+  bottom: -25px;
+  left: 80px;
+  transform: rotate(180deg);
+  /* z-index: 1111; */
+}
+
+.card-text-arrow-icon::before {
+  content: url(/assests/images/assets/cart-arrow.png);
+  position: absolute;
+  right: -5px;
+  /* z-index: 1111; */
+  bottom: -29px;
+}
+
+.clothes-card-icon-text {
+  /* z-index: 1111; */
+}
+
+.clothes-like-customer-text {
+  color: #b38b45;
+}
+
+.clothes-card-text {
+  position: absolute;
+  top: -42px;
+  padding: 7px 15px;
+  border: 2px solid #e5e5e5;
+  background-color: white;
+  left: -66px;
+  z-index: 1111;
+}
+
+.clothes-card-icon-favorite {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.clothes-card-icon-favorite > img {
+  width: 35px;
+}
+
+/* HEART'S ICON , LIKE'S TEXT */
+
+.main-clothes-right {
+  float: right;
+  width: 80%;
+}
+
+.main-clothes-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.main-clothes-card {
+  border: 1px solid rgba(0, 0, 0, 0.055);
+  width: 200px;
+  margin: 0 5px 25px 0;
+  padding: 5px;
+  position: relative;
+}
+
+.main-clothes-card:hover {
+  cursor: pointer;
+}
+
+.clothes-card-img,
+.clothes-card-img > img {
+  width: 100%;
+}
+
+.clothes-slider > .clothes-card:nth-child(5) {
+  margin-right: 0;
+}
+
+.clothes-slider {
+  display: flex;
+  justify-content: space-between;
+}
+
+.clothes-card-information-brand-size {
+  display: flex;
+  justify-content: space-between;
+}
+
+.clothes-card-information-brand > span {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.clothes-card-information-size > span {
+  text-transform: uppercase;
+  font-weight: 100;
+}
+
+.clothes-card-information-startprice-newprice {
+  display: flex;
+  justify-content: space-between;
+}
+
+.clothes-card-information-startprice {
+  color: grey;
+}
+
+.clothes-card-information-newprice {
+  color: #b99b68;
+}
+
+.clothes-card-saved-text-percent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.clothes-card-saved-percent > p {
+  font-weight: 600;
+  background-color: #ff7c00;
+  color: white;
+  padding: 4px;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+.clothes-card-btn {
+  text-align: center;
+  margin-top: 5px;
+}
+
+.btn-add,
+.nonbtn-added {
+  border-radius: 4px;
+  font-size: 20px;
+  padding: 5px;
+}
+
+.btn-add {
+  background-color: #eeeeee;
+  color: #b38e4d;
+  cursor: pointer;
+}
+.nonbtn-added {
+  background-color: #b38e4d;
+  color: white;
+}
+
+.clothesr-card-img > img {
+  width: 100%;
+}
+
+.clothes-section-title {
+  text-align: center;
+}
+.clothes-section-title-title {
+  font-size: 35px;
+  font-weight: 700;
+}
+
+.sold-clothes {
+  filter: opacity(30%) grayscale(100%);
+  -webkit-filter: opacity(30%) grayscale(100%);
+}
+
+@media only screen and (min-width: 1025px) {
+  .main-clothes-card:hover {
+    box-shadow: 0 0 15px 0 #d4d4d3;
+  }
+}
+/* CLOTHES SECTION */
+
+/* FILTER SECTION */
+.main-clothes-filter {
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  align-items: center;
+}
+
+.main-clothes-filter > article > select {
+  padding: 5px;
+  border-radius: 5px;
+  border-color: #d1c9c9;
+}
+
+.main-clothes-filter > article > select > option {
+  color: black;
+}
+
+.main-clothes-filter > article {
+  margin-right: 5px;
+}
+
+.clothes-filter-prices-btn {
+  border: 1px solid #d1c9c9;
+  padding: 4px;
+  border-radius: 5px;
+}
+
+.clothes-filter-prices-btn:hover {
+  cursor: pointer;
+  color: #b38b45;
+}
+
+.used {
+  color: #b38b45;
+}
+
+/* FILTER PRICE */
+
+.clothes-filter-prices {
+  width: 20%;
+  border: 1px solid #d1c9c9;
+  border-radius: 5px;
+  position: absolute;
+  left: 460px;
+  top: -20px;
+}
+
+.filter-price {
+  width: 220px;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.price-container {
+  justify-content: space-between;
+  display: flex;
+  padding: 5px;
+  align-items: center;
+}
+
+.price-field {
+  text-align: revert;
+  position: relative;
+  width: 98%;
+  height: 28px;
+  padding-top: 15px;
+  padding-left: 0px;
+}
+
+.price-field input[type="range"] {
+  position: absolute;
+}
+
+/* Reset style for input range */
+
+.price-field input[type="range"] {
+  width: 100%;
+  height: 7px;
+  border: 1px solid #b38b45;
+  background-color: #b38b45;
+  color: #b38b45;
+  outline: 0;
+  /* border-radius: 5px; */
+  pointer-events: none;
+  -webkit-appearance: none;
+
+}
+
+.price-field input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+  margin-top: -14px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+  box-shadow: 1px 1px 1px white, 0px 0px 1px white; /* Add cool effects to your sliders! */
+}
+
+
+
+/* Style toddler input range */
+/* CIRCLE COLORS */
+.price-field input[type="range"]::-webkit-slider-thumb {
+  /* WebKit/Blink */
+  position: relative;
+  -webkit-appearance: none;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  margin-top: -7px;
+  background-color: #b38b45;
+  cursor: pointer;
+  cursor: pointer;
+  pointer-events: all;
+  z-index: 100;
+}
+
+.price-field input[type="range"]::-moz-range-thumb {
+  /* Firefox */
+  position: relative;
+  appearance: none;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  border-radius: 50%;
+  height: 10px;
+  width: 10px;
+  margin-top: -5px;
+  background-color: rgb(240, 10, 10);
+  cursor: pointer;
+  cursor: pointer;
+  pointer-events: all;
+  z-index: 100;
+}
+
+.price-field input[type="range"]::-ms-thumb {
+  /* IE */
+  position: relative;
+  appearance: none;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  border-radius: 50%;
+  height: 10px;
+  width: 10px;
+  margin-top: -5px;
+  background-color: #f50808;
+  cursor: pointer;
+  cursor: pointer;
+  pointer-events: all;
+  z-index: 100;
+}
+
+/* Style track input range */
+
+.price-field input[type="range"]::-webkit-slider-runnable-track {
+  /* WebKit/Blink */
+  width: 188px;
+  height: 2px;
+  cursor: pointer;
+  background: #b38b45;
+  border-radius: 5px;
+}
+
+.price-field input[type="range"]::-moz-range-track {
+  /* Firefox */
+  width: 188px;
+  height: 2px;
+  cursor: pointer;
+  background: #b38b45;
+  border-radius: 5px;
+}
+
+.price-field input[type="range"]::-ms-track {
+  /* IE */
+  width: 188px;
+  height: 2px;
+  cursor: pointer;
+  background: #b38b45;
+  border-radius: 5px;
+}
+
+.price-wrap_line {
+  margin: 6px 0px 5px 5px;
+}
+
+.price-container #one,
+.price-container #two {
+  width: 25px;
+  text-align: right;
+  margin: 0;
+  padding: 0;
+  margin-right: 2px;
+  background: 0;
+  border: 0;
+  outline: 0;
+  color: #242424;
+  font-family: "Karla", "Arial", sans-serif;
+  font-size: 14px;
+  line-height: 1.2em;
+  font-weight: 400;
+}
+
+.price-container label {
+  text-align: right;
+  margin-top: 6px;
+  /* padding-left: 5px; */
+}
+
+/* Style for active state input */
+
+.price-field input[type="range"]:hover::-webkit-slider-thumb {
+  box-shadow: 0 0 0 0.5px #242424;
+  transition-duration: 0.3s;
+
+}
+
+.price-field input[type="range"]:active::-webkit-slider-thumb {
+  box-shadow: 0 0 0 0.5px #242424;
+  transition-duration: 0.3s;
+
+}
+

@@ -5,9 +5,9 @@
       <nav class="nav-container-section-nav">
         <ul class="nav-container-section-nav-ul">
           <li [class.nav-active-btn]="showProfileWindow" (click)="visibleProfileWindow()">PROFILE</li>
-          <li>ORDERS</li>
+          <li [class.nav-active-btn]="showOrdersWindow" (click)="visibleOrdersWindow()">ORDERS</li>
           <li [class.nav-active-btn]="showAddressesWindow" (click)="visibleAddressesWindow()">ADDRESSES</li>
-          <li>MY PROMO CODES</li>
+          <li [class.nav-active-btn]="showPromoCodesWindow" (click)="visiblePromoCodesWindow()">MY PROMO CODES</li>
           <li [class.nav-active-btn]="showReturnWindow" (click)="visibleReturnWindow()">RETURN</li>
           <li>EXIT</li>
         </ul>
@@ -17,8 +17,11 @@
 
   <div class="profile-container">
     <app-profile *ngIf="showProfileWindow"></app-profile>
+    <app-orders *ngIf="showOrdersWindow"></app-orders>
     <app-addresses *ngIf="showAddressesWindow"></app-addresses>
+    <app-promo-codes *ngIf="showPromoCodesWindow"></app-promo-codes>
     <app-return *ngIf="showReturnWindow"></app-return>
+
   </div>
 
 </div>

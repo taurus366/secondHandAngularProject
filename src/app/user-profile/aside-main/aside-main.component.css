@@ -4,6 +4,7 @@
 /*  margin: auto;*/
 /*}*/
 
+
 /* NAV */
 .nav-container {
   float: left;
@@ -12,6 +13,7 @@
   width: 250px;
   border: 1px solid #e1e1e1;
   margin-right: 10px;
+  margin-bottom: 100px;
 }
 
 .nav-container-section-nav-ul {
@@ -46,7 +48,7 @@
 /* PROFILE CONTAINER */
 .profile-container {
   width: 70%;
-  margin: auto auto 30px auto;
+  margin: auto auto 100px auto;
 }
 
 .profile-container {
