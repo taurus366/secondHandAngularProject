@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../user-service";
+import {BooleansService} from "../../shared/booleans.service";
 
 @Component({
   selector: 'app-aside-main',
@@ -15,7 +16,7 @@ export class AsideMainComponent implements OnInit {
   showOrdersWindow : boolean = false;
 
 
-  constructor(public showText : UserService) { }
+  constructor(public showText : BooleansService) { }
 
   ngOnInit(): void {
     this.showText.showProfileTextOnHeader = true;

@@ -1,0 +1,71 @@
+<section [ngClass]="{'header-bag-dropdown-clothes-box': cartBoxItemCounter > 0,'hidden' : cartBoxItemCounter <= 0}">
+  <article class="arrow-up">
+    <img src="/assets/images/assets/cart-arrow.png" alt="">
+  </article>
+
+  <article class="clothes-box-header">
+    <h4 class="no-margin clothes-box-header-h4">ADDED IN CART</h4>
+  </article>
+
+  <article class="clothes-box-items">
+
+    <section class="box-items-cloth">
+
+      <article class="box-items-cloth-img">
+        <img src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg" alt="">
+      </article>
+
+      <article class="box-items-cloth-information">
+
+        <p class="cloth-information-brand no-margin">
+           <span>GUESS</span>
+        </p>
+
+        <p class="cloth-information-type no-margin">
+          <span>Pulover</span>
+        </p>
+
+        <p class="cloth-information-size no-margin">Size:
+          <span> S</span>
+        </p>
+
+      </article>
+
+      <article class="cloth-information-price">
+        <p class="no-margin cloth-price">
+
+            <span class="cloth-price">46.33</span>
+
+          BGN
+        </p>
+      </article>
+
+
+    </section>
+
+
+
+
+
+  </article>
+
+  <article class="clothes-box-items-summary">
+    <h5 class="no-margin cloth-total-price">TOTAL</h5>
+    <span class="cloth-total-price-number">235.44 BGN</span>
+  </article>
+
+  <article class="clothes-box-items-btn">
+    <button class="second-hand-btn cloth-btn">NEXT</button>
+  </article>
+
+</section>
+
+<section class="header-bag-dropdown-empty-box" [class.hidden]="cartBoxItemCounter > 0">
+  <article class="dropdown-header-text">
+    <h3 class="no-margin">ADDED IN BAG</h3>
+  </article>
+
+  <article class="dropdown-main-text">
+    <p class="no-margin">There are no products in you shopping cart</p>
+  </article>
+</section>

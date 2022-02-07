@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../../user-service";
+import {BooleansService} from "../../shared/booleans.service";
+import {SharedService} from "../../shared/shared.service";
+
 
 @Component({
   selector: 'app-header',
@@ -13,6 +15,8 @@ export class HeaderComponent implements OnInit {
   hideChildrenArticle: boolean = false;
   hideShoesArticle: boolean = false;
   hideAccessoriesArticle: boolean = false;
+  showCartBox : boolean = false;
+
 
   cartItemCounter = 1;
   likedItemCounter = 3;
@@ -21,12 +25,20 @@ export class HeaderComponent implements OnInit {
   hideCartTextDropDown = false;
   hideGuestUserTextDropDown = false;
 
+  //REGISTER SECTION
+  showRegisterLoginWindow = false;
+
   // @Output() showPopupWindow = new EventEmitter();
 
-  constructor(public userService:UserService) {
+  constructor(public userService:BooleansService,public publicMethod:SharedService) {
+  }
+
+  checkStatusOfWindow(): boolean {
+   return this.userService.checkStatusOfWindow();
   }
 
   ngOnInit(): void {
+     // document.querySelector('body')!.addEventListener("click",this.clickEv.bind(this))
   }
 
   cleanHiddenArticle(): void {
@@ -86,10 +98,51 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  showLoginRegisterWindow(event: MouseEvent) {
-    event.preventDefault();
+  showLoginRegisterWindow() {
+    // event.preventDefault();
+  //  this.publicMethod.preventDefault(event);
     // this.showPopupWindow.emit();
     this.userService.unhideLoginRegisterWindow();
     console.log("clicked")
   }
+
+
+
+  // CART BOX HIDE LOGIC
+  counter : number = 0;
+
+  startListenCartBoxHide(){
+    document.querySelector('body')!.addEventListener("click",this.clickEvCartBoxHide.bind(this));
+  }
+
+  clickEvCartBoxHide(event : MouseEvent, ...args:string[]) {
+
+    this.counter ++ ;
+    let isClickedOut: boolean = false;
+
+    let eventTargetParrentClassList = (event.target as Element).parentElement!.classList;
+
+
+    for (let i = 0; i < eventTargetParrentClassList.length; i++) {
+      let classNames: String[] = eventTargetParrentClassList[i].split("-");
+
+      classNames
+        .forEach(value => {
+          console.log(value)
+         if (value === 'clothes' || value === 'cloth' || value === 'box'){
+           isClickedOut = true;
+         }
+        })
+    }
+
+   if (!isClickedOut && this.showCartBox && args.length === 0 && this.counter > 1){
+      this.showCartBox = false;
+      this.counter = 0;
+       document.querySelector('body')!.removeAllListeners!('click');
+   }
+  }
 }
+// CART BOX HIDE LOGIC
+
+
+

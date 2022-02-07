@@ -10,10 +10,9 @@ export class MainComponent implements OnInit {
   links: string[] = ['/assets/images/discounts/man-lady.jpg','/assets/images/discounts/man.png','/assets/images/discounts/lady.jpg'];
   useLink : string = '';
   counter :number = this.getRandomNumber();
-  showRegisterLoginWindow = false;
 
 
-  constructor(public userService:UserService) { }
+  constructor() { }
 
   ngOnInit(): void {
     this.useLink = this.links[this.getRandomNumber()];
@@ -29,10 +28,6 @@ export class MainComponent implements OnInit {
   }
   getRandomNumber() : number {
     return Math.floor(Math.random() * 3);
-  }
-
-  checkStatusOfWindow(): boolean {
-   return this.userService.showLoginRegisterWindow;
   }
 
 

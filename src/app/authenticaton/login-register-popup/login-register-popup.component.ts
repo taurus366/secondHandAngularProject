@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../user-service";
+import {UserService} from "../../user-service";
+import {BooleansService} from "../../shared/booleans.service";
+import {SharedService} from "../../shared/shared.service";
 
 @Component({
   selector: 'app-login-register-popup',
@@ -11,17 +13,17 @@ export class LoginRegisterPopupComponent implements OnInit {
   isForgottenPassword : boolean = false;
 
 
-  constructor(private userService:UserService) { }
+  constructor(private userService:BooleansService,public publicMethods:SharedService) { }
 
   ngOnInit(): void {
   }
 
-  preventDefault(event: MouseEvent):void {
-    event.preventDefault();
-  }
 
-  testClick(event: MouseEvent) {
+  clickEv(event: MouseEvent) {
+
    let win =  document.querySelector(`.popup-window`);
+
+    // console.log(event.target === win)
    win === event.target ? this.userService.hideShowLoginRegisterWindow() : this.userService.unhideLoginRegisterWindow();
   }
 

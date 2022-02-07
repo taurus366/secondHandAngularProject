@@ -1,0 +1,137 @@
+/* EMPTY BOX */
+.header-bag-dropdown-empty-box {
+  font-size: 25px;
+  height: 150px;
+  width: 300px;
+  position: absolute;
+  border: solid 1px #e5e5e5;
+  right: -68px;
+  bottom: -174px;
+  z-index: 9998;
+  background-color: white;
+}
+.header-bag-dropdown-empty-box > article {
+  /* position: absolute; */
+  /* width: 310px; */
+  font-size: 23px;
+}
+
+.dropdown-header-text {
+  margin-top: 10px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.dropdown-header-text > h3 {
+  border-bottom: 3px solid #b58e4a;
+  width: 70%;
+  margin: auto;
+}
+
+.dropdown-main-text {
+  margin-top: 25px;
+}
+
+/* CLOTHES BOX */
+
+.header-bag-dropdown-clothes-box {
+  font-size: 25px;
+  min-height: 370px;
+  width: 350px;
+  position: absolute;
+  border: solid 1px #e5e5e5;
+  right: -68px;
+  bottom: -390px;
+  z-index: 9998;
+  background-color: white;
+}
+
+.header-bag-dropdown-clothes-box::before {
+  /* content: url(images/assets/cart-arrow.png);
+  position: absolute;
+  right: 62px;
+  z-index: 1;
+  bottom: 142px; */
+}
+
+.clothes-box-items-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border-top: 1px solid #e5e5e5; */
+  padding: 12px 10px;
+}
+
+.clothes-box-items-btn {
+  text-align: center;
+  border-top: 1px solid #e5e5e5;
+}
+
+.clothes-box-items-btn > button {
+  margin-top: 20px;
+}
+
+.arrow-up {
+  position: absolute;
+  top: -22px;
+  left: 74%;
+}
+
+.clothes-box-header {
+  border-bottom: 1px solid #e5e5e5;
+  margin-top: 10px;
+}
+
+.clothes-box-header > h4 {
+  border-bottom: 3px solid #b58e4a;
+  width: 70%;
+  margin: auto;
+}
+
+.box-items-cloth-img {
+  width: 60px;
+}
+
+.box-items-cloth-img > img {
+  width: 100%;
+}
+
+.clothes-box-items {
+  margin-top: 10px;
+  overflow: auto;
+  max-height: 195px;
+}
+
+.box-items-cloth {
+  font-size: 22px;
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.header-bag-dropdown-clothes-box {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+}
+
+.cloth-information-type,
+.cloth-information-size {
+  font-size: 17px;
+}
+
+.box-items-cloth-information {
+  width: 100px;
+}
+
+.cloth-information-price {
+  align-self: center;
+  margin-bottom: -10px;
+}
+
+.cloth-information-brand,
+.cloth-price,
+.cloth-total-price-number {
+  font-weight: 700;
+}
+

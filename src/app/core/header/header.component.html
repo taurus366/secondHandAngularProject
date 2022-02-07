@@ -1,17 +1,17 @@
 <section class="header-section">
   <article class="logo-title-article">
     <!--    <img src="images/logo.png" alt="logo image" />-->
-    <img src="/assets/images/logo.png" alt="logo image" />
+     <img routerLink="/home" src="/assets/images/logo.png" alt="logo image" />
   </article>
-  <article class="header-nav-article">
+  <nav class="header-nav-article">
     <ul class="header-nav-ul">
-      <li><a href="" #womenMenu (mouseover)="showItem(womenMenu)" [class.active-hover]="hideWomenArticle">Women</a></li>
-      <li><a href="" #menMenu (mouseover)="showItem(menMenu)" [class.active-hover]="hideMenArticle">Men</a></li>
-      <li><a href="" #childrenMenu (mouseover)="showItem(childrenMenu)" [class.active-hover]="hideChildrenArticle">Children</a></li>
-      <li><a href="" #shoesMenu (mouseover)="showItem(shoesMenu)" [class.active-hover]="hideShoesArticle">Shoes</a></li>
-      <li><a href="" #accessoriesMenu (mouseover)="showItem(accessoriesMenu)" [class.active-hover]="hideAccessoriesArticle">Accessories</a></li>
+      <li><a href="" #womenMenu (mouseover)="showItem(womenMenu)" [class.active-hover]="hideWomenArticle" routerLink="/shop" (click)="cleanHiddenArticle()">Women</a></li>
+      <li><a href="" #menMenu (mouseover)="showItem(menMenu)" [class.active-hover]="hideMenArticle" (click)="cleanHiddenArticle()">Men</a></li>
+      <li><a href="" #childrenMenu (mouseover)="showItem(childrenMenu)" [class.active-hover]="hideChildrenArticle" (click)="cleanHiddenArticle()">Children</a></li>
+      <li><a href="" #shoesMenu (mouseover)="showItem(shoesMenu)" [class.active-hover]="hideShoesArticle" (click)="cleanHiddenArticle()">Shoes</a></li>
+      <li><a href="" #accessoriesMenu (mouseover)="showItem(accessoriesMenu)" [class.active-hover]="hideAccessoriesArticle" (click)="cleanHiddenArticle()">Accessories</a></li>
     </ul>
-  </article>
+  </nav>
   <article *ngIf="userService.showProfileTextOnHeader" class="profile-names">
     <span>{{userService.setProfileTextName}}</span>
     <span class="hidden">PROFILE</span>
@@ -32,14 +32,17 @@
       </li>
       <li>
         <a href="">
-          <i #showElementCart (mouseover)="showItem(showElementCart)" (mouseleave)="hideCartTextDropDown = false" class="fas fa-shopping-bag"></i>
+          <i #showElementCart (mouseover)="showItem(showElementCart)" (mouseleave)="hideCartTextDropDown = false" class="fas fa-shopping-bag" (click)="showCartBox = true;publicMethod.preventDefault($event);startListenCartBoxHide()"></i>
         </a>
         <article *ngIf="cartItemCounter > 0" class="bubble-cart-border">{{cartItemCounter}}</article>
         <article *ngIf="hideCartTextDropDown" class="header-bag-dropdown-box"></article>
+        <article class="cart-box" [class.hidden]="!showCartBox">
+          <app-cart-box [cartBoxItemCounter]="cartItemCounter"></app-cart-box>
+        </article>
       </li>
       <li>
         <a href="">
-          <i #showElementUser class="fas fa-user" (mouseover)="showItem(showElementUser)" (mouseleave)="hideGuestUserTextDropDown = false" (click)="showLoginRegisterWindow($event)"></i>
+          <i #showElementUser class="fas fa-user" (mouseover)="showItem(showElementUser)" (mouseleave)="hideGuestUserTextDropDown = false" (click)="showLoginRegisterWindow();publicMethod.preventDefault($event)"></i>
         </a>
         <article *ngIf="hideGuestUserTextDropDown" class="header-user-dropdown-box"></article>
       </li>
@@ -55,7 +58,7 @@
 </section>
 
 <section class="hidden-section" *ngIf="hideAccessoriesArticle || hideShoesArticle || hideChildrenArticle || hideMenArticle || hideWomenArticle">
-  <section *ngIf="hideWomenArticle" (mouseleave)="hideWomenArticle = false" class="hidden-women-article">
+  <section *ngIf="hideWomenArticle" (mouseleave)="cleanHiddenArticle()" class="hidden-women-article">
     <article class="women-title-ul-article">
       <h3 class="women-title-ul-article-title">Ladies clothes</h3>
       <ul class="women-ul">
@@ -98,7 +101,7 @@
     </article>
   </section>
 
-  <section *ngIf="hideMenArticle" (mouseleave)="hideMenArticle = false" class="hidden-men-article">
+  <section *ngIf="hideMenArticle" (mouseleave)="cleanHiddenArticle()" class="hidden-men-article">
     <article class="men-title-ul-article">
       <h3 class="men-title-ul-article-title">Male clothes</h3>
       <ul class="men-ul">
@@ -138,7 +141,7 @@
     </article>
   </section>
 
-  <section *ngIf="hideChildrenArticle" (mouseleave)="hideChildrenArticle = false" class="hidden-children-article">
+  <section *ngIf="hideChildrenArticle" (mouseleave)="cleanHiddenArticle()" class="hidden-children-article">
     <article class="children-title-ul-article">
       <h3 class="children-title-ul-article-title">Kids clothes</h3>
       <ul class="children-ul">
@@ -167,7 +170,7 @@
     </article>
   </section>
 
-  <section *ngIf="hideShoesArticle" (mouseleave)="hideShoesArticle = false" class="hidden-shoes-article">
+  <section *ngIf="hideShoesArticle" (mouseleave)="cleanHiddenArticle()" class="hidden-shoes-article">
     <article class="shoes-title-ul-article">
       <h3 class="shoes-title-ul-article-title">Shoes</h3>
       <ul class="shoes-ul">
@@ -203,7 +206,7 @@
     </article>
   </section>
 
-  <section *ngIf="hideAccessoriesArticle" (mouseleave)="hideAccessoriesArticle = false" class="hidden-accessories-article">
+  <section *ngIf="hideAccessoriesArticle" (mouseleave)="cleanHiddenArticle()" class="hidden-accessories-article">
     <article class="accessories-title-ul-article">
       <h3 class="accessories-title-ul-article-title">Accessories</h3>
       <ul class="accessories-ul">
@@ -238,4 +241,8 @@
       </ul>
     </article>
   </section>
+</section>
+
+<section class="loggin-register-section">
+  <app-login-register-popup *ngIf="checkStatusOfWindow()"></app-login-register-popup>
 </section>

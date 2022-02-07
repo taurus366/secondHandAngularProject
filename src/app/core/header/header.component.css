@@ -37,6 +37,10 @@
   width: 160px;
 }
 
+.logo-title-article:hover {
+  cursor: pointer;
+}
+
 .logo-title-article > img {
   width: 100%;
 }
