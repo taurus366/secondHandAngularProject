@@ -25,8 +25,8 @@ export class HeaderComponent implements OnInit {
   hideCartTextDropDown = false;
   hideGuestUserTextDropDown = false;
 
-  //REGISTER SECTION
-  showRegisterLoginWindow = false;
+  // //REGISTER SECTION
+  // showRegisterLoginWindow = false;
 
   // @Output() showPopupWindow = new EventEmitter();
 

@@ -5,7 +5,7 @@
         <p>-Apply code NEW10</p>
       </article>
 
-      <form class="popup-window-register-form-form" action="#" method="post">
+      <form  class="popup-window-register-form-form" method="post">
 
        <article class="popup-window-register-form-names">
         <input type="text" name="firstName" id="firstName" placeholder="First name">
@@ -16,19 +16,19 @@
 
         <input type="password" name="password" id="password" placeholder="Password">
 
-        <input type="password" name="repeatPassword" id="repeatPassword" placeholder="Confirm password">
+        <input type="password" name="confirmPassword" id="repeatPassword" placeholder="Confirm password">
 
        <article class="popup-window-register-form-gender">
 
-         <input type="radio" name="gender" id="female-gender" value="female">
+         <input type="radio" name="sex" id="female-gender" value="female">
         <label for="female-gender">Female</label>
 
-         <input type="radio" name="gender" id="male-gender" value="male">
+         <input type="radio" name="sex" id="male-gender" value="male">
          <label for="male-gender">Male</label>
 
        </article>
 
-        <input type="submit" value="REGISTER" id="submit-register">
+        <input type="submit" value="REGISTER" id="submit-register" (click)="registerOnSubmit($event)">
 
       </form>
 

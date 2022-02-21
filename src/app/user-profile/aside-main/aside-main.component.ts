@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../../user-service";
 import {BooleansService} from "../../shared/booleans.service";
 
 @Component({

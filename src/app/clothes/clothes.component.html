@@ -1,10 +1,10 @@
 <div class="main-container">
 
   <section class="main-nav-women-men-left">
-    <!-- <nav class="main-nav-women">
+     <nav *ngIf="getWomenNav()" class="main-nav-women">
 
        <article class="nav-men-header">
-        <h5>MEN CLOTHES</h5>
+        <h5 class="no-margin">WOMEN CLOTHES</h5>
       </article>
 
           <ul class="nav-ul">
@@ -221,9 +221,9 @@
             </li>
 
           </ul>
-        </nav> -->
+        </nav>
 
-    <nav class="main-nav-men">
+    <nav *ngIf="getMenNav()" class="main-nav-men">
       <article class="nav-men-header">
         <h5 class="no-margin">MEN CLOTHES</h5>
       </article>
@@ -409,6 +409,8 @@
 
     </section>
 
+
+<!--    IF CLOTHES ALREADY DOWNLOADED FROM API THEN I MUST SHOW THEM AND HIDE LOADING SPINNER-->
     <section class="main-clothes-list">
 
       <div class="main-clothes-card">
@@ -1326,6 +1328,9 @@
 
 
     </section>
+
+<!--    I MUST SHOW LOADING SPINNER WHILE LOADING RELOAD FROM API , AFTER THAT I MUST HIDE THIS SECTION AND SHOW CLOTHES!-->
+    <app-loading></app-loading>
 
   </section>
 

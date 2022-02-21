@@ -4,6 +4,9 @@ import {LoginRegisterPopupComponent} from "./login-register-popup/login-register
 import {RegisterWindowComponent} from "./register-window/register-window.component";
 import {LoginWindowComponent} from "./login-window/login-window.component";
 import {ForgotPasswordComponent} from "./forgot-password/forgot-password.component";
+import {ApiConnectionServiceService} from "../shared/api-connection-service.service";
+import {SharedModule} from "../shared/shared.module";
+import {HttpClientModule, HttpClientXsrfModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -14,10 +17,19 @@ import {ForgotPasswordComponent} from "./forgot-password/forgot-password.compone
     ForgotPasswordComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule,
+    HttpClientModule,
+    HttpClientXsrfModule.withOptions({
+      cookieName:'JSESSIONID',
+      headerName:'XSRF-TOKEN'
+    })
   ],
   exports: [
     LoginRegisterPopupComponent
+  ],
+  providers: [
+
   ]
 })
 export class AuthenticationModule {

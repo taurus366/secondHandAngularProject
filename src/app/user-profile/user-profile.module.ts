@@ -6,6 +6,7 @@ import { AddressesComponent } from './addresses/addresses.component';
 import { ReturnComponent } from './return/return.component';
 import { OrdersComponent } from './orders/orders.component';
 import { PromoCodesComponent } from './promo-codes/promo-codes.component';
+import {RouterModule} from "@angular/router";
 
 
 
@@ -19,7 +20,8 @@ import { PromoCodesComponent } from './promo-codes/promo-codes.component';
     PromoCodesComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [
     AsideMainComponent
