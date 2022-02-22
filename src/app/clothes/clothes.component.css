@@ -63,7 +63,7 @@
 }
 
 .card-text-arrow-icon::before {
-  content: url(/assests/images/assets/cart-arrow.png);
+  content: url(/assets/images/assets/cart-arrow.png);
   position: absolute;
   right: -5px;
   /* z-index: 1111; */

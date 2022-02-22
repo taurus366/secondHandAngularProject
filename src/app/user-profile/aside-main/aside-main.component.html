@@ -4,11 +4,11 @@
     <section class="nav-container-section">
       <nav class="nav-container-section-nav">
         <ul class="nav-container-section-nav-ul">
-          <li [class.nav-active-btn]="showProfileWindow" (click)="visibleProfileWindow()">PROFILE</li>
-          <li [class.nav-active-btn]="showOrdersWindow" (click)="visibleOrdersWindow()">ORDERS</li>
-          <li [class.nav-active-btn]="showAddressesWindow" (click)="visibleAddressesWindow()">ADDRESSES</li>
-          <li [class.nav-active-btn]="showPromoCodesWindow" (click)="visiblePromoCodesWindow()">MY PROMO CODES</li>
-          <li [class.nav-active-btn]="showReturnWindow" (click)="visibleReturnWindow()">RETURN</li>
+          <li [class.nav-active-btn]="checkProfileWindow()" (click)="visibleProfileWindow()">PROFILE</li>
+          <li [class.nav-active-btn]="checkOrdersWindow()" (click)="visibleOrdersWindow()">ORDERS</li>
+          <li [class.nav-active-btn]="checkAddressesWindow()" (click)="visibleAddressesWindow()">ADDRESSES</li>
+          <li [class.nav-active-btn]="checkPromoCodesWindow()" (click)="visiblePromoCodesWindow()">MY PROMO CODES</li>
+          <li [class.nav-active-btn]="checkShowReturnWindow()" (click)="visibleReturnWindow()">RETURN</li>
           <li>EXIT</li>
         </ul>
       </nav>
@@ -16,11 +16,11 @@
   </div>
 
   <div class="profile-container">
-    <app-profile *ngIf="showProfileWindow"></app-profile>
-    <app-orders *ngIf="showOrdersWindow"></app-orders>
-    <app-addresses *ngIf="showAddressesWindow"></app-addresses>
-    <app-promo-codes *ngIf="showPromoCodesWindow"></app-promo-codes>
-    <app-return *ngIf="showReturnWindow"></app-return>
+    <app-profile *ngIf="checkProfileWindow()"></app-profile>
+    <app-orders *ngIf="checkOrdersWindow()"></app-orders>
+    <app-addresses *ngIf="checkAddressesWindow()"></app-addresses>
+    <app-promo-codes *ngIf="checkPromoCodesWindow()"></app-promo-codes>
+    <app-return *ngIf="checkShowReturnWindow()"></app-return>
 
   </div>
 

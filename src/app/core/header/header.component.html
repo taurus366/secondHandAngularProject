@@ -12,15 +12,15 @@
       <li><a href="" #accessoriesMenu (mouseover)="showItem(accessoriesMenu)" [class.active-hover]="hideAccessoriesArticle" (click)="cleanHiddenArticle()">Accessories</a></li>
     </ul>
   </nav>
-  <article *ngIf="userService.showProfileTextOnHeader" class="profile-names">
-    <span>{{userService.setProfileTextName}}</span>
+  <article *ngIf="booleansService.showProfileTextOnHeader" class="profile-names">
+    <span>{{booleansService.setProfileTextName}}</span>
     <span class="hidden">PROFILE</span>
     <span class="hidden">ORDERS</span>
     <span class="hidden">ADDRESSES</span>
     <span class="hidden">MY PROMO CODES</span>
 <!--    <span>RETURN</span>-->
-
   </article>
+
   <article class="user-info">
     <ul class="header-user-nav">
       <li>
@@ -41,18 +41,20 @@
         </article>
       </li>
       <li>
-        <a href="">
-          <i #showElementUser class="fas fa-user" (mouseover)="showItem(showElementUser)" (mouseleave)="hideGuestUserTextDropDown = false" (click)="showLoginRegisterWindow();publicMethod.preventDefault($event)"></i>
+        <a  [routerLink]="checkIsLogged() ? '/profile' : '' " >
+
+          <i #showElementUser class="fas fa-user" (mouseover)="showItem(showElementUser)" (mouseleave)="hideGuestOrLoggedUserTextDropDown = false"   (click)="checkIsLogged() ? '' : showLoginRegisterWindow();publicMethod.preventDefault($event)"></i>
         </a>
-        <article *ngIf="hideGuestUserTextDropDown" class="header-user-dropdown-box"></article>
+        <article *ngIf="checkIsLogged() && hideGuestOrLoggedUserTextDropDown" class="header-logged-user-dropdown-box"></article>
+        <article *ngIf="!checkIsLogged() && hideGuestOrLoggedUserTextDropDown" class="header-user-dropdown-box"></article>
       </li>
-      <!-- <li>
-                 <a href="">
-                  <i class="fas fa-user"></i>
-                 </a>
-                  <article class="header-logged-user-dropdown-box">
-                  </article>
-              </li> -->
+<!--       <li>-->
+<!--                 <a href="">-->
+<!--                  <i class="fas fa-user"></i>-->
+<!--                 </a>-->
+<!--                  <article class="header-logged-user-dropdown-box">-->
+<!--                  </article>-->
+<!--              </li> -->
     </ul>
   </article>
 </section>

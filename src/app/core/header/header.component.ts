@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {BooleansService} from "../../shared/booleans.service";
 import {SharedService} from "../../shared/shared.service";
+import {interval, timeout, timer} from "rxjs";
+import {UserService} from "../../authentication/user.service";
 
 
 @Component({
@@ -23,22 +25,39 @@ export class HeaderComponent implements OnInit {
 
   hideHeartTextDropDown = false;
   hideCartTextDropDown = false;
-  hideGuestUserTextDropDown = false;
+  hideGuestOrLoggedUserTextDropDown = false;
 
   // //REGISTER SECTION
   // showRegisterLoginWindow = false;
 
   // @Output() showPopupWindow = new EventEmitter();
 
-  constructor(public userService:BooleansService,public publicMethod:SharedService) {
+  constructor(private userService:UserService, public booleansService:BooleansService, public publicMethod:SharedService) {
   }
 
   checkStatusOfWindow(): boolean {
-   return this.userService.checkStatusOfWindow();
+   return this.booleansService.checkStatusOfWindow();
   }
 
   ngOnInit(): void {
      // document.querySelector('body')!.addEventListener("click",this.clickEv.bind(this))
+      this.validateLoggedUserEvery10Minutes();
+  }
+
+
+   validateLoggedUserEvery10Minutes() {
+    this.userService.validateUserToken();
+    setTimeout(() => {
+      this.validateLoggedUserEvery10Minutes();
+    },100000);
+  }
+
+
+  checkIsLogged():boolean {
+      // return this.userService.validateUserToken();
+    return this.booleansService.getIsLogged();
+   //  return true;/
+
   }
 
   cleanHiddenArticle(): void {
@@ -49,7 +68,7 @@ export class HeaderComponent implements OnInit {
     this.hideAccessoriesArticle = false;
 
     this.hideCartTextDropDown = false;
-    this.hideGuestUserTextDropDown = false;
+    this.hideGuestOrLoggedUserTextDropDown = false;
     this.hideHeartTextDropDown = false;
   }
 
@@ -83,7 +102,7 @@ export class HeaderComponent implements OnInit {
     switch (className.item(1)) {
       case 'fa-user':
         this.cleanHiddenArticle();
-        this.hideGuestUserTextDropDown = true;
+      this.hideGuestOrLoggedUserTextDropDown = true;
         break;
       case 'fa-shopping-bag':
         this.cleanHiddenArticle();
@@ -102,7 +121,7 @@ export class HeaderComponent implements OnInit {
     // event.preventDefault();
   //  this.publicMethod.preventDefault(event);
     // this.showPopupWindow.emit();
-    this.userService.unhideLoginRegisterWindow();
+    this.booleansService.unhideLoginRegisterWindow();
     console.log("clicked")
   }
 
@@ -128,7 +147,7 @@ export class HeaderComponent implements OnInit {
 
       classNames
         .forEach(value => {
-          console.log(value)
+          // console.log(value)
          if (value === 'clothes' || value === 'cloth' || value === 'box'){
            isClickedOut = true;
          }

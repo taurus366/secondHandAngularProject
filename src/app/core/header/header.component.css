@@ -118,13 +118,13 @@
 
 .header-logged-user-dropdown-box {
   position: relative;
-  display: none;
+  /*display: none;*/
 }
 
 .header-logged-user-dropdown-box::after {
   text-align: center;
   font-size: 25px;
-  content: "Profil";
+  content: "Profile";
   height: 30px;
   width: 150px;
   position: absolute;

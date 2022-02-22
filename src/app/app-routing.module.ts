@@ -2,6 +2,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {MainComponent} from "./main/main.component";
 import {ClothesComponent} from "./clothes/clothes.component";
 import {AsideMainComponent} from "./user-profile/aside-main/aside-main.component";
+import {CanDeactivateGuard} from "./shared/guard/can-deactivated-guard.service";
 
 
 const routes: Routes = [
@@ -25,7 +26,8 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-    component: AsideMainComponent
+    component: AsideMainComponent,
+    canDeactivate: [CanDeactivateGuard]
   },
   {
     path: '**',

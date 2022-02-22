@@ -7,6 +7,7 @@ import { ReturnComponent } from './return/return.component';
 import { OrdersComponent } from './orders/orders.component';
 import { PromoCodesComponent } from './promo-codes/promo-codes.component';
 import {RouterModule} from "@angular/router";
+import {CanDeactivateGuard} from "../shared/guard/can-deactivated-guard.service";
 
 
 
@@ -25,6 +26,9 @@ import {RouterModule} from "@angular/router";
   ],
   exports: [
     AsideMainComponent
+  ],
+  providers: [
+    CanDeactivateGuard
   ]
 })
 export class UserProfileModule { }
