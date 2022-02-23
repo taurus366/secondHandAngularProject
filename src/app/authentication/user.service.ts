@@ -29,7 +29,14 @@ export class UserService {
       observe: 'response',
       withCredentials: true,
       responseType: 'json'
-    });
+    }).subscribe({
+      next:value => {
+        const jsonParsed = JSON.parse(<string>value.body || 'ERROR');
+        this.user = JSON.parse(jsonParsed);
+      },
+      // IF EMAIL OR PASSWORD IS WRONG , I MUST RETURN SOME EXCEPTION TO DISPLAY
+      error:err => {}
+    })
   }
 
   register(data: { email: string, password: string, confirmPassword: string, sex: string, firstName: string, lastName: string }): void {
@@ -55,6 +62,13 @@ export class UserService {
     }).subscribe({
       next: value => {
         this.booleanService.setIsLoggedTrue();
+        value.body?.roles.forEach(value1 => {
+          if (value1.role === 'ADMIN'){
+            this.booleanService.setIsAdminTrue();
+          }else {
+            this.booleanService.setIsAdminFalse();
+          }
+        })
       },
       error: err => {
         this.booleanService.setIsLoggedFalse();

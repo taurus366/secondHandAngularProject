@@ -7,8 +7,18 @@ export class BooleansService {
 
   constructor() { }
 
-
+  //ADMIN OR USER LOGIN
   isLogged : boolean = false;
+  isAdmin : boolean = false;
+  setIsAdminFalse():void {
+    this.isAdmin = false;
+  }
+  setIsAdminTrue():void {
+    this.isAdmin = true;
+  }
+  getIsAdmin():boolean {
+    return this.isAdmin;
+  }
 
   setIsLoggedFalse():void {
     this.isLogged = false;
@@ -21,7 +31,7 @@ export class BooleansService {
   getIsLogged() {
     return this.isLogged;
   }
-
+  //ADMIN OR USER LOGIN
 
 
   //PROFILE HEADER TEXT OPTIONS

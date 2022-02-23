@@ -95,11 +95,12 @@ p.popular-brands-title-p {
 .charge-slider > .charge-card:nth-child(5) {
   margin-right: 0;
 }
+/* DISABLED IT AFTER IMPLEMENTED SLIDER FROM OUT DIRECTORY */
+/*.charge-slider {*/
+/*  display: flex;*/
+/*  justify-content: space-between;*/
 
-.charge-slider {
-  display: flex;
-  justify-content: space-between;
-}
+/*}*/
 
 .charge-card-information-brand-size {
   display: flex;

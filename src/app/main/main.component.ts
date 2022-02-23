@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Renderer2} from '@angular/core';
 
 @Component({
   selector: 'app-main',
@@ -11,7 +11,7 @@ export class MainComponent implements OnInit {
   counter :number = this.getRandomNumber();
 
 
-  constructor() { }
+  constructor(private renderer: Renderer2) { }
 
   ngOnInit(): void {
     this.useLink = this.links[this.getRandomNumber()];
@@ -28,6 +28,9 @@ export class MainComponent implements OnInit {
   getRandomNumber() : number {
     return Math.floor(Math.random() * 3);
   }
+
+
+
 
 
 
