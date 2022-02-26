@@ -3,6 +3,7 @@ import {ApiConnectionServiceService} from '../../shared/api-connection-service.s
 import {NgForm} from "@angular/forms";
 import {stringify} from "@angular/compiler/src/util";
 import {UserService} from "../user.service";
+import {BooleansService} from "../../shared/booleans.service";
 
 @Component({
   selector: 'app-register-window',
@@ -11,35 +12,32 @@ import {UserService} from "../user.service";
 })
 export class RegisterWindowComponent implements OnInit {
 
-  constructor(public api: UserService) {
+  constructor(public userService: UserService,private booleanService:BooleansService) {
 
   }
 
   ngOnInit(): void {
   }
 
-  registerOnSubmit(testForm: MouseEvent):void {
-    testForm.preventDefault();
+  register(form: NgForm) {
 
-    // this.api.validateUserToken({
-    //   email: "ali@abv.bg",
-    //   password: "12345678",
-    //   confirmPassword: "12345678",
-    //   firstName:"ali",
-    //   lastName:"ali",
-    //   sex:"MALE"
-    // })
-    //   .subscribe(
-    //     value => {
-    //       console.log(value)
-    //     },
-    //     error => console.log(error)
-    //   )
-    this.api.validateUserToken();
+    this.userService.register(form.value)
+      .subscribe({
+        next:value => {
+          value.body?.roles.forEach(role => {
+            if (role.role === 'ADMINISTRATOR') {
+              this.booleanService.setIsAdminTrue();
+            }
+          });
+        },
+        error:err => {
+          console.log(err);
+        },
+        complete: () => {
+          this.booleanService.setIsLoggedTrue()
+          this.booleanService.hideShowLoginRegisterWindow();
+        }
+      })
 
-    //   this.api.test({email:"ali@abv.bg", password:"12345678"})
-    //     .subscribe(value => console.log(value))
-    //
-    // // }
   }
 }

@@ -20,37 +20,56 @@ export class UserService {
   //   return this.validateUserToken();
   // }
 
-  constructor(private http: HttpClient,private booleanService: BooleansService) {
+  constructor(private http: HttpClient, private booleanService: BooleansService) {
   }
 
-  login(data: { email: string, password: string }): void {
+  login(data: { email: string, password: string }) {
     // HERE I MUST CALL API FOR LOGIN THE USER THEN SAVE RECEIVED USER INFO
-    this.http.post(`${apiUrlLan}/users/login`, data, {
+  return   this.http.post<IUSER>(`${apiUrlLan}/users/login`, data, {
       observe: 'response',
       withCredentials: true,
       responseType: 'json'
-    }).subscribe({
-      next:value => {
-        const jsonParsed = JSON.parse(<string>value.body || 'ERROR');
-        this.user = JSON.parse(jsonParsed);
-      },
-      // IF EMAIL OR PASSWORD IS WRONG , I MUST RETURN SOME EXCEPTION TO DISPLAY
-      error:err => {}
     })
-  }
+    //   .subscribe({
+    //   next: value => {
+    //     // const jsonParsed = JSON.parse(<string>value.body || 'ERROR');
+    //     // this.user = JSON.parse(jsonParsed);
+    //     // console.log(this.user);
+    //     console.log(value)
+    //   },
+    //   // IF EMAIL OR PASSWORD IS WRONG , I MUST RETURN SOME EXCEPTION TO DISPLAY
+    //   error: err => {
+    //     console.log(err)
+    //   }
+    // })
+  };
 
-  register(data: { email: string, password: string, confirmPassword: string, sex: string, firstName: string, lastName: string }): void {
+  register(data: { email: string, password: string, confirmPassword: string, sex: string, firstName: string, lastName: string }) {
     //  HERE I MUST CALL API FOR REGISTER NEW USER THEN SAVE RECEIVED USER INFO
-    this.http.post<IUSER>(`${apiUrlLan}/users/register`, data, {
+   return  this.http.post<IUSER>(`${apiUrlLan}/users/register`, data, {
       observe: 'response',
       withCredentials: true,
       responseType: 'json'
     });
   }
 
-  // logout():void{
-  //   this.http.post(`${apiUrlLan}/users/logout`)
-  // }
+  logout() {
+  return   this.http.get(`${apiUrlLan}/users/logout`, {
+      observe: 'response',
+      withCredentials: true,
+      responseType: 'json'
+    })
+    //   .subscribe({
+    //   next: value => {
+    //     console.log("completed!")
+    //   },
+    //   error: err => {
+    //   },
+    //   complete: () => {
+    //   }
+    // })
+  }
+
 
   validateUserToken(): boolean {
     let isLogged = false;
@@ -63,9 +82,9 @@ export class UserService {
       next: value => {
         this.booleanService.setIsLoggedTrue();
         value.body?.roles.forEach(value1 => {
-          if (value1.role === 'ADMIN'){
+          if (value1.role === 'ADMIN') {
             this.booleanService.setIsAdminTrue();
-          }else {
+          } else {
             this.booleanService.setIsAdminFalse();
           }
         })
@@ -76,7 +95,6 @@ export class UserService {
     });
     return isLogged;
   }
-
 
 
 }

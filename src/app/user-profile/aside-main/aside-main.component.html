@@ -9,7 +9,7 @@
           <li [class.nav-active-btn]="checkAddressesWindow()" (click)="visibleAddressesWindow()">ADDRESSES</li>
           <li [class.nav-active-btn]="checkPromoCodesWindow()" (click)="visiblePromoCodesWindow()">MY PROMO CODES</li>
           <li [class.nav-active-btn]="checkShowReturnWindow()" (click)="visibleReturnWindow()">RETURN</li>
-          <li>EXIT</li>
+          <li (click)="logout()">EXIT</li>
         </ul>
       </nav>
     </section>

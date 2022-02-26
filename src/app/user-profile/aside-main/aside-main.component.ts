@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {BooleansService} from "../../shared/booleans.service";
 import {Observable} from "rxjs";
+import {UserService} from "../../authentication/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-aside-main',
@@ -16,7 +18,7 @@ export class AsideMainComponent implements OnInit {
   // showOrdersWindow : boolean = false;
 
 
-  constructor(public booleansService : BooleansService) { }
+  constructor(public booleansService : BooleansService, private userService:UserService, private route:Router) { }
 
   ngOnInit(): void {
     this.booleansService.showProfileTextOnHeader = true;
@@ -24,9 +26,24 @@ export class AsideMainComponent implements OnInit {
 
   }
 
+  logout():void{
+    this.userService.logout()
+      .subscribe({
+        error:err => {
+          console.log(err);
+        },
+        complete:() => {
+          this.booleansService.setIsLoggedFalse();
+          this.booleansService.setIsAdminFalse();
+          this.route.navigate(["/"]);
+        }
+      })
+  }
+
   //HERE I RESET THE HEADER TEXT WINDOW!
   canDeactivate(): Observable<boolean> | boolean {
-    this.hideAllWindows();
+    this.booleansService.showProfileTextOnHeader = false;
+    this.booleansService.setProfileTextName = '';
     return true;
   }
 

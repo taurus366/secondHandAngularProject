@@ -4,11 +4,11 @@
     <p>Log in to your account</p>
   </article>
 
-  <form class="popup-window-login-form-form" action="#" method="post">
+  <form #form="ngForm" class="popup-window-login-form-form" action="" method="post"  (ngSubmit)="login(form)">
 
-    <input type="email" name="email" id="email" placeholder="Email">
+    <input type="email" name="email" id="email" placeholder="Email" ngModel >
 
-    <input type="password" name="password" id="password" placeholder="Password">
+    <input type="password" name="password" id="password" placeholder="Password" ngModel>
 
     <article class="login-form-forgot-password">
       <a href="">
