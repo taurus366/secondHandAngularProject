@@ -8,15 +8,15 @@
       <form #form="ngForm" class="popup-window-register-form-form" method="post" action="" (ngSubmit)="register(form)">
 
        <article class="popup-window-register-form-names">
-        <input type="text" name="firstName" id="firstName" placeholder="First name" ngModel>
-        <input type="text" name="lastName" id="lastName" placeholder="Third name" ngModel>
+        <input type="text" name="firstName" id="firstName" placeholder="First name" ngModel required>
+        <input type="text" name="lastName" id="lastName" placeholder="Third name" ngModel required>
        </article>
 
-        <input type="email" name="email" id="email" placeholder="Email" ngModel>
+        <input type="email" name="email" id="email" placeholder="Email" ngModel required>
 
-        <input type="password" name="password" id="password" placeholder="Password" ngModel>
+        <input type="password" name="password" id="password" placeholder="Password" ngModel required [minlength]="6">
 
-        <input type="password" name="confirmPassword" id="repeatPassword" placeholder="Confirm password" ngModel>
+        <input type="password" name="confirmPassword" id="repeatPassword" placeholder="Confirm password" ngModel required [minLength]="6">
 
        <article class="popup-window-register-form-gender">
 

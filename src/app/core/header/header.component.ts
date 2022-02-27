@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {BooleansService} from "../../shared/booleans.service";
 import {SharedService} from "../../shared/shared.service";
-import {interval, timeout, timer} from "rxjs";
 import {UserService} from "../../authentication/user.service";
 
 

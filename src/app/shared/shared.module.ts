@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoadingComponent } from './loading/loading.component';
 import {ParamGuardActivate} from "./guard/param-guard.activate";
+import { AlertMessagesGeneratorDirective } from './alert-messages-generator.directive';
 
 
 
 @NgModule({
   declarations: [
-    LoadingComponent
+    LoadingComponent,
+    AlertMessagesGeneratorDirective
   ],
   imports: [
     CommonModule
@@ -16,7 +18,8 @@ import {ParamGuardActivate} from "./guard/param-guard.activate";
     ParamGuardActivate
   ],
   exports: [
-    LoadingComponent
+    LoadingComponent,
+    AlertMessagesGeneratorDirective
   ]
 })
 export class SharedModule { }

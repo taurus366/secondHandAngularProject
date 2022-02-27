@@ -1,0 +1,160 @@
+/* FLASH MESSAGES ERROR,ERROR,SUCCESS */
+
+.flash-messages {
+  z-index: 9999;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 5%;
+  /* border: solid white 3px; */
+  width: 1300px;
+  font-size: 30px;
+   /*animation: аnimation-board 6s alternate both;*/
+}
+
+/*@keyframes аnimation-board {*/
+/*  0% {*/
+/*    opacity: 0;*/
+/*  }*/
+
+/*  10% {*/
+/*    opacity: 1;*/
+/*  }*/
+/*  40% {*/
+/*    opacity: 1;*/
+/*  }*/
+
+/*  60% {*/
+/*    opacity: 1;*/
+/*  }*/
+
+/*  90% {*/
+/*    opacity: 1;*/
+/*  }*/
+/*  100% {*/
+/*    opacity: 0;*/
+/*  }*/
+/*}*/
+
+.flash-message-error,
+.flash-message-success,
+.flash-message-info {
+  display: flex;
+  align-items: center;
+}
+
+.error-text,
+.success-text,
+.info-text {
+  margin: 20px 10px;
+  flex-grow: 1;
+}
+
+.error-message-btn,
+.success-message-btn,
+.info-message-btn {
+  cursor: pointer;
+  align-self: flex-start;
+  padding: 5px 10px 0 0;
+}
+
+.fa-times-circle.error-icon,
+.fa-check-circle.success-icon,
+.fa-info-circle.info-icon {
+  font-size: 55px;
+  vertical-align: middle;
+  -webkit-animation: blink-1 5s infinite both;
+  animation: blink-1 5s infinite both;
+}
+
+@-webkit-keyframes blink-1 {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+
+@keyframes blink-1 {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+
+/* ERROR */
+
+.flash-message-error {
+  color: #a94442;
+  border: solid 1px rgba(255, 0, 0, 0.171);
+  background-color: #ffbaba;
+  border-radius: 7px;
+  animation: аnimation-board 7s alternate both;
+}
+@keyframes аnimation-board {
+  0% {
+    opacity: 0;
+  }
+
+  9% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ERROR */
+
+/* SUCCESS */
+
+.flash-message-success {
+  color: #10661e;
+  border: solid 1px #10661e;
+  background-color: #dff0d8;
+  border-radius: 7px;
+}
+
+/* SUCCESS */
+
+/* INFO */
+
+.flash-message-info {
+  color: #31708F;
+  background-color: #D9EDF7;
+  border: solid 1px #8cd2f5;
+  border-radius: 7px;
+}
+
+/* INFO */
+
+@media only screen and (max-width: 1350px) {
+  .flash-messages {
+    width: 100%;
+    font-size: 28px;
+  }
+}

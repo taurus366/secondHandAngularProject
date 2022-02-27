@@ -7,6 +7,7 @@ import {AuthenticationModule} from "../authentication/authentication.module";
 import { CartBoxComponent } from './cart-box/cart-box.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "../shared/shared.module";
+import { AlertMessagesComponent } from './alert-messages/alert-messages.component';
 
 
 
@@ -14,12 +15,14 @@ import {SharedModule} from "../shared/shared.module";
   declarations: [
     FooterComponent,
     HeaderComponent,
-    CartBoxComponent
+    CartBoxComponent,
+    AlertMessagesComponent
   ],
   imports: [
     CommonModule,
     AuthenticationModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   exports: [
     FooterComponent,
