@@ -1,21 +1,21 @@
-import {Component, OnInit, Renderer2} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 
 
 @Component({
   selector: 'app-alert-messages',
   templateUrl: './alert-messages.component.html',
-  styleUrls: ['./alert-messages.component.css']
+  styleUrls: ['./alert-messages.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AlertMessagesComponent implements OnInit {
 
-  constructor( private render2:Renderer2) { }
+  constructor() { }
 
   ngOnInit(): void {
-  }
-
-  test():void {
-    // this.render2.createElement()
 
   }
+
+
+
 
 }

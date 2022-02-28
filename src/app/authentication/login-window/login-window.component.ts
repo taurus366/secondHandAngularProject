@@ -2,6 +2,8 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {UserService} from "../user.service";
 import { NgForm as NgForm } from '@angular/forms';
 import {BooleansService} from "../../shared/booleans.service";
+import {AlertMessagesGeneratorDirective} from "../../shared/alert-messages-generator.directive";
+
 
 
 @Component({
@@ -14,7 +16,7 @@ export class LoginWindowComponent implements OnInit {
   @Output() isForgottenEventEmitter = new EventEmitter();
 
 
-  constructor(private userService: UserService,private booleanService:BooleansService) { }
+  constructor(private userService: UserService,private booleanService:BooleansService,private alertMsg : AlertMessagesGeneratorDirective) { }
 
   login(form: NgForm):void {
 
@@ -39,11 +41,14 @@ export class LoginWindowComponent implements OnInit {
         complete:() => {
           this.booleanService.setIsLoggedTrue();
           this.booleanService.hideShowLoginRegisterWindow();
+
         }
       })
 
   }
   ngOnInit(): void {
+    this.alertMsg.error("test");
+
   }
 
 

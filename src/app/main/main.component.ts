@@ -1,4 +1,5 @@
 import {Component, OnInit, Renderer2} from '@angular/core';
+import {AlertMessagesGeneratorDirective} from "../shared/alert-messages-generator.directive";
 
 @Component({
   selector: 'app-main',
@@ -11,7 +12,7 @@ export class MainComponent implements OnInit {
   counter :number = this.getRandomNumber();
 
 
-  constructor(private renderer: Renderer2) { }
+  constructor(private alertMsg: AlertMessagesGeneratorDirective) { }
 
   ngOnInit(): void {
     this.useLink = this.links[this.getRandomNumber()];
@@ -24,6 +25,8 @@ export class MainComponent implements OnInit {
       this.useLink = this.links[this.counter];
     },15000);
 
+
+  this.alertMsg.error("test");
   }
   getRandomNumber() : number {
     return Math.floor(Math.random() * 3);
