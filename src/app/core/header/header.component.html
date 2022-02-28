@@ -1,15 +1,20 @@
 <section class="header-section">
   <article class="logo-title-article">
     <!--    <img src="images/logo.png" alt="logo image" />-->
-     <img routerLink="/home" src="/assets/images/logo.png" alt="logo image" />
+    <img routerLink="/home" src="/assets/images/logo.png" alt="logo image"/>
   </article>
   <nav class="header-nav-article">
     <ul class="header-nav-ul">
-      <li><a href="" #womenMenu (mouseover)="showItem(womenMenu)" [class.active-hover]="hideWomenArticle" routerLink="/clothes/women" (click)="cleanHiddenArticle()">Women</a></li>
-      <li><a href="" #menMenu (mouseover)="showItem(menMenu)" [class.active-hover]="hideMenArticle" routerLink="/clothes/men" (click)="cleanHiddenArticle()">Men</a></li>
-      <li><a href="" #childrenMenu (mouseover)="showItem(childrenMenu)" [class.active-hover]="hideChildrenArticle" (click)="cleanHiddenArticle()">Children</a></li>
-      <li><a href="" #shoesMenu (mouseover)="showItem(shoesMenu)" [class.active-hover]="hideShoesArticle" (click)="cleanHiddenArticle()">Shoes</a></li>
-      <li><a href="" #accessoriesMenu (mouseover)="showItem(accessoriesMenu)" [class.active-hover]="hideAccessoriesArticle" (click)="cleanHiddenArticle()">Accessories</a></li>
+      <li><a href="" #womenMenu (mouseover)="showItem(womenMenu)" [class.active-hover]="hideWomenArticle"
+             routerLink="/clothes/women" (click)="cleanHiddenArticle()">Women</a></li>
+      <li><a href="" #menMenu (mouseover)="showItem(menMenu)" [class.active-hover]="hideMenArticle"
+             routerLink="/clothes/men" (click)="cleanHiddenArticle()">Men</a></li>
+      <li><a href="" #childrenMenu (mouseover)="showItem(childrenMenu)" [class.active-hover]="hideChildrenArticle"
+             (click)="cleanHiddenArticle()">Children</a></li>
+      <li><a href="" #shoesMenu (mouseover)="showItem(shoesMenu)" [class.active-hover]="hideShoesArticle"
+             (click)="cleanHiddenArticle()">Shoes</a></li>
+      <li><a href="" #accessoriesMenu (mouseover)="showItem(accessoriesMenu)"
+             [class.active-hover]="hideAccessoriesArticle" (click)="cleanHiddenArticle()">Accessories</a></li>
     </ul>
   </nav>
   <article *ngIf="booleansService.showProfileTextOnHeader" class="profile-names">
@@ -18,21 +23,24 @@
     <span class="hidden">ORDERS</span>
     <span class="hidden">ADDRESSES</span>
     <span class="hidden">MY PROMO CODES</span>
-<!--    <span>RETURN</span>-->
+    <!--    <span>RETURN</span>-->
   </article>
 
   <article class="user-info">
     <ul class="header-user-nav">
       <li>
         <a href="">
-          <i #showElementHeart (mouseover)="showItem(showElementHeart)" (mouseleave)="hideHeartTextDropDown = false" class="fas fa-heart"></i>
+          <i #showElementHeart (mouseover)="showItem(showElementHeart)" (mouseleave)="hideHeartTextDropDown = false"
+             class="fas fa-heart"></i>
         </a>
         <article *ngIf="likedItemCounter > 0" class="bubble-heart-border">{{likedItemCounter}}</article>
         <article *ngIf="hideHeartTextDropDown" class="header-heart-dropdown-box"></article>
       </li>
       <li>
         <a href="">
-          <i #showElementCart (mouseover)="showItem(showElementCart)" (mouseleave)="hideCartTextDropDown = false" class="fas fa-shopping-bag" (click)="showCartBox = true;publicMethod.preventDefault($event);startListenCartBoxHide()"></i>
+          <i #showElementCart (mouseover)="showItem(showElementCart)" (mouseleave)="hideCartTextDropDown = false"
+             class="fas fa-shopping-bag"
+             (click)="showCartBox = true;publicMethod.preventDefault($event);startListenCartBoxHide()"></i>
         </a>
         <article *ngIf="cartItemCounter > 0" class="bubble-cart-border">{{cartItemCounter}}</article>
         <article *ngIf="hideCartTextDropDown" class="header-bag-dropdown-box"></article>
@@ -41,25 +49,30 @@
         </article>
       </li>
       <li>
-        <a  [routerLink]="checkIsLogged() ? '/profile' : '' " >
+        <a [routerLink]="checkIsLogged() ? '/profile' : '' ">
 
-          <i #showElementUser class="fas fa-user" (mouseover)="showItem(showElementUser)" (mouseleave)="hideGuestOrLoggedUserTextDropDown = false"   (click)="checkIsLogged() ? '' : showLoginRegisterWindow();publicMethod.preventDefault($event)"></i>
+          <i #showElementUser class="fas fa-user" (mouseover)="showItem(showElementUser)"
+             (mouseleave)="hideGuestOrLoggedUserTextDropDown = false"
+             (click)="checkIsLogged() ? '' : showLoginRegisterWindow();publicMethod.preventDefault($event)"></i>
         </a>
-        <article *ngIf="checkIsLogged() && hideGuestOrLoggedUserTextDropDown" class="header-logged-user-dropdown-box"></article>
-        <article *ngIf="!checkIsLogged() && hideGuestOrLoggedUserTextDropDown" class="header-user-dropdown-box"></article>
+        <article *ngIf="checkIsLogged() && hideGuestOrLoggedUserTextDropDown"
+                 class="header-logged-user-dropdown-box"></article>
+        <article *ngIf="!checkIsLogged() && hideGuestOrLoggedUserTextDropDown"
+                 class="header-user-dropdown-box"></article>
       </li>
-<!--       <li>-->
-<!--                 <a href="">-->
-<!--                  <i class="fas fa-user"></i>-->
-<!--                 </a>-->
-<!--                  <article class="header-logged-user-dropdown-box">-->
-<!--                  </article>-->
-<!--              </li> -->
+      <!--       <li>-->
+      <!--                 <a href="">-->
+      <!--                  <i class="fas fa-user"></i>-->
+      <!--                 </a>-->
+      <!--                  <article class="header-logged-user-dropdown-box">-->
+      <!--                  </article>-->
+      <!--              </li> -->
     </ul>
   </article>
 </section>
 
-<section class="hidden-section" *ngIf="hideAccessoriesArticle || hideShoesArticle || hideChildrenArticle || hideMenArticle || hideWomenArticle">
+<section class="hidden-section"
+         *ngIf="hideAccessoriesArticle || hideShoesArticle || hideChildrenArticle || hideMenArticle || hideWomenArticle">
   <section *ngIf="hideWomenArticle" (mouseleave)="cleanHiddenArticle()" class="hidden-women-article">
     <article class="women-title-ul-article">
       <h3 class="women-title-ul-article-title">Ladies clothes</h3>
@@ -245,24 +258,7 @@
   </section>
 </section>
 
-<!--<section class="flash-messages" #gg appAlertMessagesGenerator>-->
-<!--&lt;!&ndash;    <article class="flash-message-error">&ndash;&gt;-->
 
-<!--&lt;!&ndash;      <i class="far fa-times-circle error-icon"></i>&ndash;&gt;-->
-
-<!--&lt;!&ndash;      <p class="error-text">&ndash;&gt;-->
-
-<!--&lt;!&ndash;        <strong>ERROR! </strong>&ndash;&gt;-->
-<!--&lt;!&ndash;        <span class="error-user-message">&ndash;&gt;-->
-<!--&lt;!&ndash;              Please check where has * then fix them.&ndash;&gt;-->
-<!--&lt;!&ndash;        </span>&ndash;&gt;-->
-
-<!--&lt;!&ndash;      </p>&ndash;&gt;-->
-
-<!--&lt;!&ndash;      <i class="fa fa-times error-message-btn"></i>&ndash;&gt;-->
-
-<!--&lt;!&ndash;    </article>&ndash;&gt;-->
-<!--</section>-->
 <app-alert-messages></app-alert-messages>
 
 <section class="loggin-register-section">

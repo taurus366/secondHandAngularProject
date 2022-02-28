@@ -3,6 +3,7 @@ import {BooleansService} from "../../shared/booleans.service";
 import {Observable} from "rxjs";
 import {UserService} from "../../authentication/user.service";
 import {Router} from "@angular/router";
+import {SharedService} from "../../shared/shared.service";
 
 @Component({
   selector: 'app-aside-main',
@@ -18,7 +19,7 @@ export class AsideMainComponent implements OnInit {
   // showOrdersWindow : boolean = false;
 
 
-  constructor(public booleansService : BooleansService, private userService:UserService, private route:Router) { }
+  constructor(public booleansService : BooleansService, private userService:UserService, private route:Router, private sharedService:SharedService) { }
 
   ngOnInit(): void {
     this.booleansService.showProfileTextOnHeader = true;
@@ -36,6 +37,7 @@ export class AsideMainComponent implements OnInit {
           this.booleansService.setIsLoggedFalse();
           this.booleansService.setIsAdminFalse();
           this.route.navigate(["/"]);
+          this.sharedService.showAlertMsg.success("Successfully logged out !")
         }
       })
   }

@@ -19,23 +19,15 @@ export class AlertMessagesGeneratorDirective implements OnInit {
 
 
   ngOnInit(): void {
-
-    // this.error("12");
-    // this.error("2");
-    // this.error("3");
-    // this.error("4");
-
     // setInterval(() => {
     //   this.error("test");
     //   // this.interval();
     // }, 2000);
-    // console.log("test");
-    // this.error("test");
-    // console.log(this.el.nativeElement)
-
   }
 
-  elSec = document.querySelector('.flash-messages');
+  getLink() {
+    return document.querySelector('.flash-messages');
+  }
 
 
   error(message: string) {
@@ -82,15 +74,131 @@ export class AlertMessagesGeneratorDirective implements OnInit {
 
     this.renderer2.appendChild(article, p);
     this.renderer2.appendChild(article, btnI);
-    this.renderer2.appendChild(this.elSec, article);
+    this.renderer2.appendChild(this.getLink(), article);
 
     this.renderer2.listen(btnI, 'click', () => {
-      this.renderer2.removeChild(this.elSec, article);
+      this.renderer2.removeChild(this.getLink(), article);
     });
 
     setTimeout(() => {
-      if (this.elSec?.contains(article)) {
-        this.renderer2.removeChild(this.elSec, article);
+      if (this.getLink()?.contains(article)) {
+        this.renderer2.removeChild(this.getLink(), article);
+      }
+    }, 8000);
+  }
+
+
+  success(message: string) {
+
+    let classesArticle = ['flash-message-success'];
+    let article = this.renderer2.createElement("article");
+    for (const iconElement of classesArticle) {
+      this.renderer2.addClass(article, iconElement);
+    }
+
+    let classesIcon = ['far', 'fa-check-circle', 'success-icon'];
+    let icon = this.renderer2.createElement("i");
+    for (const iconElement of classesIcon) {
+      this.renderer2.addClass(icon, iconElement);
+    }
+
+    let classesP = ['success-text'];
+    let p = this.renderer2.createElement("p");
+    for (const pElement of classesP) {
+      this.renderer2.addClass(p, pElement);
+    }
+
+    let strong = this.renderer2.createElement("strong");
+    this.renderer2.appendChild(strong, this.renderer2.createText("SUCCESS! "))
+
+    let classesSpan = ['success-user-message'];
+    let text = this.renderer2.createText(message);
+    let span = this.renderer2.createElement("span");
+    this.renderer2.appendChild(span, text);
+    for (const spanElement of classesSpan) {
+      this.renderer2.addClass(span, spanElement);
+    }
+
+    let classesBtnI = ['fa', 'fa-times', 'success-message-btn'];
+    let btnI = this.renderer2.createElement("i");
+    for (const elBtnI of classesBtnI) {
+      this.renderer2.addClass(btnI, elBtnI);
+    }
+
+
+    this.renderer2.appendChild(article, icon);
+    this.renderer2.appendChild(p, strong);
+    this.renderer2.appendChild(p, span);
+
+    this.renderer2.appendChild(article, p);
+    this.renderer2.appendChild(article, btnI);
+    this.renderer2.appendChild(this.getLink(), article);
+
+    this.renderer2.listen(btnI, 'click', () => {
+      this.renderer2.removeChild(this.getLink(), article);
+    });
+
+    setTimeout(() => {
+      if (this.getLink()?.contains(article)) {
+        this.renderer2.removeChild(this.getLink(), article);
+      }
+    }, 8000);
+  }
+
+
+  info(message: string) {
+
+    let classesArticle = ['flash-message-info'];
+    let article = this.renderer2.createElement("article");
+    for (const iconElement of classesArticle) {
+      this.renderer2.addClass(article, iconElement);
+    }
+
+    let classesIcon = ['fa', 'fa-info-circle', 'info-icon'];
+    let icon = this.renderer2.createElement("i");
+    for (const iconElement of classesIcon) {
+      this.renderer2.addClass(icon, iconElement);
+    }
+
+    let classesP = ['info-text'];
+    let p = this.renderer2.createElement("p");
+    for (const pElement of classesP) {
+      this.renderer2.addClass(p, pElement);
+    }
+
+    let strong = this.renderer2.createElement("strong");
+    this.renderer2.appendChild(strong, this.renderer2.createText("INFO! "))
+
+    let classesSpan = ['info-user-message'];
+    let text = this.renderer2.createText(message);
+    let span = this.renderer2.createElement("span");
+    this.renderer2.appendChild(span, text);
+    for (const spanElement of classesSpan) {
+      this.renderer2.addClass(span, spanElement);
+    }
+
+    let classesBtnI = ['fa', 'fa-times', 'info-message-btn'];
+    let btnI = this.renderer2.createElement("i");
+    for (const elBtnI of classesBtnI) {
+      this.renderer2.addClass(btnI, elBtnI);
+    }
+
+
+    this.renderer2.appendChild(article, icon);
+    this.renderer2.appendChild(p, strong);
+    this.renderer2.appendChild(p, span);
+
+    this.renderer2.appendChild(article, p);
+    this.renderer2.appendChild(article, btnI);
+    this.renderer2.appendChild(this.getLink(), article);
+
+    this.renderer2.listen(btnI, 'click', () => {
+      this.renderer2.removeChild(this.getLink(), article);
+    });
+
+    setTimeout(() => {
+      if (this.getLink()?.contains(article)) {
+        this.renderer2.removeChild(this.getLink(), article);
       }
     }, 8000);
   }
