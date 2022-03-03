@@ -3,14 +3,16 @@ import {CommonModule} from '@angular/common';
 import {LoadingComponent} from './loading/loading.component';
 import {ParamGuardActivate} from "./guard/param-guard.activate";
 import {AlertMessagesGeneratorDirective} from './alert-messages-generator.directive';
-import { CustomValidatorDirective } from './custom-validator.directive';
+import { EmailValidatorDirective } from './email-validator.directive';
+import { PasswordValidatorDirective } from './password-validator.directive';
 
 
 @NgModule({
   declarations: [
     LoadingComponent,
     AlertMessagesGeneratorDirective,
-    CustomValidatorDirective
+    EmailValidatorDirective,
+    PasswordValidatorDirective
   ],
   imports: [
     CommonModule
@@ -20,7 +22,8 @@ import { CustomValidatorDirective } from './custom-validator.directive';
   ],
     exports: [
         LoadingComponent,
-        CustomValidatorDirective
+        EmailValidatorDirective,
+        PasswordValidatorDirective
     ]
 })
 export class SharedModule {

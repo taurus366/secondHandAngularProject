@@ -1,13 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {ApiConnectionServiceService} from '../../shared/api-connection-service.service';
 import {NgForm} from "@angular/forms";
-import {stringify} from "@angular/compiler/src/util";
 import {UserService} from "../user.service";
 import {BooleansService} from "../../shared/booleans.service";
 import {SharedService} from "../../shared/shared.service";
-import {emailValidator} from "../../shared/email-validator";
 
 const FORM_ERROR_MSG = 'Please correct the information where box in red';
+const FORM_PASSWORDS_ARE_NOT_MATCH_MSG = '[ Passwords aren\'t matched ]';
 
 @Component({
   selector: 'app-register-window',
@@ -20,16 +18,16 @@ export class RegisterWindowComponent implements OnInit {
 
   }
 
-  isFirstNameIncorrect = false;
-  isLastNameIncorrect = false;
-  isEmailIncorrect = false;
-  isPasswordIncorrect = false;
-  isConfirmPasswordIncorrect = false;
-  isGenderIncorrect = false;
+  isFirstNameIncorrect :boolean = false;
+  isLastNameIncorrect :boolean = false;
+  isEmailIncorrect :boolean = false;
+  isPasswordIncorrect :boolean = false;
+  isConfirmPasswordIncorrect :boolean = false;
+  isGenderIncorrect :boolean = false;
 
 
 
-  emailValidator = emailValidator;
+  // emailValidator = emailValidator;
 
   ngOnInit(): void {
   }
@@ -40,7 +38,8 @@ export class RegisterWindowComponent implements OnInit {
 
 
     if (form.invalid) {
-console.log("error FORM")
+      let isSamePasswords : boolean;
+
       let formControl = form.controls;
 
       switch (formControl.firstName.status) {
@@ -97,12 +96,23 @@ console.log("error FORM")
           break
       }
 
+      switch (formControl.confirmPassword.errors?.isSamePasswords){
+        case true:
+          this.isPasswordIncorrect = true;
+          this.isConfirmPasswordIncorrect = true;
+          isSamePasswords = false;
+          break;
+        default:
+          isSamePasswords = true;
+      }
+
       this.sharedService
         .showAlertMsg
-        .error(FORM_ERROR_MSG);
+        .error(FORM_ERROR_MSG + " " + (isSamePasswords ? "" : FORM_PASSWORDS_ARE_NOT_MATCH_MSG));
 
       return;
     }
+
 
     this.restartAllFields();
 
@@ -117,7 +127,7 @@ console.log("error FORM")
           });
         },
         error: err => {
-          console.log(err.error);
+
           let message = '';
           Array.from(err.error)
             .forEach(value => {
@@ -132,6 +142,8 @@ console.log("error FORM")
 
               message += message.length === 39 ? message += `${field + ' : ' + defaultMessage}|` : `${field + ' : ' + defaultMessage}|`;
 
+              // @ts-ignore
+              value.code === "UniqueEmail" ? this.isEmailIncorrect = true : '';
 
             });
 

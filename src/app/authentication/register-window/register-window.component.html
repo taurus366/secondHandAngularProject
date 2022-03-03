@@ -18,7 +18,7 @@
 
     <input type="email" #email="ngModel" name="email" id="email" placeholder="Email" ngModel required
            [class.error]="(email.errors?.invalidEmail && email.touched) || isEmailIncorrect"
-           [appCustomValidator]="emailValidator">
+           emailValidator>
 
     <input type="password" #password="ngModel" name="password" id="password" placeholder="Password" ngModel required
            [class.error]="(password.touched && (password.value.length < 6 || password.value.length > 15)) || isPasswordIncorrect"
@@ -27,7 +27,7 @@
     <input type="password" #confirmPassword="ngModel" name="confirmPassword" id="confirmPassword"
            placeholder="Confirm password" ngModel required
            [class.error]="(confirmPassword.touched && (confirmPassword.value.length < 6 || confirmPassword.value.length > 15)) || isConfirmPasswordIncorrect"
-           [minlength]="6" [maxLength]="15">
+           [minlength]="6" [maxLength]="15" appPasswordValidator="password">
 
     <article class="popup-window-register-form-gender">
 

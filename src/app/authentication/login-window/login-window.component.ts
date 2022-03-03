@@ -4,6 +4,7 @@ import {NgForm as NgForm} from '@angular/forms';
 import {BooleansService} from "../../shared/booleans.service";
 import {SharedService} from "../../shared/shared.service";
 
+const FORM_ERROR_MSG = 'Please correct the information where box in red';
 
 @Component({
   selector: 'app-login-window',
@@ -14,15 +15,43 @@ export class LoginWindowComponent implements OnInit {
 
   @Output() isForgottenEventEmitter = new EventEmitter();
 
+  isEmailInCorrect: boolean = false;
+  isPasswordInCorrect: boolean = false;
+
 
   constructor(private userService: UserService, private booleanService: BooleansService, private sharedService: SharedService) {
   }
 
   login(form: NgForm): void {
 
-    // if (form.invalid) {
-    //   return;
-    // }
+    console.log(form.controls)
+    if (form.invalid) {
+      let formControl = form.controls;
+
+      switch (formControl.email.status) {
+        case "VALID":
+          this.isEmailInCorrect = false;
+          break;
+        case "INVALID":
+          this.isEmailInCorrect = true;
+          break
+      }
+
+      switch (formControl.password.status) {
+        case "VALID":
+          this.isPasswordInCorrect = false;
+          break;
+        case "INVALID":
+          this.isPasswordInCorrect = true;
+          break;
+      }
+
+      this.sharedService
+        .showAlertMsg
+        .error(FORM_ERROR_MSG);
+
+      return;
+    }
 
     this.userService.login(form.value)
       .subscribe({
