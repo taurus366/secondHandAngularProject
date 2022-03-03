@@ -1,6 +1,7 @@
 import {Component, OnInit, Renderer2} from '@angular/core';
-import {AlertMessagesGeneratorDirective} from "../shared/alert-messages-generator.directive";
-import {SharedService} from "../shared/shared.service";
+import {AlertMessagesGeneratorDirective} from "../../shared/alert-messages-generator.directive";
+import {SharedService} from "../../shared/shared.service";
+
 
 @Component({
   selector: 'app-main',
@@ -17,10 +18,12 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    window.onbeforeunload = () => {console.log("test")}
+    // window.onbeforeunload = () => {console.log("test")}
     window.onload = () => {
       this.alertMsg.showAlertMsg.info("We use cookies to give you best experience.");
     };
+
+
 
     this.useLink = this.links[this.getRandomNumber()];
 

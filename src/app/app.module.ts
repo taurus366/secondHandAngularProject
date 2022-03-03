@@ -2,7 +2,6 @@ import {NgModule, PLATFORM_ID} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { MainComponent } from './main/main.component';
 
 import {CoreModule} from "./core/core.module";
 import {UserProfileModule,} from "./user-profile/user-profile.module";
@@ -12,12 +11,12 @@ import {AppRoutingModule} from "./app-routing.module";
 import {SharedModule} from "./shared/shared.module";
 import {LocalStorage} from "./shared/injection-tokens";
 import {CommonModule, isPlatformBrowser, isPlatformServer} from "@angular/common";
+import {HomeModule} from "./home/home.module";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,
     ClothesComponent,
     ClothReviewComponent
   ],
@@ -26,7 +25,8 @@ import {CommonModule, isPlatformBrowser, isPlatformServer} from "@angular/common
     CoreModule,
     UserProfileModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    HomeModule
   ],
   providers: [{
     provide: LocalStorage,

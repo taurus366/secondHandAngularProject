@@ -1,10 +1,10 @@
 import {RouterModule, Routes} from "@angular/router";
-import {MainComponent} from "./main/main.component";
 import {ClothesComponent} from "./clothes/clothes.component";
 import {AsideMainComponent} from "./user-profile/aside-main/aside-main.component";
 import {CanDeactivateGuard} from "./shared/guard/can-deactivated-guard.service";
 import {ParamGuardActivate} from "./shared/guard/param-guard.activate";
 import {ClothReviewComponent} from "./cloth-review/cloth-review.component";
+import {MainComponent} from "./home/main/main.component";
 
 
 const routes: Routes = [

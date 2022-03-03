@@ -29,6 +29,7 @@
     'use strict';
     var Slick = window.Slick || {};
 
+
     Slick = (function() {
 
         var instanceUid = 0;

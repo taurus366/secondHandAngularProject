@@ -24,6 +24,7 @@ export class PasswordValidatorDirective implements Validator {
   }
 
 
+
   validate(control: AbstractControl): ValidationErrors | null {
 
     const firstPassword = this.form.controls[this.appPasswordValidator];

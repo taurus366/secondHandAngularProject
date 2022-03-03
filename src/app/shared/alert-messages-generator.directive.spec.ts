@@ -2,6 +2,7 @@ import { AlertMessagesGeneratorDirective } from './alert-messages-generator.dire
 
 describe('AlertMessagesGeneratorDirective', () => {
   it('should create an instance', () => {
+    // @ts-ignore
     const directive = new AlertMessagesGeneratorDirective();
     expect(directive).toBeTruthy();
   });
