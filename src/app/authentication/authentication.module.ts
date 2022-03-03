@@ -7,7 +7,7 @@ import {ForgotPasswordComponent} from "./forgot-password/forgot-password.compone
 import {ApiConnectionServiceService} from "../shared/api-connection-service.service";
 import {SharedModule} from "../shared/shared.module";
 import {HttpClientModule, HttpClientXsrfModule} from "@angular/common/http";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -25,7 +25,8 @@ import {FormsModule} from "@angular/forms";
       cookieName:'JSESSIONID',
       headerName:'XSRF-TOKEN'
     }),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     LoginRegisterPopupComponent

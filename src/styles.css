@@ -92,7 +92,7 @@ footer {
 
 #email,
 #password,
-#repeatPassword {
+#confirmPassword {
   width: 100%;
 }
 
@@ -107,7 +107,7 @@ footer {
 #password,
 #submit-register,
 #submit-login,
-#repeatPassword,
+#confirmPassword,
 #firstName,
 #lastName,
 #phone {
@@ -224,4 +224,9 @@ html { scroll-behavior: smooth; }
   background: #b58e4a;
 }
 
-
+.error {
+  border-color: red;
+}
+.error-gender {
+  color: red;
+}

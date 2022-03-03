@@ -23,7 +23,7 @@ export class LoginWindowComponent implements OnInit {
     // if (form.invalid) {
     //   return;
     // }
-    console.log("login clicked!")
+
     this.userService.login(form.value)
       .subscribe({
         next: value => {
@@ -34,7 +34,7 @@ export class LoginWindowComponent implements OnInit {
           });
         },
         error: err => {
-          console.log(err.status);
+
           this.booleanService.setIsLoggedFalse();
           this.booleanService.setIsAdminFalse();
           err.status === 401 ? this.sharedService.showAlertMsg.error("Email or Password are not valid!") : 'something goes wrong!';

@@ -17,6 +17,11 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    window.onbeforeunload = () => {console.log("test")}
+    window.onload = () => {
+      this.alertMsg.showAlertMsg.info("We use cookies to give you best experience.");
+    };
+
     this.useLink = this.links[this.getRandomNumber()];
 
     setInterval(() => {
