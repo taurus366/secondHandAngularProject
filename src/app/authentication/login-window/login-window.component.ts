@@ -24,7 +24,7 @@ export class LoginWindowComponent implements OnInit {
 
   login(form: NgForm): void {
 
-    console.log(form.controls)
+
     if (form.invalid) {
       let formControl = form.controls;
 

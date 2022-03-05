@@ -8,6 +8,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { PromoCodesComponent } from './promo-codes/promo-codes.component';
 import {RouterModule} from "@angular/router";
 import {CanDeactivateGuard} from "../shared/guard/can-deactivated-guard.service";
+import { AdminClothComponent } from './admin-cloth/admin-cloth.component';
 
 
 
@@ -18,7 +19,8 @@ import {CanDeactivateGuard} from "../shared/guard/can-deactivated-guard.service"
     AddressesComponent,
     ReturnComponent,
     OrdersComponent,
-    PromoCodesComponent
+    PromoCodesComponent,
+    AdminClothComponent
   ],
   imports: [
     CommonModule,

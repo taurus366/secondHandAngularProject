@@ -17,6 +17,7 @@ export class AsideMainComponent implements OnInit {
   // showReturnWindow : boolean = false;
   // showPromoCodesWindow : boolean = false;
   // showOrdersWindow : boolean = false;
+  // showAdminClothWindow : boolean = false;
 
 
   constructor(public booleansService : BooleansService, private userService:UserService, private route:Router, private sharedService:SharedService) { }
@@ -24,7 +25,10 @@ export class AsideMainComponent implements OnInit {
   ngOnInit(): void {
     this.booleansService.showProfileTextOnHeader = true;
     this.booleansService.setProfileTextName = 'PROFILE';
+  }
 
+  checkIsAdmin(): boolean {
+    return this.booleansService.isAdmin;
   }
 
   logout():void{
@@ -62,8 +66,11 @@ export class AsideMainComponent implements OnInit {
   checkOrdersWindow():boolean{
     return this.booleansService.showOrdersWindow;
   }
-  checkShowReturnWindow():boolean {
+  checkReturnWindow():boolean {
    return this.booleansService.showReturnWindow;
+  }
+  checkAdminClothWindow():boolean {
+    return this.booleansService.showAdminClothWindow;
   }
 
 
@@ -97,12 +104,19 @@ export class AsideMainComponent implements OnInit {
     this.booleansService.setProfileTextName = 'ORDERS';
   }
 
+  visibleAdminClothWindow() :void {
+    this.hideAllWindows();
+    this.booleansService.showAdminClothWindow = true;
+    this.booleansService.setProfileTextName = 'CREATE NEW CLOTH';
+  }
+
   hideAllWindows() : void {
     this.booleansService.showProfileWindow = false;
     this.booleansService.showAddressesWindow = false;
     this.booleansService.showReturnWindow = false;
     this.booleansService.showOrdersWindow = false;
     this.booleansService.showPromoCodesWindow = false;
+    this.booleansService.showAdminClothWindow = false;
     this.booleansService.setProfileTextName = ' ';
   }
 

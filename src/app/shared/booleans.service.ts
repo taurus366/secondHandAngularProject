@@ -40,6 +40,7 @@ export class BooleansService {
   showReturnWindow : boolean = false;
   showPromoCodesWindow : boolean = false;
   showOrdersWindow : boolean = false;
+  showAdminClothWindow : boolean = false;
 
 
 

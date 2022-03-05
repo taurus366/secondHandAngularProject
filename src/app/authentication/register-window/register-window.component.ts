@@ -120,11 +120,11 @@ export class RegisterWindowComponent implements OnInit {
     this.userService.register(form.value)
       .subscribe({
         next: value => {
-          value.body?.roles.forEach(role => {
-            if (role.role === 'ADMINISTRATOR') {
-              this.booleanService.setIsAdminTrue();
-            }
-          });
+          // value.body?.roles.forEach(role => {
+          //   if (role.role === 'ADMINISTRATOR') {
+          //     this.booleanService.setIsAdminTrue();
+          //   }
+          // });
         },
         error: err => {
 

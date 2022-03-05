@@ -1,0 +1,136 @@
+/* ADMIN CONTAINER */
+.admin-cloth-container {
+  float: right;
+  width: 100%;
+  margin: auto auto 30px;
+}
+/* ADMIN CONTAINER */
+
+/* ADMIN NEW ITEM FORM */
+.admin-new-item-form {
+  border: 1px solid black;
+  width: 100%;
+}
+
+/* FORM HEADER TEXT */
+.admin-form-header {
+  text-align: center;
+  background-color: #e1e1e1;
+}
+.admin-form-header-text {
+  padding: 10px;
+  width: 94.1%;
+  margin: auto;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+/* FORM IMAGES */
+.admin-form-images {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+#coverImg,
+#frontImg,
+#thirdImg,
+#fourthImg {
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px;
+  border: 2px solid black;
+}
+
+.admin-img-input-dissabled {
+  display: none;
+}
+/* FORM OPTIONS */
+.admin-form-options {
+  display: flex;
+  justify-content: space-around;
+}
+
+.admin-form-selects-first-column > article,
+.admin-form-selects-second-column > article {
+  margin-top: 15px;
+}
+
+#sex,
+#brand,
+#color,
+#type,
+#size,
+#season {
+  width: 170px;
+  border: 2px solid;
+  border-radius: 5px;
+}
+/* FORM COMPOSITIONS */
+.admin-form-composition {
+  text-align: center;
+  margin: 20px auto;
+  width: 85.5%;
+  accent-color: #B38B45;
+  box-shadow: rgb(223 223 223) 1px 0px 20px 1px inset, rgb(255 255 255 / 50%) -3px -3px 6px 1px inset;
+}
+
+.admin-form-composition-header-text {
+  background-color: #e1e1e1;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.admin-form-composition-selects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  font-weight: bold;
+}
+
+.admin-form-composition-selects-article {
+  padding: 5px 6px;
+}
+/* FORM DESCRIPTION */
+.admin-form-description {
+  text-align: center;
+}
+.admin-form-description-header-text {
+  background-color: #e1e1e1;
+  width: 85.5%;
+  margin: auto;
+  padding: 5px;
+}
+.admin-form-description-textarea {
+  width: 100%;
+}
+.admin-form-description-textarea > textarea {
+  width: 85.5%;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 1rem;
+  border: 2px solid black
+}
+/* FORM PRICE */
+.admin-form-prices {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+#startPrice,
+#newPrice {
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 1rem;
+}
+.admin-form-prices-start-price > h2,
+.admin-form-prices-new-price > h2 {
+  margin-bottom: 10px;
+}
+/* FORM SUBMIT BTN */
+.admin-form-submit {
+  width: 100%;
+  margin: 20px auto;
+  text-align: center;
+}

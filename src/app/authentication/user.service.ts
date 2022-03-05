@@ -82,7 +82,7 @@ export class UserService {
       next: value => {
         this.booleanService.setIsLoggedTrue();
         value.body?.roles.forEach(value1 => {
-          if (value1.role === 'ADMIN') {
+          if (value1.role === 'ADMINISTRATOR') {
             this.booleanService.setIsAdminTrue();
           } else {
             this.booleanService.setIsAdminFalse();
@@ -91,6 +91,7 @@ export class UserService {
       },
       error: err => {
         this.booleanService.setIsLoggedFalse();
+        this.booleanService.setIsAdminFalse();
       }
     });
     return isLogged;

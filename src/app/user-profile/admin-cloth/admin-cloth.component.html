@@ -1,0 +1,192 @@
+<div class="admin-cloth-container">
+
+  <form action="" method="post" class="admin-new-item-form">
+
+    <section class="admin-form-header">
+      <h4 class="no-margin admin-form-header-text">CREATE NEW CLOTH</h4>
+    </section>
+
+    <section class="admin-form-images">
+
+      <a href="" id="coverImg"><i class="fa fa-upload" aria-hidden="true"></i> Cover Picture</a>
+
+      <a href="" id="frontImg"><i class="fa fa-upload" aria-hidden="true"></i> Front Picture</a>
+
+      <a href="" id="thirdImg"><i class="fa fa-upload" aria-hidden="true"></i> Side Picture</a>
+
+      <a href="" id="fourthImg"><i class="fa fa-upload" aria-hidden="true"></i> Side Picture</a>
+
+      <input type="file" name="picture" id="coverDissabledImg" class="admin-img-input-dissabled">
+
+      <input type="file" name="picture" id="frontDissabledImg" class="admin-img-input-dissabled">
+
+      <input type="file" name="picture" id="thirdDissabledImg" class="admin-img-input-dissabled">
+
+      <input type="file" name="picture" id="fourthDissabledImg" class="admin-img-input-dissabled">
+
+    </section>
+
+    <section class="admin-form-options">
+
+      <section class="admin-form-selects-first-column">
+
+        <article class="admin-form-options-first-column-sex">
+
+          <select name="sex" id="sex">
+
+            <option value="choose">SEX</option>
+            <option value="MALE">MALE</option>
+            <option value="FEMALE">FEMALE</option>
+
+          </select>
+
+        </article>
+
+        <article class="admin-form-options-first-column-brand">
+
+          <select name="brand" id="brand">
+
+            <option value="choose">BRAND</option>
+            <option value="NIKE">NIKE</option>
+            <option value="CHELSEA">CHELSEA</option>
+
+          </select>
+
+        </article>
+
+        <article class="admin-form-options-first-column-color">
+
+          <select name="color" id="color">
+
+            <option value="choose">COLOR</option>
+            <option value="RED">RED</option>
+            <option value="BROWN">BROWN</option>
+
+          </select>
+
+        </article>
+
+      </section>
+
+      <section class="admin-form-selects-second-column">
+
+        <article class="admin-form-options-second-column-type">
+
+          <select name="type" id="type">
+            <option value="choose">TYPE</option>
+            <option value="PULOVER">PULOVER</option>
+            <option value="DRESS">DRESS</option>
+          </select>
+
+        </article>
+
+        <article class="admin-form-options-second-column-size">
+
+          <select name="size" id="size">
+
+            <option value="choose">SIZE</option>
+            <option value="choose">XXL</option>
+            <option value="choose">XS</option>
+
+          </select>
+
+        </article>
+
+        <article class="admin-form-options-second-column-season">
+
+          <select name="season" id="season">
+
+            <option value="choose">SEASON</option>
+            <option value="">Winter</option>
+            <option value="">Summer</option>
+            <option value="">Autumn</option>
+
+          </select>
+
+        </article>
+
+      </section>
+
+    </section>
+
+    <section class="admin-form-composition">
+
+      <article class="admin-form-composition-header-text">
+
+        <!-- <button class="second-hand-btn">Composition:ON/OFF</button> -->
+        <h3 class="no-margin">Compositions</h3>
+
+      </article>
+
+      <article class="admin-form-composition-selects">
+
+        <article class="admin-form-composition-selects-article">
+
+          <input type="radio" name="composition" id="composition">
+          <label for="composition">NYLON</label>
+
+        </article>
+
+        <article class="admin-form-composition-selects-article">
+
+          <input type="radio" name="composition" id="composition">
+          <label for="composition">COTTON</label>
+
+        </article>
+
+        <article class="admin-form-composition-selects-article">
+
+          <input type="radio" name="composition" id="composition">
+          <label for="composition">FLAX</label>
+
+        </article>
+
+      </article>
+
+    </section>
+
+    <section class="admin-form-description">
+
+      <article class="admin-form-description-header-text">
+
+        <h3 class="no-margin">Description</h3>
+
+      </article>
+
+      <article class="admin-form-description-textarea">
+
+        <textarea name="description" id="description" ></textarea>
+
+      </article>
+
+    </section>
+
+    <section class="admin-form-prices">
+
+      <article class="admin-form-prices-start-price">
+
+        <h2 class="no-margin">Start price</h2>
+
+        <input type="number" name="startPrice" id="startPrice">
+
+      </article>
+
+      <article class="admin-form-prices-new-price">
+
+        <h2 class="no-margin">New price</h2>
+
+        <input type="number" name="newPrice" id="newPrice">
+
+      </article>
+
+    </section>
+
+    <section class="admin-form-submit">
+
+      <input type="submit" value="CREATE" class="second-hand-btn no-margin">
+
+    </section>
+
+  </form>
+
+</div>
