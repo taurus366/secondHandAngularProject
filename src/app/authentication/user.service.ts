@@ -70,6 +70,19 @@ export class UserService {
     // })
   }
 
+  // ADMIN METHODS
+
+  addNewCloth(data: {} ) {
+    console.log(data);
+    return this.http.post(`${apiUrlLan}/admin/cloth/create`, data, {
+      // observe: "response",
+      withCredentials: true,
+      // headers: {'Content-Type': 'multipart/form-data'}
+      responseType: "json"
+      // responseType:""
+    })
+  };
+
 
   validateUserToken(): boolean {
     let isLogged = false;

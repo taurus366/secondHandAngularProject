@@ -1,6 +1,6 @@
 <div class="admin-cloth-container">
 
-  <form action="" method="post" class="admin-new-item-form">
+  <form action="" #form ="ngForm" method="post" class="admin-new-item-form" (ngSubmit)="createNewCloth(form)" >
 
     <section class="admin-form-header">
       <h4 class="no-margin admin-form-header-text">CREATE NEW CLOTH</h4>
@@ -8,21 +8,25 @@
 
     <section class="admin-form-images">
 
-      <a href="" id="coverImg"><i class="fa fa-upload" aria-hidden="true"></i> Cover Picture</a>
+      <a href="" id="coverImg" (click)="pictureEv($event);preventDefault($event)"
+         [class.error-color]="isCoverPictureUploaded"><i class="fa fa-upload" aria-hidden="true"></i> Cover Picture</a>
 
-      <a href="" id="frontImg"><i class="fa fa-upload" aria-hidden="true"></i> Front Picture</a>
+      <a href="" id="frontImg" (click)="pictureEv($event);preventDefault($event)"
+         [class.error-color]="isFrontPictureUploaded"><i class="fa fa-upload" aria-hidden="true"></i> Front Picture</a>
 
-      <a href="" id="thirdImg"><i class="fa fa-upload" aria-hidden="true"></i> Side Picture</a>
+      <a href="" id="thirdImg" (click)="pictureEv($event);preventDefault($event)"
+         [class.error-color]="isThirdPictureUploaded"><i class="fa fa-upload" aria-hidden="true"></i> Side Picture</a>
 
-      <a href="" id="fourthImg"><i class="fa fa-upload" aria-hidden="true"></i> Side Picture</a>
+      <a href="" id="fourthImg" (click)="pictureEv($event);preventDefault($event)"
+         [class.error-color]="isFourthPictureUploaded"><i class="fa fa-upload" aria-hidden="true"></i> Side Picture</a>
 
-      <input type="file" name="picture" id="coverDissabledImg" class="admin-img-input-dissabled">
+      <input type="file" name="coverPicture" id="coverDissabledImg" class="admin-img-input-dissabled" ngModel (change)="handleFileInput($event)" accept="image/png" required>
 
-      <input type="file" name="picture" id="frontDissabledImg" class="admin-img-input-dissabled">
+      <input type="file" name="frontPicture" id="frontDissabledImg" class="admin-img-input-dissabled" ngModel (change)="handleFileInput($event)" accept="image/png" required>
 
-      <input type="file" name="picture" id="thirdDissabledImg" class="admin-img-input-dissabled">
+      <input type="file" name="thirdPicture" id="thirdDissabledImg" class="admin-img-input-dissabled" ngModel (change)="handleFileInput($event)" accept="image/png" required>
 
-      <input type="file" name="picture" id="fourthDissabledImg" class="admin-img-input-dissabled">
+      <input type="file" name="fourthPicture" id="fourthDissabledImg" class="admin-img-input-dissabled" ngModel (change)="handleFileInput($event)" accept="image/png" required>
 
     </section>
 
@@ -32,7 +36,7 @@
 
         <article class="admin-form-options-first-column-sex">
 
-          <select name="sex" id="sex">
+          <select #sex="ngModel" name="sex" id="sex" ngModel required [class.error-color]="isSexIncorrect || (sex.touched && (sex.value === 'choose'|| sex.value === ''))">
 
             <option value="choose">SEX</option>
             <option value="MALE">MALE</option>
@@ -44,7 +48,7 @@
 
         <article class="admin-form-options-first-column-brand">
 
-          <select name="brand" id="brand">
+          <select #brand="ngModel" name="brand" id="brand" ngModel required [class.error-color]="isBrandIncorrect || (brand.touched && (brand.value === 'choose'|| brand.value === ''))">
 
             <option value="choose">BRAND</option>
             <option value="NIKE">NIKE</option>
@@ -56,7 +60,7 @@
 
         <article class="admin-form-options-first-column-color">
 
-          <select name="color" id="color">
+          <select #color="ngModel" name="color" id="color" ngModel required [class.error-color]="isColorIncorrect || (color.touched && (color.value === 'choose'|| color.value === ''))">
 
             <option value="choose">COLOR</option>
             <option value="RED">RED</option>
@@ -72,7 +76,7 @@
 
         <article class="admin-form-options-second-column-type">
 
-          <select name="type" id="type">
+          <select #type="ngModel" name="type" id="type" ngModel required [class.error-color]="isTypeIncorrect || (type.touched && (type.value === 'choose'|| type.value === ''))">
             <option value="choose">TYPE</option>
             <option value="PULOVER">PULOVER</option>
             <option value="DRESS">DRESS</option>
@@ -82,11 +86,11 @@
 
         <article class="admin-form-options-second-column-size">
 
-          <select name="size" id="size">
+          <select #size="ngModel" name="size" id="size" ngModel required [class.error-color]="isSizeIncorrect || (size.touched && (size.value === 'choose'|| size.value === ''))">
 
             <option value="choose">SIZE</option>
-            <option value="choose">XXL</option>
-            <option value="choose">XS</option>
+            <option value="XXL">XXL</option>
+            <option value="XS">XS</option>
 
           </select>
 
@@ -94,12 +98,12 @@
 
         <article class="admin-form-options-second-column-season">
 
-          <select name="season" id="season">
+          <select #season="ngModel" name="season" id="season" ngModel required [class.error-color]="isSeasonIncorrect || (season.touched && (season.value === 'choose'|| season.value === ''))">
 
             <option value="choose">SEASON</option>
-            <option value="">Winter</option>
-            <option value="">Summer</option>
-            <option value="">Autumn</option>
+            <option value="WINTER">Winter</option>
+            <option value="SUMMER">Summer</option>
+            <option value="AUTUMN">Autumn</option>
 
           </select>
 
@@ -118,28 +122,28 @@
 
       </article>
 
-      <article class="admin-form-composition-selects">
+      <article class="admin-form-composition-selects" [class.error-background]="isCompositionIncorrect">
 
         <article class="admin-form-composition-selects-article">
 
-          <input type="radio" name="composition" id="composition">
+          <input type="radio" name="composition" id="composition" value="NYLON" ngModel required>
           <label for="composition">NYLON</label>
 
         </article>
 
-        <article class="admin-form-composition-selects-article">
+<!--        <article class="admin-form-composition-selects-article">-->
 
-          <input type="radio" name="composition" id="composition">
-          <label for="composition">COTTON</label>
+<!--          <input type="radio" name="composition" id="composition" ngModel>-->
+<!--          <label for="composition">COTTON</label>-->
 
-        </article>
+<!--        </article>-->
 
-        <article class="admin-form-composition-selects-article">
+<!--        <article class="admin-form-composition-selects-article">-->
 
-          <input type="radio" name="composition" id="composition">
-          <label for="composition">FLAX</label>
+<!--          <input type="radio" name="composition" id="composition" ngModel>-->
+<!--          <label for="composition">FLAX</label>-->
 
-        </article>
+<!--        </article>-->
 
       </article>
 
@@ -155,7 +159,7 @@
 
       <article class="admin-form-description-textarea">
 
-        <textarea name="description" id="description" ></textarea>
+        <textarea #description="ngModel" name="description" id="description" ngModel required [class.error-background]="isDescriptionIncorrect || (description.touched && description.value.length <= 5 )"></textarea>
 
       </article>
 
@@ -167,7 +171,7 @@
 
         <h2 class="no-margin">Start price</h2>
 
-        <input type="number" name="startPrice" id="startPrice">
+        <input #startPrice="ngModel" type="number" name="startPrice" id="startPrice" ngModel required [class.error-border]="isStartPriceIncorrect || (startPrice.touched && startPrice.value.length === 0)">
 
       </article>
 
@@ -175,7 +179,7 @@
 
         <h2 class="no-margin">New price</h2>
 
-        <input type="number" name="newPrice" id="newPrice">
+        <input #newPrice="ngModel" type="number" name="newPrice" id="newPrice" ngModel required [class.error-border]="isNewPriceIncorrect || (newPrice.touched && newPrice.value.length === 0)">
 
       </article>
 

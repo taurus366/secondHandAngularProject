@@ -6,11 +6,13 @@
 
   <form #form="ngForm" class="popup-window-login-form-form" action="" method="post" (ngSubmit)="login(form)">
 
-    <input type="email" #email="ngModel" name="email" id="email" placeholder="Email" ngModel [class.error]="isEmailInCorrect || (email.touched && email.errors?.invalidEmail)"
+    <input type="email" #email="ngModel" name="email" id="email" placeholder="Email" ngModel
+           [class.error-border]="isEmailInCorrect || (email.touched && email.errors?.invalidEmail)"
            emailValidator required>
 
     <input type="password" #password="ngModel" name="password" id="password" placeholder="Password" ngModel
-           [class.error]="isPasswordInCorrect || (password.touched && (password.value.length < 6 || password.value.length > 15))" [minlength]="6" required>
+           [class.error-border]="isPasswordInCorrect || (password.touched && (password.value.length < 6 || password.value.length > 15))"
+           [minlength]="6" required>
 
     <article class="login-form-forgot-password">
       <a href="">

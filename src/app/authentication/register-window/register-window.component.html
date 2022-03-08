@@ -9,34 +9,34 @@
 
     <article class="popup-window-register-form-names">
       <input type="text" #firstName="ngModel" name="firstName" id="firstName" placeholder="First name" ngModel required
-             [class.error]="(firstName.touched && (firstName.value.length < 3 || firstName.value.length > 12)) || isFirstNameIncorrect"
+             [class.error-border]="(firstName.touched && (firstName.value.length < 3 || firstName.value.length > 12)) || isFirstNameIncorrect"
              [minlength]="3" [maxLength]="12">
       <input type="text" #lastName="ngModel" name="lastName" id="lastName" placeholder="Last name" ngModel required
-             [class.error]="(lastName.touched && (lastName.value.length < 3 || lastName.value.length > 12)) || isLastNameIncorrect"
+             [class.error-border]="(lastName.touched && (lastName.value.length < 3 || lastName.value.length > 12)) || isLastNameIncorrect"
              [minlength]="3" [maxLength]="12">
     </article>
 
     <input type="email" #email="ngModel" name="email" id="email" placeholder="Email" ngModel required
-           [class.error]="(email.errors?.invalidEmail && email.touched) || isEmailIncorrect"
+           [class.error-border]="(email.errors?.invalidEmail && email.touched) || isEmailIncorrect"
            emailValidator>
 
     <input type="password" #password="ngModel" name="password" id="password" placeholder="Password" ngModel required
-           [class.error]="(password.touched && (password.value.length < 6 || password.value.length > 15)) || isPasswordIncorrect"
+           [class.error-border]="(password.touched && (password.value.length < 6 || password.value.length > 15)) || isPasswordIncorrect"
            [minlength]="6" [maxLength]="15">
 
     <input type="password" #confirmPassword="ngModel" name="confirmPassword" id="confirmPassword"
            placeholder="Confirm password" ngModel required
-           [class.error]="(confirmPassword.touched && (confirmPassword.value.length < 6 || confirmPassword.value.length > 15)) || isConfirmPasswordIncorrect"
+           [class.error-border]="(confirmPassword.touched && (confirmPassword.value.length < 6 || confirmPassword.value.length > 15)) || isConfirmPasswordIncorrect"
            [minlength]="6" [maxLength]="15" appPasswordValidator="password">
 
     <article class="popup-window-register-form-gender">
 
       <input type="radio" #female="ngModel" name="sex" id="female-gender" value="FEMALE" required ngModel>
       <label for="female-gender"
-             [class.error-gender]="(female.touched && female.errors?.required) || isGenderIncorrect">Female</label>
+             [class.error-color]="(female.touched && female.errors?.required) || isGenderIncorrect">Female</label>
 
       <input type="radio" #male="ngModel" name="sex" id="male-gender" value="MALE" required ngModel>
-      <label for="male-gender" [class.error-gender]="(male.touched && female.errors?.required) || isGenderIncorrect">Male</label>
+      <label for="male-gender" [class.error-color]="(male.touched && female.errors?.required) || isGenderIncorrect">Male</label>
 
     </article>
 

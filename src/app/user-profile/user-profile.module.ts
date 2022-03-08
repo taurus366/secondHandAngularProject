@@ -9,6 +9,7 @@ import { PromoCodesComponent } from './promo-codes/promo-codes.component';
 import {RouterModule} from "@angular/router";
 import {CanDeactivateGuard} from "../shared/guard/can-deactivated-guard.service";
 import { AdminClothComponent } from './admin-cloth/admin-cloth.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -24,7 +25,9 @@ import { AdminClothComponent } from './admin-cloth/admin-cloth.component';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     AsideMainComponent

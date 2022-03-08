@@ -226,9 +226,15 @@ html { scroll-behavior: smooth; }
   background: #b58e4a;
 }
 
-.error {
+.error-border {
   border-color: red;
 }
-.error-gender {
+.error-color {
   color: red;
+}
+.error-background {
+  background-color: #ff000061;
+}
+.error-border-solid2px {
+  border: 2px solid red;
 }

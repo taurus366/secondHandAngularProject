@@ -4,8 +4,9 @@ import {UserService} from "../user.service";
 import {BooleansService} from "../../shared/booleans.service";
 import {SharedService} from "../../shared/shared.service";
 
-const FORM_ERROR_MSG = 'Please correct the information where box in red';
-const FORM_PASSWORDS_ARE_NOT_MATCH_MSG = '[ Passwords aren\'t matched ]';
+let FORM_ERROR_MSG : string = "";
+let FORM_PASSWORDS_ARE_NOT_MATCH_MSG: string = "";
+let SUCCESSFUL_LOGGED_MSG :string = "";
 
 @Component({
   selector: 'app-register-window',
@@ -30,6 +31,8 @@ export class RegisterWindowComponent implements OnInit {
   // emailValidator = emailValidator;
 
   ngOnInit(): void {
+    FORM_ERROR_MSG = this.sharedService.formMessages.FORM_ERROR_MSG;
+    FORM_PASSWORDS_ARE_NOT_MATCH_MSG = this.sharedService.formMessages.FORM_PASSWORDS_ARE_NOT_MATCH_MSG;
   }
 
   register(form: NgForm) {
@@ -152,7 +155,7 @@ export class RegisterWindowComponent implements OnInit {
         complete: () => {
           this.booleanService.setIsLoggedTrue()
           this.booleanService.hideShowLoginRegisterWindow();
-          this.sharedService.showAlertMsg.success("Successfully registered! Logged automatically!")
+          this.sharedService.showAlertMsg.success(SUCCESSFUL_LOGGED_MSG)
         }
       })
 
