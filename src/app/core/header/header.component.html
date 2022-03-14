@@ -261,6 +261,9 @@
 
 <app-alert-messages></app-alert-messages>
 
+<app-loading *ngIf="booleansService.checkLoadingPage()"></app-loading>
+
 <section class="loggin-register-section">
   <app-login-register-popup *ngIf="checkStatusOfWindow()"></app-login-register-popup>
 </section>
+

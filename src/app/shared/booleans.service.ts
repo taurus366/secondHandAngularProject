@@ -65,5 +65,20 @@ export class BooleansService {
     return this.showLoginRegisterWindow;
   }
 
+//  SHOW LOADING PAGE
+ private showOrHideLoadingPage : boolean = false;
+
+  showLoadingPage() :void{
+    this.showOrHideLoadingPage = true;
+  }
+  hideLoadingPage() :void{
+    this.showOrHideLoadingPage = false;
+  }
+  checkLoadingPage() : boolean {
+    return this.showOrHideLoadingPage;
+  }
+//  SHOW LOADING PAGE
+
+
 
 }

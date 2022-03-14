@@ -159,8 +159,10 @@ export class HeaderComponent implements OnInit {
        document.querySelector('body')!.removeAllListeners!('click');
    }
   }
-}
 // CART BOX HIDE LOGIC
+
+
+}
 
 
 

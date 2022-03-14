@@ -1,227 +1,24 @@
 <div class="main-container">
 
   <section class="main-nav-women-men-left">
-     <nav *ngIf="getWomenNav()" class="main-nav-women">
+    <nav *ngIf="getWomenNav()" class="main-nav-women">
 
-       <article class="nav-men-header">
+      <article class="nav-men-header">
         <h5 class="no-margin">WOMEN CLOTHES</h5>
       </article>
 
-          <ul class="nav-ul">
+      <ul class="nav-ul" (change)="filterChangedDetect()">
 
-            <li class="nav-ul-li">
-             <input type="checkbox" name="clothType" id="cloth-type">
-             Tracksuits
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Swimwear
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Underwear
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Blouses
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Jeans
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Elets
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Winter equipment
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Vests
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Wedges
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Costumes
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Shorts
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Coats
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Pants
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Mountain equipment
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Poly
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              T-shirts
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Sweaters
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Shirts
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Dresses
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Sportwear
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Tunics
-            </li>
+        <li class="nav-ul-li" *ngFor="let clothType of clothEnum?.clothType">
+          <input type="checkbox" [name]="clothType" class="cloth-type" id="women-cloth-nav">
+          {{capitalizeFirstLetter(clothType)}}
+        </li>
 
 
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Tracksuits
-            </li>
 
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Swimwear
-            </li>
 
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Underwear
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Blouses
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Jeans
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Elets
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Winter equipment
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Vests
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Wedges
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Costumes
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Shorts
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Coats
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Pants
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Mountain equipment
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Poly
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              T-shirts
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Sweaters
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Shirts
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type" checked>
-              Dresses
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Sportwear
-            </li>
-
-            <li class="nav-ul-li">
-              <input type="checkbox" name="clothType" id="cloth-type">
-              Tunics
-            </li>
-
-          </ul>
-        </nav>
+      </ul>
+    </nav>
 
     <nav *ngIf="getMenNav()" class="main-nav-men">
       <article class="nav-men-header">
@@ -326,11 +123,16 @@
 
       <article class="clothes-filter-brands">
 
-        <select name="brand" id="clothes-brand">
+        <select name="brand" id="clothes-brand" class="color-text" (change)="filterChangedDetect()">
 
-          <option value="all" selected hidden>Brands</option>
-          <option value="guess">GUESS</option>
-          <option value="cavalli">CAVALLI</option>
+          <option value="" selected hidden>Brands</option>
+          <option value="">any</option>
+          <ng-container *ngFor="let brand of clothEnum?.clothBrand">
+            <option value="{{brand}}">{{brand}}</option>
+          </ng-container>
+
+          <!--          <option value="guess">GUESS</option>-->
+          <!--          <option value="cavalli">CAVALLI</option>-->
 
         </select>
 
@@ -338,12 +140,14 @@
 
       <article class="clothes-filter-sizes">
 
-        <select name="size" id="clothes-size">
+        <select name="size" id="clothes-size" class="color-text" (change)="filterChangedDetect()">
 
-          <option value="all" selected hidden>Sizes</option>
-          <option value="XXS">XXS</option>
-          <option value="S">S</option>
-          <option value="L">L</option>
+          <option value="" selected hidden>Sizes</option>
+          <option value="">any</option>
+          <ng-container *ngFor="let size of clothEnum?.clothSize">
+            <option value="{{size}}">{{size}}</option>
+          </ng-container>
+
 
         </select>
 
@@ -351,12 +155,13 @@
 
       <article class="clothes-filter-discounts">
 
-        <select name="discounts" id="clothes-discounts" class="used">
+        <select name="discounts" id="clothes-discounts" class="color-text" (change)="filterChangedDetect()">
 
-          <option value="all" selected hidden>discounts</option>
-          <option value="0-30">From 0% to 30%</option>
-          <option value="30-60">From 30% to 60%</option>
-          <option value="60-100">Over 60%</option>
+          <option value="" selected hidden>discounts</option>
+          <option value="">any</option>
+          <option value="30">From 0% to 30%</option>
+          <option value="60">From 30% to 60%</option>
+          <option value="100">Over 60%</option>
 
         </select>
 
@@ -364,24 +169,36 @@
 
       <article class="clothes-filter-colors">
 
-        <select name="color" id="clothes-colors" class="used">
+        <select name="color" id="clothes-colors" class="color-text" (change)="filterChangedDetect()">
 
-          <option value="all" selected hidden>Color</option>
-          <option value="red">Red</option>
-          <option value="yellow">Yellow</option>
-          <option value="black">Black</option>
+          <option value="" selected hidden>Color</option>
+          <option value="">any</option>
+          <ng-container *ngFor="let color of clothEnum?.clothColor">
+            <option value="{{color}}" [ngStyle]="{'backgroundColor': color}">{{color}}</option>
+
+          </ng-container>
+
 
         </select>
 
       </article>
 
       <!-- FILTER BTN -->
-      <article class="clothes-filter-prices-btn">
-        <p class="no-margin">FILTER</p>
+      <article class="clothes-filter-prices-btn" (click)="showPriceFilter = !showPriceFilter">
+        <!--        <p class="no-margin">FILTER</p>-->
+        <ng-template *ngTemplateOutlet="showPriceFilter ? showedText : hiddenText">
+        </ng-template>
+
+        <ng-template #showedText >
+          <p class="no-margin color-text">HIDE FILTER</p>
+        </ng-template>
+        <ng-template #hiddenText>
+          <p class="no-margin color-text">SHOW FILTER</p>
+        </ng-template>
       </article>
 
       <!-- SHOW THIS SECTION AFTER CLICK FILTER BTN -->
-      <article class="clothes-filter-prices">
+      <article class="clothes-filter-prices" *ngIf="showPriceFilter">
 
         <div class="price-field">
           <input type="range" min="1" max="999" value="1" id="lower">
@@ -410,42 +227,41 @@
     </section>
 
 
-<!--    IF CLOTHES ALREADY DOWNLOADED FROM API THEN I MUST SHOW THEM AND HIDE LOADING SPINNER-->
+    <!--    IF CLOTHES ALREADY DOWNLOADED FROM API THEN I MUST SHOW THEM AND HIDE LOADING SPINNER-->
     <section class="main-clothes-list">
 
-      <div class="main-clothes-card">
-
+      <div class="main-clothes-card" *ngFor="let cloth of clothes?.content">
         <section class="clothes-card-icon-text">
-
           <article class="clothes-card-text">
 
             <article class="card-text-arrow-icon">
+
             </article>
 
-            <p class="no-margin clothes-like-customer-text"><span>17</span> customers like this</p>
+            <p class="no-margin clothes-like-customer-text"><span>{{cloth.likes}}</span> customers like this</p>
 
           </article>
 
           <article class="clothes-card-icon-favorite">
             <!-- <img src="/assets/images/assets/icon_favourite_off.png" alt=""> -->
-            <img src="/assets/images/assets/icon_favourite_on.png" alt="">
+            <img src="/assets/images/assets/icon_favourite_on.png" alt="icon">
           </article>
         </section>
 
         <section class="clothes-card-img">
 
-          <img src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg" alt="">
+          <img src="{{cloth.coverPicture.url}}" alt="img">
 
         </section>
 
         <section class="clothes-card-information-brand-size">
 
           <article class="clothes-card-information-brand">
-            <span>BY MALENE BIRGER</span>
+            <span>{{cloth.brand}}</span>
           </article>
 
           <article class="clothes-card-information-size">
-            <span>S</span>
+            <span>{{cloth.size}}</span>
           </article>
 
         </section>
@@ -453,12 +269,12 @@
         <section class="clothes-card-information-startprice-newprice">
 
           <article class="clothes-card-information-startprice">
-            <p class="no-margin"><span>165.90</span> лв.</p>
+            <p class="no-margin"><span>{{cloth.startPrice}}</span> BGN</p>
           </article>
 
           <!-- IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! -->
           <article class="clothes-card-information-newprice">
-            <p class="no-margin"><span>90.90</span> лв.</p>
+            <p class="no-margin"><span>{{cloth.newPrice}}</span> BGN</p>
           </article>
 
         </section>
@@ -471,7 +287,7 @@
           </article>
 
           <article class="clothes-card-saved-percent">
-            <p class="no-margin">- <span>40</span>%</p>
+            <p class="no-margin">- <span>{{calculatePercentOfDiscount(cloth.startPrice, cloth.newPrice)}}</span>%</p>
           </article>
 
         </section>
@@ -642,695 +458,695 @@
 
       </div>
 
-      <div class="main-clothes-card">
+      <!--      OTHER CARDS-->
+      <!--     <div> -->
+      <!--       <div class="main-clothes-card">-->
 
-        <section class="clothes-card-icon-text">
+      <!--       <section class="clothes-card-icon-text">-->
 
-          <article class="clothes-card-text">
+      <!--         <article class="clothes-card-text">-->
 
-            <article class="card-text-arrow-icon">
-            </article>
+      <!--           <article class="card-text-arrow-icon">-->
+      <!--           </article>-->
 
-            <p class="no-margin clothes-like-customer-text"><span>17</span> customers like this</p>
+      <!--           <p class="no-margin clothes-like-customer-text"><span>17</span> customers like this</p>-->
 
-          </article>
+      <!--         </article>-->
 
-          <article class="clothes-card-icon-favorite">
-            <img src="/assets/images/assets/icon_favourite_off.png" alt="">
-          </article>
-        </section>
+      <!--         <article class="clothes-card-icon-favorite">-->
+      <!--           <img src="/assets/images/assets/icon_favourite_off.png" alt="">-->
+      <!--         </article>-->
+      <!--       </section>-->
 
-        <section class="clothes-card-img">
+      <!--       <section class="clothes-card-img">-->
 
-          <img src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg" alt="">
+      <!--         <img src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg" alt="">-->
 
-        </section>
+      <!--       </section>-->
 
-        <section class="clothes-card-information-brand-size">
+      <!--       <section class="clothes-card-information-brand-size">-->
 
-          <article class="clothes-card-information-brand">
-            <span>BY MALENE BIRGER</span>
-          </article>
+      <!--         <article class="clothes-card-information-brand">-->
+      <!--           <span>BY MALENE BIRGER</span>-->
+      <!--         </article>-->
 
-          <article class="clothes-card-information-size">
-            <span>S</span>
-          </article>
+      <!--         <article class="clothes-card-information-size">-->
+      <!--           <span>S</span>-->
+      <!--         </article>-->
 
-        </section>
+      <!--       </section>-->
 
-        <section class="clothes-card-information-startprice-newprice">
+      <!--       <section class="clothes-card-information-startprice-newprice">-->
 
-          <article class="clothes-card-information-startprice">
-            <p class="no-margin"><span>165.90</span> лв.</p>
-          </article>
+      <!--         <article class="clothes-card-information-startprice">-->
+      <!--           <p class="no-margin"><span>165.90</span> лв.</p>-->
+      <!--         </article>-->
 
-          <!-- IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! -->
-          <article class="clothes-card-information-newprice">
-            <p class="no-margin"><span>90.90</span> лв.</p>
-          </article>
+      <!--         &lt;!&ndash; IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! &ndash;&gt;-->
+      <!--         <article class="clothes-card-information-newprice">-->
+      <!--           <p class="no-margin"><span>90.90</span> лв.</p>-->
+      <!--         </article>-->
 
-        </section>
+      <!--       </section>-->
 
-        <!-- IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! -->
-        <section class="clothes-card-saved-text-percent">
+      <!--       &lt;!&ndash; IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! &ndash;&gt;-->
+      <!--       <section class="clothes-card-saved-text-percent">-->
 
-          <article class="clothes-card-saved-text">
-            <p class="no-margin">Saved</p>
-          </article>
+      <!--         <article class="clothes-card-saved-text">-->
+      <!--           <p class="no-margin">Saved</p>-->
+      <!--         </article>-->
 
-          <article class="clothes-card-saved-percent">
-            <p class="no-margin">- <span>40</span>%</p>
-          </article>
+      <!--         <article class="clothes-card-saved-percent">-->
+      <!--           <p class="no-margin">- <span>40</span>%</p>-->
+      <!--         </article>-->
 
-        </section>
+      <!--       </section>-->
 
-        <section class="clothes-card-btn">
+      <!--       <section class="clothes-card-btn">-->
 
-          <article class="btn-add">ADD</article>
+      <!--         <article class="btn-add">ADD</article>-->
 
-          <!-- IF THE ITEM HAS ADDED ALREADY ! -->
+      <!--         &lt;!&ndash; IF THE ITEM HAS ADDED ALREADY ! &ndash;&gt;-->
 
-          <!-- <article class="nonbtn-added">ADDED BY ME</article> -->
+      <!--         &lt;!&ndash; <article class="nonbtn-added">ADDED BY ME</article> &ndash;&gt;-->
 
-          <!-- <input type="button" value="ADD"> -->
+      <!--         &lt;!&ndash; <input type="button" value="ADD"> &ndash;&gt;-->
 
-        </section>
+      <!--       </section>-->
 
-      </div>
+      <!--     </div>-->
 
-      <div class="main-clothes-card">
+      <!--       <div class="main-clothes-card">-->
 
-        <section class="clothes-card-icon-text">
+      <!--         <section class="clothes-card-icon-text">-->
 
-          <article class="clothes-card-text">
+      <!--           <article class="clothes-card-text">-->
 
-            <article class="card-text-arrow-icon">
-            </article>
+      <!--             <article class="card-text-arrow-icon">-->
+      <!--             </article>-->
 
-            <p class="no-margin clothes-like-customer-text"><span>17</span> customers like this</p>
+      <!--             <p class="no-margin clothes-like-customer-text"><span>17</span> customers like this</p>-->
 
-          </article>
+      <!--           </article>-->
 
-          <article class="clothes-card-icon-favorite">
-            <img src="/assets/images/assets/icon_favourite_off.png" alt="">
-          </article>
-        </section>
+      <!--           <article class="clothes-card-icon-favorite">-->
+      <!--             <img src="/assets/images/assets/icon_favourite_off.png" alt="">-->
+      <!--           </article>-->
+      <!--         </section>-->
 
-        <section class="clothes-card-img">
+      <!--         <section class="clothes-card-img">-->
 
-          <img src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg" alt="">
+      <!--           <img src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg" alt="">-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-information-brand-size">
+      <!--         <section class="clothes-card-information-brand-size">-->
 
-          <article class="clothes-card-information-brand">
-            <span>BY MALENE BIRGER</span>
-          </article>
+      <!--           <article class="clothes-card-information-brand">-->
+      <!--             <span>BY MALENE BIRGER</span>-->
+      <!--           </article>-->
 
-          <article class="clothes-card-information-size">
-            <span>S</span>
-          </article>
+      <!--           <article class="clothes-card-information-size">-->
+      <!--             <span>S</span>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-information-startprice-newprice">
+      <!--         <section class="clothes-card-information-startprice-newprice">-->
 
-          <article class="clothes-card-information-startprice">
-            <p class="no-margin"><span>165.90</span> лв.</p>
-          </article>
+      <!--           <article class="clothes-card-information-startprice">-->
+      <!--             <p class="no-margin"><span>165.90</span> лв.</p>-->
+      <!--           </article>-->
 
-          <!-- IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! -->
-          <article class="clothes-card-information-newprice">
-            <p class="no-margin"><span>90.90</span> лв.</p>
-          </article>
+      <!--           &lt;!&ndash; IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! &ndash;&gt;-->
+      <!--           <article class="clothes-card-information-newprice">-->
+      <!--             <p class="no-margin"><span>90.90</span> лв.</p>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <!-- IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! -->
-        <section class="clothes-card-saved-text-percent">
+      <!--         &lt;!&ndash; IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! &ndash;&gt;-->
+      <!--         <section class="clothes-card-saved-text-percent">-->
 
-          <article class="clothes-card-saved-text">
-            <p class="no-margin">Saved</p>
-          </article>
+      <!--           <article class="clothes-card-saved-text">-->
+      <!--             <p class="no-margin">Saved</p>-->
+      <!--           </article>-->
 
-          <article class="clothes-card-saved-percent">
-            <p class="no-margin">- <span>40</span>%</p>
-          </article>
+      <!--           <article class="clothes-card-saved-percent">-->
+      <!--             <p class="no-margin">- <span>40</span>%</p>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-btn">
+      <!--         <section class="clothes-card-btn">-->
 
-          <article class="btn-add">ADD</article>
+      <!--           <article class="btn-add">ADD</article>-->
 
-          <!-- IF THE ITEM HAS ADDED ALREADY ! -->
+      <!--           &lt;!&ndash; IF THE ITEM HAS ADDED ALREADY ! &ndash;&gt;-->
 
-          <!-- <article class="nonbtn-added">ADDED BY ME</article> -->
+      <!--           &lt;!&ndash; <article class="nonbtn-added">ADDED BY ME</article> &ndash;&gt;-->
 
-          <!-- <input type="button" value="ADD"> -->
+      <!--           &lt;!&ndash; <input type="button" value="ADD"> &ndash;&gt;-->
 
-        </section>
+      <!--         </section>-->
 
-      </div>
+      <!--       </div>-->
 
-      <div class="main-clothes-card">
+      <!--       <div class="main-clothes-card">-->
 
-        <section class="clothes-card-icon-text">
+      <!--         <section class="clothes-card-icon-text">-->
 
-          <article class="clothes-card-text">
+      <!--           <article class="clothes-card-text">-->
 
-            <article class="card-text-arrow-icon">
-            </article>
+      <!--             <article class="card-text-arrow-icon">-->
+      <!--             </article>-->
 
-            <p class="no-margin clothes-like-customer-text"><span>17</span> customers like this</p>
+      <!--             <p class="no-margin clothes-like-customer-text"><span>17</span> customers like this</p>-->
 
-          </article>
+      <!--           </article>-->
 
-          <article class="clothes-card-icon-favorite">
-            <img src="/assets/images/assets/icon_favourite_off.png" alt="">
-          </article>
-        </section>
+      <!--           <article class="clothes-card-icon-favorite">-->
+      <!--             <img src="/assets/images/assets/icon_favourite_off.png" alt="">-->
+      <!--           </article>-->
+      <!--         </section>-->
 
-        <section class="clothes-card-img">
+      <!--         <section class="clothes-card-img">-->
 
-          <img src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg" alt="">
+      <!--           <img src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg" alt="">-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-information-brand-size">
+      <!--         <section class="clothes-card-information-brand-size">-->
 
-          <article class="clothes-card-information-brand">
-            <span>BY MALENE BIRGER</span>
-          </article>
+      <!--           <article class="clothes-card-information-brand">-->
+      <!--             <span>BY MALENE BIRGER</span>-->
+      <!--           </article>-->
 
-          <article class="clothes-card-information-size">
-            <span>S</span>
-          </article>
+      <!--           <article class="clothes-card-information-size">-->
+      <!--             <span>S</span>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-information-startprice-newprice">
+      <!--         <section class="clothes-card-information-startprice-newprice">-->
 
-          <article class="clothes-card-information-startprice">
-            <p class="no-margin"><span>165.90</span> лв.</p>
-          </article>
+      <!--           <article class="clothes-card-information-startprice">-->
+      <!--             <p class="no-margin"><span>165.90</span> лв.</p>-->
+      <!--           </article>-->
 
-          <!-- IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! -->
-          <article class="clothes-card-information-newprice">
-            <p class="no-margin"><span>90.90</span> лв.</p>
-          </article>
+      <!--           &lt;!&ndash; IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! &ndash;&gt;-->
+      <!--           <article class="clothes-card-information-newprice">-->
+      <!--             <p class="no-margin"><span>90.90</span> лв.</p>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <!-- IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! -->
-        <section class="clothes-card-saved-text-percent">
+      <!--         &lt;!&ndash; IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! &ndash;&gt;-->
+      <!--         <section class="clothes-card-saved-text-percent">-->
 
-          <article class="clothes-card-saved-text">
-            <p class="no-margin">Saved</p>
-          </article>
+      <!--           <article class="clothes-card-saved-text">-->
+      <!--             <p class="no-margin">Saved</p>-->
+      <!--           </article>-->
 
-          <article class="clothes-card-saved-percent">
-            <p class="no-margin">- <span>40</span>%</p>
-          </article>
+      <!--           <article class="clothes-card-saved-percent">-->
+      <!--             <p class="no-margin">- <span>40</span>%</p>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-btn">
+      <!--         <section class="clothes-card-btn">-->
 
-          <article class="btn-add">ADD</article>
+      <!--           <article class="btn-add">ADD</article>-->
 
-          <!-- IF THE ITEM HAS ADDED ALREADY ! -->
+      <!--           &lt;!&ndash; IF THE ITEM HAS ADDED ALREADY ! &ndash;&gt;-->
 
-          <!-- <article class="nonbtn-added">ADDED BY ME</article> -->
+      <!--           &lt;!&ndash; <article class="nonbtn-added">ADDED BY ME</article> &ndash;&gt;-->
 
-          <!-- <input type="button" value="ADD"> -->
+      <!--           &lt;!&ndash; <input type="button" value="ADD"> &ndash;&gt;-->
 
-        </section>
+      <!--         </section>-->
 
-      </div>
+      <!--       </div>-->
 
-      <div class="main-clothes-card">
+      <!--       <div class="main-clothes-card">-->
 
-        <section class="clothes-card-icon-text">
+      <!--         <section class="clothes-card-icon-text">-->
 
-          <article class="clothes-card-text">
+      <!--           <article class="clothes-card-text">-->
 
-            <article class="card-text-arrow-icon">
-            </article>
+      <!--             <article class="card-text-arrow-icon">-->
+      <!--             </article>-->
 
-            <p class="no-margin clothes-like-customer-text"><span>17</span> customers like this</p>
+      <!--             <p class="no-margin clothes-like-customer-text"><span>17</span> customers like this</p>-->
 
-          </article>
+      <!--           </article>-->
 
-          <article class="clothes-card-icon-favorite">
-            <img src="/assets/images/assets/icon_favourite_off.png" alt="">
-          </article>
-        </section>
+      <!--           <article class="clothes-card-icon-favorite">-->
+      <!--             <img src="/assets/images/assets/icon_favourite_off.png" alt="">-->
+      <!--           </article>-->
+      <!--         </section>-->
 
-        <section class="clothes-card-img">
+      <!--         <section class="clothes-card-img">-->
 
-          <img src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg" alt="">
+      <!--           <img src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg" alt="">-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-information-brand-size">
+      <!--         <section class="clothes-card-information-brand-size">-->
 
-          <article class="clothes-card-information-brand">
-            <span>BY MALENE BIRGER</span>
-          </article>
+      <!--           <article class="clothes-card-information-brand">-->
+      <!--             <span>BY MALENE BIRGER</span>-->
+      <!--           </article>-->
 
-          <article class="clothes-card-information-size">
-            <span>S</span>
-          </article>
+      <!--           <article class="clothes-card-information-size">-->
+      <!--             <span>S</span>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-information-startprice-newprice">
+      <!--         <section class="clothes-card-information-startprice-newprice">-->
 
-          <article class="clothes-card-information-startprice">
-            <p class="no-margin"><span>165.90</span> лв.</p>
-          </article>
+      <!--           <article class="clothes-card-information-startprice">-->
+      <!--             <p class="no-margin"><span>165.90</span> лв.</p>-->
+      <!--           </article>-->
 
-          <!-- IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! -->
-          <article class="clothes-card-information-newprice">
-            <p class="no-margin"><span>90.90</span> лв.</p>
-          </article>
+      <!--           &lt;!&ndash; IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! &ndash;&gt;-->
+      <!--           <article class="clothes-card-information-newprice">-->
+      <!--             <p class="no-margin"><span>90.90</span> лв.</p>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <!-- IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! -->
-        <section class="clothes-card-saved-text-percent">
+      <!--         &lt;!&ndash; IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! &ndash;&gt;-->
+      <!--         <section class="clothes-card-saved-text-percent">-->
 
-          <article class="clothes-card-saved-text">
-            <p class="no-margin">Saved</p>
-          </article>
+      <!--           <article class="clothes-card-saved-text">-->
+      <!--             <p class="no-margin">Saved</p>-->
+      <!--           </article>-->
 
-          <article class="clothes-card-saved-percent">
-            <p class="no-margin">- <span>40</span>%</p>
-          </article>
+      <!--           <article class="clothes-card-saved-percent">-->
+      <!--             <p class="no-margin">- <span>40</span>%</p>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-btn">
+      <!--         <section class="clothes-card-btn">-->
 
-          <article class="btn-add">ADD</article>
+      <!--           <article class="btn-add">ADD</article>-->
 
-          <!-- IF THE ITEM HAS ADDED ALREADY ! -->
+      <!--           &lt;!&ndash; IF THE ITEM HAS ADDED ALREADY ! &ndash;&gt;-->
 
-          <!-- <article class="nonbtn-added">ADDED BY ME</article> -->
+      <!--           &lt;!&ndash; <article class="nonbtn-added">ADDED BY ME</article> &ndash;&gt;-->
 
-          <!-- <input type="button" value="ADD"> -->
+      <!--           &lt;!&ndash; <input type="button" value="ADD"> &ndash;&gt;-->
 
-        </section>
+      <!--         </section>-->
 
-      </div>
+      <!--       </div>-->
 
-      <div class="main-clothes-card">
+      <!--       <div class="main-clothes-card">-->
 
-        <section class="clothes-card-icon-text">
+      <!--         <section class="clothes-card-icon-text">-->
 
-          <article class="clothes-card-text">
+      <!--           <article class="clothes-card-text">-->
 
-            <article class="card-text-arrow-icon">
-            </article>
+      <!--             <article class="card-text-arrow-icon">-->
+      <!--             </article>-->
 
-            <p class="no-margin clothes-like-customer-text"><span>17</span> customers like this</p>
+      <!--             <p class="no-margin clothes-like-customer-text"><span>17</span> customers like this</p>-->
 
-          </article>
+      <!--           </article>-->
 
-          <article class="clothes-card-icon-favorite">
-            <img src="/assets/images/assets/icon_favourite_off.png" alt="">
-          </article>
-        </section>
+      <!--           <article class="clothes-card-icon-favorite">-->
+      <!--             <img src="/assets/images/assets/icon_favourite_off.png" alt="">-->
+      <!--           </article>-->
+      <!--         </section>-->
 
-        <section class="clothes-card-img">
+      <!--         <section class="clothes-card-img">-->
 
-          <img src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg" alt="">
+      <!--           <img src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg" alt="">-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-information-brand-size">
+      <!--         <section class="clothes-card-information-brand-size">-->
 
-          <article class="clothes-card-information-brand">
-            <span>BY MALENE BIRGER</span>
-          </article>
+      <!--           <article class="clothes-card-information-brand">-->
+      <!--             <span>BY MALENE BIRGER</span>-->
+      <!--           </article>-->
 
-          <article class="clothes-card-information-size">
-            <span>S</span>
-          </article>
+      <!--           <article class="clothes-card-information-size">-->
+      <!--             <span>S</span>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-information-startprice-newprice">
+      <!--         <section class="clothes-card-information-startprice-newprice">-->
 
-          <article class="clothes-card-information-startprice">
-            <p class="no-margin"><span>165.90</span> лв.</p>
-          </article>
+      <!--           <article class="clothes-card-information-startprice">-->
+      <!--             <p class="no-margin"><span>165.90</span> лв.</p>-->
+      <!--           </article>-->
 
-          <!-- IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! -->
-          <article class="clothes-card-information-newprice">
-            <p class="no-margin"><span>90.90</span> лв.</p>
-          </article>
+      <!--           &lt;!&ndash; IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! &ndash;&gt;-->
+      <!--           <article class="clothes-card-information-newprice">-->
+      <!--             <p class="no-margin"><span>90.90</span> лв.</p>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <!-- IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! -->
-        <section class="clothes-card-saved-text-percent">
+      <!--         &lt;!&ndash; IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! &ndash;&gt;-->
+      <!--         <section class="clothes-card-saved-text-percent">-->
 
-          <article class="clothes-card-saved-text">
-            <p class="no-margin">Saved</p>
-          </article>
+      <!--           <article class="clothes-card-saved-text">-->
+      <!--             <p class="no-margin">Saved</p>-->
+      <!--           </article>-->
 
-          <article class="clothes-card-saved-percent">
-            <p class="no-margin">- <span>40</span>%</p>
-          </article>
+      <!--           <article class="clothes-card-saved-percent">-->
+      <!--             <p class="no-margin">- <span>40</span>%</p>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-btn">
+      <!--         <section class="clothes-card-btn">-->
 
-          <article class="btn-add">ADD</article>
+      <!--           <article class="btn-add">ADD</article>-->
 
-          <!-- IF THE ITEM HAS ADDED ALREADY ! -->
+      <!--           &lt;!&ndash; IF THE ITEM HAS ADDED ALREADY ! &ndash;&gt;-->
 
-          <!-- <article class="nonbtn-added">ADDED BY ME</article> -->
+      <!--           &lt;!&ndash; <article class="nonbtn-added">ADDED BY ME</article> &ndash;&gt;-->
 
-          <!-- <input type="button" value="ADD"> -->
+      <!--           &lt;!&ndash; <input type="button" value="ADD"> &ndash;&gt;-->
 
-        </section>
+      <!--         </section>-->
 
-      </div>
+      <!--       </div>-->
 
-      <div class="main-clothes-card">
+      <!--       <div class="main-clothes-card">-->
 
-        <section class="clothes-card-icon-text">
+      <!--         <section class="clothes-card-icon-text">-->
 
-          <article class="clothes-card-text">
+      <!--           <article class="clothes-card-text">-->
 
-            <article class="card-text-arrow-icon">
-            </article>
+      <!--             <article class="card-text-arrow-icon">-->
+      <!--             </article>-->
 
-            <p class="no-margin clothes-like-customer-text"><span>17</span> customers like this</p>
+      <!--             <p class="no-margin clothes-like-customer-text"><span>17</span> customers like this</p>-->
 
-          </article>
+      <!--           </article>-->
 
-          <article class="clothes-card-icon-favorite">
-            <img src="/assets/images/assets/icon_favourite_off.png" alt="">
-          </article>
-        </section>
+      <!--           <article class="clothes-card-icon-favorite">-->
+      <!--             <img src="/assets/images/assets/icon_favourite_off.png" alt="">-->
+      <!--           </article>-->
+      <!--         </section>-->
 
-        <section class="clothes-card-img">
+      <!--         <section class="clothes-card-img">-->
 
-          <img src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg" alt="">
+      <!--           <img src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg" alt="">-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-information-brand-size">
+      <!--         <section class="clothes-card-information-brand-size">-->
 
-          <article class="clothes-card-information-brand">
-            <span>BY MALENE BIRGER</span>
-          </article>
+      <!--           <article class="clothes-card-information-brand">-->
+      <!--             <span>BY MALENE BIRGER</span>-->
+      <!--           </article>-->
 
-          <article class="clothes-card-information-size">
-            <span>S</span>
-          </article>
+      <!--           <article class="clothes-card-information-size">-->
+      <!--             <span>S</span>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-information-startprice-newprice">
+      <!--         <section class="clothes-card-information-startprice-newprice">-->
 
-          <article class="clothes-card-information-startprice">
-            <p class="no-margin"><span>165.90</span> лв.</p>
-          </article>
+      <!--           <article class="clothes-card-information-startprice">-->
+      <!--             <p class="no-margin"><span>165.90</span> лв.</p>-->
+      <!--           </article>-->
 
-          <!-- IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! -->
-          <article class="clothes-card-information-newprice">
-            <p class="no-margin"><span>90.90</span> лв.</p>
-          </article>
+      <!--           &lt;!&ndash; IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! &ndash;&gt;-->
+      <!--           <article class="clothes-card-information-newprice">-->
+      <!--             <p class="no-margin"><span>90.90</span> лв.</p>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <!-- IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! -->
-        <section class="clothes-card-saved-text-percent">
+      <!--         &lt;!&ndash; IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! &ndash;&gt;-->
+      <!--         <section class="clothes-card-saved-text-percent">-->
 
-          <article class="clothes-card-saved-text">
-            <p class="no-margin">Saved</p>
-          </article>
+      <!--           <article class="clothes-card-saved-text">-->
+      <!--             <p class="no-margin">Saved</p>-->
+      <!--           </article>-->
 
-          <article class="clothes-card-saved-percent">
-            <p class="no-margin">- <span>40</span>%</p>
-          </article>
+      <!--           <article class="clothes-card-saved-percent">-->
+      <!--             <p class="no-margin">- <span>40</span>%</p>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-btn">
+      <!--         <section class="clothes-card-btn">-->
 
-          <article class="btn-add">ADD</article>
+      <!--           <article class="btn-add">ADD</article>-->
 
-          <!-- IF THE ITEM HAS ADDED ALREADY ! -->
+      <!--           &lt;!&ndash; IF THE ITEM HAS ADDED ALREADY ! &ndash;&gt;-->
 
-          <!-- <article class="nonbtn-added">ADDED BY ME</article> -->
+      <!--           &lt;!&ndash; <article class="nonbtn-added">ADDED BY ME</article> &ndash;&gt;-->
 
-          <!-- <input type="button" value="ADD"> -->
+      <!--           &lt;!&ndash; <input type="button" value="ADD"> &ndash;&gt;-->
 
-        </section>
+      <!--         </section>-->
 
-      </div>
+      <!--       </div>-->
 
-      <div class="main-clothes-card">
+      <!--       <div class="main-clothes-card">-->
 
-        <section class="clothes-card-icon-text">
+      <!--         <section class="clothes-card-icon-text">-->
 
-          <article class="clothes-card-text">
+      <!--           <article class="clothes-card-text">-->
 
-            <article class="card-text-arrow-icon">
-            </article>
+      <!--             <article class="card-text-arrow-icon">-->
+      <!--             </article>-->
 
-            <p class="no-margin clothes-like-customer-text"><span>17</span> customers like this</p>
+      <!--             <p class="no-margin clothes-like-customer-text"><span>17</span> customers like this</p>-->
 
-          </article>
+      <!--           </article>-->
 
-          <article class="clothes-card-icon-favorite">
-            <img src="/assets/images/assets/icon_favourite_off.png" alt="">
-          </article>
-        </section>
+      <!--           <article class="clothes-card-icon-favorite">-->
+      <!--             <img src="/assets/images/assets/icon_favourite_off.png" alt="">-->
+      <!--           </article>-->
+      <!--         </section>-->
 
-        <section class="clothes-card-img">
+      <!--         <section class="clothes-card-img">-->
 
-          <img src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg" alt="">
+      <!--           <img src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg" alt="">-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-information-brand-size">
+      <!--         <section class="clothes-card-information-brand-size">-->
 
-          <article class="clothes-card-information-brand">
-            <span>BY MALENE BIRGER</span>
-          </article>
+      <!--           <article class="clothes-card-information-brand">-->
+      <!--             <span>BY MALENE BIRGER</span>-->
+      <!--           </article>-->
 
-          <article class="clothes-card-information-size">
-            <span>S</span>
-          </article>
+      <!--           <article class="clothes-card-information-size">-->
+      <!--             <span>S</span>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-information-startprice-newprice">
+      <!--         <section class="clothes-card-information-startprice-newprice">-->
 
-          <article class="clothes-card-information-startprice">
-            <p class="no-margin"><span>165.90</span> лв.</p>
-          </article>
+      <!--           <article class="clothes-card-information-startprice">-->
+      <!--             <p class="no-margin"><span>165.90</span> лв.</p>-->
+      <!--           </article>-->
 
-          <!-- IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! -->
-          <article class="clothes-card-information-newprice">
-            <p class="no-margin"><span>90.90</span> лв.</p>
-          </article>
+      <!--           &lt;!&ndash; IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! &ndash;&gt;-->
+      <!--           <article class="clothes-card-information-newprice">-->
+      <!--             <p class="no-margin"><span>90.90</span> лв.</p>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <!-- IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! -->
-        <section class="clothes-card-saved-text-percent">
+      <!--         &lt;!&ndash; IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! &ndash;&gt;-->
+      <!--         <section class="clothes-card-saved-text-percent">-->
 
-          <article class="clothes-card-saved-text">
-            <p class="no-margin">Saved</p>
-          </article>
+      <!--           <article class="clothes-card-saved-text">-->
+      <!--             <p class="no-margin">Saved</p>-->
+      <!--           </article>-->
 
-          <article class="clothes-card-saved-percent">
-            <p class="no-margin">- <span>40</span>%</p>
-          </article>
+      <!--           <article class="clothes-card-saved-percent">-->
+      <!--             <p class="no-margin">- <span>40</span>%</p>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-btn">
+      <!--         <section class="clothes-card-btn">-->
 
-          <article class="btn-add">ADD</article>
+      <!--           <article class="btn-add">ADD</article>-->
 
-          <!-- IF THE ITEM HAS ADDED ALREADY ! -->
+      <!--           &lt;!&ndash; IF THE ITEM HAS ADDED ALREADY ! &ndash;&gt;-->
 
-          <!-- <article class="nonbtn-added">ADDED BY ME</article> -->
+      <!--           &lt;!&ndash; <article class="nonbtn-added">ADDED BY ME</article> &ndash;&gt;-->
 
-          <!-- <input type="button" value="ADD"> -->
+      <!--           &lt;!&ndash; <input type="button" value="ADD"> &ndash;&gt;-->
 
-        </section>
+      <!--         </section>-->
 
-      </div>
+      <!--       </div>-->
 
-      <div class="main-clothes-card">
+      <!--       <div class="main-clothes-card">-->
 
-        <section class="clothes-card-icon-text">
+      <!--         <section class="clothes-card-icon-text">-->
 
-          <article class="clothes-card-text">
+      <!--           <article class="clothes-card-text">-->
 
-            <article class="card-text-arrow-icon">
-            </article>
+      <!--             <article class="card-text-arrow-icon">-->
+      <!--             </article>-->
 
-            <p class="no-margin clothes-like-customer-text"><span>17</span> customers like this</p>
+      <!--             <p class="no-margin clothes-like-customer-text"><span>17</span> customers like this</p>-->
 
-          </article>
+      <!--           </article>-->
 
-          <article class="clothes-card-icon-favorite">
-            <img src="/assets/images/assets/icon_favourite_off.png" alt="">
-          </article>
-        </section>
+      <!--           <article class="clothes-card-icon-favorite">-->
+      <!--             <img src="/assets/images/assets/icon_favourite_off.png" alt="">-->
+      <!--           </article>-->
+      <!--         </section>-->
 
-        <section class="clothes-card-img">
+      <!--         <section class="clothes-card-img">-->
 
-          <img src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg" alt="">
+      <!--           <img src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg" alt="">-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-information-brand-size">
+      <!--         <section class="clothes-card-information-brand-size">-->
 
-          <article class="clothes-card-information-brand">
-            <span>BY MALENE BIRGER</span>
-          </article>
+      <!--           <article class="clothes-card-information-brand">-->
+      <!--             <span>BY MALENE BIRGER</span>-->
+      <!--           </article>-->
 
-          <article class="clothes-card-information-size">
-            <span>S</span>
-          </article>
+      <!--           <article class="clothes-card-information-size">-->
+      <!--             <span>S</span>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-information-startprice-newprice">
+      <!--         <section class="clothes-card-information-startprice-newprice">-->
 
-          <article class="clothes-card-information-startprice">
-            <p class="no-margin"><span>165.90</span> лв.</p>
-          </article>
+      <!--           <article class="clothes-card-information-startprice">-->
+      <!--             <p class="no-margin"><span>165.90</span> лв.</p>-->
+      <!--           </article>-->
 
-          <!-- IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! -->
-          <article class="clothes-card-information-newprice">
-            <p class="no-margin"><span>90.90</span> лв.</p>
-          </article>
+      <!--           &lt;!&ndash; IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! &ndash;&gt;-->
+      <!--           <article class="clothes-card-information-newprice">-->
+      <!--             <p class="no-margin"><span>90.90</span> лв.</p>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <!-- IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! -->
-        <section class="clothes-card-saved-text-percent">
+      <!--         &lt;!&ndash; IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! &ndash;&gt;-->
+      <!--         <section class="clothes-card-saved-text-percent">-->
 
-          <article class="clothes-card-saved-text">
-            <p class="no-margin">Saved</p>
-          </article>
+      <!--           <article class="clothes-card-saved-text">-->
+      <!--             <p class="no-margin">Saved</p>-->
+      <!--           </article>-->
 
-          <article class="clothes-card-saved-percent">
-            <p class="no-margin">- <span>40</span>%</p>
-          </article>
+      <!--           <article class="clothes-card-saved-percent">-->
+      <!--             <p class="no-margin">- <span>40</span>%</p>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-btn">
+      <!--         <section class="clothes-card-btn">-->
 
-          <article class="btn-add">ADD</article>
+      <!--           <article class="btn-add">ADD</article>-->
 
-          <!-- IF THE ITEM HAS ADDED ALREADY ! -->
+      <!--           &lt;!&ndash; IF THE ITEM HAS ADDED ALREADY ! &ndash;&gt;-->
 
-          <!-- <article class="nonbtn-added">ADDED BY ME</article> -->
+      <!--           &lt;!&ndash; <article class="nonbtn-added">ADDED BY ME</article> &ndash;&gt;-->
 
-          <!-- <input type="button" value="ADD"> -->
+      <!--           &lt;!&ndash; <input type="button" value="ADD"> &ndash;&gt;-->
 
-        </section>
+      <!--         </section>-->
 
-      </div>
+      <!--       </div>-->
 
-      <div class="main-clothes-card">
+      <!--       <div class="main-clothes-card">-->
 
-        <section class="clothes-card-icon-text">
+      <!--         <section class="clothes-card-icon-text">-->
 
-          <article class="clothes-card-text">
+      <!--           <article class="clothes-card-text">-->
 
-            <article class="card-text-arrow-icon">
-            </article>
+      <!--             <article class="card-text-arrow-icon">-->
+      <!--             </article>-->
 
-            <p class="no-margin clothes-like-customer-text"><span>17</span> customers like this</p>
+      <!--             <p class="no-margin clothes-like-customer-text"><span>17</span> customers like this</p>-->
 
-          </article>
+      <!--           </article>-->
 
-          <article class="clothes-card-icon-favorite">
-            <img src="/assets/images/assets/icon_favourite_off.png" alt="">
-          </article>
-        </section>
+      <!--           <article class="clothes-card-icon-favorite">-->
+      <!--             <img src="/assets/images/assets/icon_favourite_off.png" alt="">-->
+      <!--           </article>-->
+      <!--         </section>-->
 
-        <section class="clothes-card-img">
+      <!--         <section class="clothes-card-img">-->
 
-          <img src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg" alt="">
+      <!--           <img src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg" alt="">-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-information-brand-size">
+      <!--         <section class="clothes-card-information-brand-size">-->
 
-          <article class="clothes-card-information-brand">
-            <span>BY MALENE BIRGER</span>
-          </article>
+      <!--           <article class="clothes-card-information-brand">-->
+      <!--             <span>BY MALENE BIRGER</span>-->
+      <!--           </article>-->
 
-          <article class="clothes-card-information-size">
-            <span>S</span>
-          </article>
+      <!--           <article class="clothes-card-information-size">-->
+      <!--             <span>S</span>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-information-startprice-newprice">
+      <!--         <section class="clothes-card-information-startprice-newprice">-->
 
-          <article class="clothes-card-information-startprice">
-            <p class="no-margin"><span>165.90</span> лв.</p>
-          </article>
+      <!--           <article class="clothes-card-information-startprice">-->
+      <!--             <p class="no-margin"><span>165.90</span> лв.</p>-->
+      <!--           </article>-->
 
-          <!-- IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! -->
-          <article class="clothes-card-information-newprice">
-            <p class="no-margin"><span>90.90</span> лв.</p>
-          </article>
+      <!--           &lt;!&ndash; IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! &ndash;&gt;-->
+      <!--           <article class="clothes-card-information-newprice">-->
+      <!--             <p class="no-margin"><span>90.90</span> лв.</p>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <!-- IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! -->
-        <section class="clothes-card-saved-text-percent">
+      <!--         &lt;!&ndash; IF THERE IS NEW PRICE FOR THE PRODUCT , IT MUST BE SHOWED! &ndash;&gt;-->
+      <!--         <section class="clothes-card-saved-text-percent">-->
 
-          <article class="clothes-card-saved-text">
-            <p class="no-margin">Saved</p>
-          </article>
+      <!--           <article class="clothes-card-saved-text">-->
+      <!--             <p class="no-margin">Saved</p>-->
+      <!--           </article>-->
 
-          <article class="clothes-card-saved-percent">
-            <p class="no-margin">- <span>40</span>%</p>
-          </article>
+      <!--           <article class="clothes-card-saved-percent">-->
+      <!--             <p class="no-margin">- <span>40</span>%</p>-->
+      <!--           </article>-->
 
-        </section>
+      <!--         </section>-->
 
-        <section class="clothes-card-btn">
+      <!--         <section class="clothes-card-btn">-->
 
-          <article class="btn-add">ADD</article>
+      <!--           <article class="btn-add">ADD</article>-->
 
-          <!-- IF THE ITEM HAS ADDED ALREADY ! -->
+      <!--           &lt;!&ndash; IF THE ITEM HAS ADDED ALREADY ! &ndash;&gt;-->
 
-          <!-- <article class="nonbtn-added">ADDED BY ME</article> -->
+      <!--           &lt;!&ndash; <article class="nonbtn-added">ADDED BY ME</article> &ndash;&gt;-->
 
-          <!-- <input type="button" value="ADD"> -->
+      <!--           &lt;!&ndash; <input type="button" value="ADD"> &ndash;&gt;-->
 
-        </section>
+      <!--         </section>-->
 
-      </div>
+      <!--       </div></div>-->
 
 
     </section>
 
-<!--    I MUST SHOW LOADING SPINNER WHILE LOADING RELOAD FROM API , AFTER THAT I MUST HIDE THIS SECTION AND SHOW CLOTHES!-->
-    <app-loading></app-loading>
 
   </section>
 
@@ -1338,10 +1154,12 @@
 
     <article class="pagination-article">
 
-      <a href="">&laquo;</a>
-      <input type="number" name="pagination-number" id="pagination-number-input" value="1">
-      <a href="">&raquo;</a>
-      <span><b>from 1200</b></span>
+      <a href="" (click)="getPreviousPage(paginationNumber);sharedService.preventDefault($event)">&laquo;</a>
+      <input type="number" #paginationNumber name="pagination-number" id="pagination-number-input" value="1"
+             (change)="paginationCustomNumber(paginationNumber)">
+      <a href="" (click)="getNextPage(paginationNumber);sharedService.preventDefault($event)">&raquo;</a>
+      <span><b>from {{totalPages}} pages</b></span>
+
 
     </article>
 

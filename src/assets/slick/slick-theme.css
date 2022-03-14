@@ -27,8 +27,8 @@
 
     display: block;
 
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 30px;
     padding: 0;
     -webkit-transform: translate(0, -50%);
     -ms-transform: translate(0, -50%);
@@ -79,12 +79,12 @@
 
 .slick-prev
 {
-    left: -25px;
+    left: -10px;
 }
 [dir='rtl'] .slick-prev
 {
-    right: -25px;
     left: auto;
+    right: -10px;
 }
 .slick-prev:before
 {
@@ -97,7 +97,7 @@
 
 .slick-next
 {
-    right: -25px;
+    right: -10px;
 }
 [dir='rtl'] .slick-next
 {

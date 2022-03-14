@@ -3,6 +3,8 @@ import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {IUSER} from "../shared/interfaces/IUSER";
 import {BooleansService} from "../shared/booleans.service";
+import {ICLOTHSENUMS} from "../shared/interfaces/ICLOTHSENUMS";
+import {ICLOTHES} from "../shared/interfaces/ICLOTHES";
 
 // for lan connection
 const apiUrlLan = environment.apiURL;
@@ -14,7 +16,6 @@ export class UserService {
 
   user: IUSER | undefined;
 
-
   // getIsLogged(): boolean {
   //   // HERE I MUST CALL API TO CHECK IF USER'S TOKEN ARE VALID
   //   return this.validateUserToken();
@@ -25,28 +26,16 @@ export class UserService {
 
   login(data: { email: string, password: string }) {
     // HERE I MUST CALL API FOR LOGIN THE USER THEN SAVE RECEIVED USER INFO
-  return   this.http.post<IUSER>(`${apiUrlLan}/users/login`, data, {
+    return this.http.post<IUSER>(`${apiUrlLan}/users/login`, data, {
       observe: 'response',
       withCredentials: true,
       responseType: 'json'
     })
-    //   .subscribe({
-    //   next: value => {
-    //     // const jsonParsed = JSON.parse(<string>value.body || 'ERROR');
-    //     // this.user = JSON.parse(jsonParsed);
-    //     // console.log(this.user);
-    //     console.log(value)
-    //   },
-    //   // IF EMAIL OR PASSWORD IS WRONG , I MUST RETURN SOME EXCEPTION TO DISPLAY
-    //   error: err => {
-    //     console.log(err)
-    //   }
-    // })
   };
 
   register(data: { email: string, password: string, confirmPassword: string, sex: string, firstName: string, lastName: string }) {
     //  HERE I MUST CALL API FOR REGISTER NEW USER THEN SAVE RECEIVED USER INFO
-   return  this.http.post<IUSER>(`${apiUrlLan}/users/register`, data, {
+    return this.http.post<IUSER>(`${apiUrlLan}/users/register`, data, {
       observe: 'response',
       withCredentials: true,
       responseType: 'json'
@@ -54,25 +43,75 @@ export class UserService {
   }
 
   logout() {
-  return   this.http.get(`${apiUrlLan}/users/logout`, {
+    return this.http.get(`${apiUrlLan}/users/logout`, {
       observe: 'response',
       withCredentials: true,
       responseType: 'json'
     })
-    //   .subscribe({
-    //   next: value => {
-    //     console.log("completed!")
-    //   },
-    //   error: err => {
-    //   },
-    //   complete: () => {
-    //   }
-    // })
+  }
+
+  getClothesBySpecificValue(data: {
+    pageNo: number,
+    pageSize: number,
+    brand: string,
+    size: string,
+    discount: number,
+    color: string,
+    priceLow: number,
+    priceHigh: number,
+    sortBy: string,
+    sex: string,
+    type: string[]
+  }) {
+    let pagination = "?";
+
+    if (data.pageNo != -1) {
+     pagination += pagination.length === 1 ? 'pageNo='+data.pageNo : '&pageNo='+data.pageNo;
+    }
+    if (data.pageSize != -1) {
+      pagination += pagination.length === 1 ? 'pageSize='+data.pageSize : '&pageSize='+data.pageSize;
+    }
+    if (data.brand != '') {
+      pagination += pagination.length === 1 ? 'brand='+data.brand : '&brand='+data.brand;
+    }
+    if (data.size != '') {
+      pagination += pagination.length === 1 ? 'size='+data.size : '&size='+data.size;
+    }
+    if (data.discount != -1) {
+      pagination += pagination.length === 1 ? 'discount='+data.discount : '&discount='+data.discount;
+    }
+    if (data.color != '') {
+      pagination += pagination.length === 1 ? 'color='+data.color : '&color='+data.color;
+    }
+    if (data.priceLow != -1) {
+      pagination += pagination.length === 1 ? 'priceLow='+data.priceLow : '&priceLow='+data.priceLow;
+    }
+    if (data.priceHigh != -1) {
+      pagination += pagination.length === 1 ? 'priceHigh='+data.priceHigh : '&priceHigh='+data.priceHigh;
+    }
+    if (data.sortBy != '') {
+      pagination += pagination.length === 1 ? 'sortBy='+data.sortBy : '&sortBy='+data.sortBy;
+    }
+    if (data.sex !== '') {
+      pagination += pagination.length === 1 ? 'sex='+data.sex : '&sex='+data.sex;
+    }
+
+    if (data.type.length > 0) {
+      data.type
+        .forEach(value => {
+          pagination += pagination.length === 1 ? 'type='+value : '&type='+value;
+        });
+    }
+
+    return this.http.get<ICLOTHES>(`${apiUrlLan}/clothes/get/all${pagination.length > 1 ? pagination : ''}`, {
+      withCredentials: true,
+      responseType: "json"
+    })
   }
 
   // ADMIN METHODS
 
-  addNewCloth(data: {} ) {
+  addNewCloth(data: {}) {
     console.log(data);
     return this.http.post(`${apiUrlLan}/admin/cloth/create`, data, {
       // observe: "response",
@@ -82,6 +121,12 @@ export class UserService {
       // responseType:""
     })
   };
+
+  getAllFieldsForClothes() {
+    return this.http.get<ICLOTHSENUMS>(`${apiUrlLan}/fields`, {
+      withCredentials: true
+    })
+  }
 
 
   validateUserToken(): boolean {

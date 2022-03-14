@@ -2,6 +2,8 @@ import {Component, OnInit, Renderer2} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {UserService} from "../../authentication/user.service";
 import {SharedService} from "../../shared/shared.service";
+import {ICLOTHSENUMS} from "../../shared/interfaces/ICLOTHSENUMS";
+import {BooleansService} from "../../shared/booleans.service";
 
 let FORM_ERROR_MSG: string = "";
 let FORM_SUCCESSFUL_ADDED_NEW_ITEM:string = "";
@@ -13,18 +15,52 @@ let FORM_SUCCESSFUL_ADDED_NEW_ITEM:string = "";
 })
 export class AdminClothComponent implements OnInit {
 
-  constructor(private userService:UserService,private sharedService:SharedService, private renderer2:Renderer2) { }
+
+  clothEnumsFields: ICLOTHSENUMS | undefined;
+  isClothEnumsFieldsLoaded : boolean = false;
+
+  constructor(private userService:UserService,private sharedService:SharedService, private renderer2:Renderer2, private booleanService:BooleansService) {
+    this.booleanService.showLoadingPage();
+  }
 
   ngOnInit(): void {
     FORM_ERROR_MSG = this.sharedService.formMessages.FORM_ERROR_MSG;
     FORM_SUCCESSFUL_ADDED_NEW_ITEM = this.sharedService.formMessages.FORM_SUCCESSFUL_ADDED_NEW_ITEM;
+
+
+    this.userService
+      .getAllFieldsForClothes()
+      .subscribe({
+        next:value => {
+          this.clothEnumsFields = value;
+        },
+        error:err => {
+          this.sharedService
+            .showAlertMsg
+            .error(err);
+        },
+        complete:() => {
+          this.isClothEnumsFieldsLoaded = true;
+          console.log(this.clothEnumsFields);
+          console.log(this.isClothEnumsFieldsLoaded);
+          this.booleanService.hideLoadingPage();
+        }
+      })
+
+
   }
 
   preventDefault(event: MouseEvent):void {
     this.sharedService.preventDefault(event);
   }
 
-  formData : FormData = new FormData();
+  formData : FormData = this.createNewFormData();
+
+
+
+  createNewFormData() :FormData{
+    return new FormData();
+  }
 
   isCoverPictureUploaded : boolean = false;
   isFrontPictureUploaded : boolean = false;
@@ -40,6 +76,7 @@ export class AdminClothComponent implements OnInit {
   isSizeIncorrect : boolean = false;
   isStartPriceIncorrect : boolean = false;
   isTypeIncorrect :boolean = false;
+  choose: string = "choose";
 
   handleFileInput(event:any) {
     let selectedFile : File = <File>event.target.files[0];
@@ -236,12 +273,13 @@ export class AdminClothComponent implements OnInit {
     this.formData.append("startPrice",startPrice);
     this.formData.append("type",type);
 
-    this.formData.get("picture")
+    // this.formData.get("picture")
     this.userService.addNewCloth(this.formData).subscribe({
       next:value => {
-        // console.log(value)
+         console.log(value)
       },
       error:err => {
+        console.log(err)
         let err_msg :string = "";
 
         Array.from(err.error)
@@ -296,15 +334,17 @@ export class AdminClothComponent implements OnInit {
             }
           })
 
-        console.log(err)
         this.sharedService
           .showAlertMsg
           .error(err_msg);
+        this.formData = this.createNewFormData();
       },
       complete:() => {
         this.sharedService
           .showAlertMsg
           .success(FORM_SUCCESSFUL_ADDED_NEW_ITEM);
+        this.formData = this.createNewFormData();
+
       }
     })
   }

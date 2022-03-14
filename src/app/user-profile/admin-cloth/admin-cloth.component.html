@@ -1,6 +1,6 @@
 <div class="admin-cloth-container">
 
-  <form action="" #form ="ngForm" method="post" class="admin-new-item-form" (ngSubmit)="createNewCloth(form)" >
+  <form action="" #form="ngForm" method="post" class="admin-new-item-form" (ngSubmit)="createNewCloth(form)">
 
     <section class="admin-form-header">
       <h4 class="no-margin admin-form-header-text">CREATE NEW CLOTH</h4>
@@ -20,13 +20,17 @@
       <a href="" id="fourthImg" (click)="pictureEv($event);preventDefault($event)"
          [class.error-color]="isFourthPictureUploaded"><i class="fa fa-upload" aria-hidden="true"></i> Side Picture</a>
 
-      <input type="file" name="coverPicture" id="coverDissabledImg" class="admin-img-input-dissabled" ngModel (change)="handleFileInput($event)" accept="image/png" required>
+      <input type="file" name="coverPicture" id="coverDissabledImg" class="admin-img-input-dissabled" ngModel
+             (change)="handleFileInput($event)" accept="image/png" required>
 
-      <input type="file" name="frontPicture" id="frontDissabledImg" class="admin-img-input-dissabled" ngModel (change)="handleFileInput($event)" accept="image/png" required>
+      <input type="file" name="frontPicture" id="frontDissabledImg" class="admin-img-input-dissabled" ngModel
+             (change)="handleFileInput($event)" accept="image/png" required>
 
-      <input type="file" name="thirdPicture" id="thirdDissabledImg" class="admin-img-input-dissabled" ngModel (change)="handleFileInput($event)" accept="image/png" required>
+      <input type="file" name="thirdPicture" id="thirdDissabledImg" class="admin-img-input-dissabled" ngModel
+             (change)="handleFileInput($event)" accept="image/png" required>
 
-      <input type="file" name="fourthPicture" id="fourthDissabledImg" class="admin-img-input-dissabled" ngModel (change)="handleFileInput($event)" accept="image/png" required>
+      <input type="file" name="fourthPicture" id="fourthDissabledImg" class="admin-img-input-dissabled" ngModel
+             (change)="handleFileInput($event)" accept="image/png" required>
 
     </section>
 
@@ -36,35 +40,36 @@
 
         <article class="admin-form-options-first-column-sex">
 
-          <select #sex="ngModel" name="sex" id="sex" ngModel required [class.error-color]="isSexIncorrect || (sex.touched && (sex.value === 'choose'|| sex.value === ''))">
+          <select #sex="ngModel" name="sex" id="sex" ngModel='' required
+                  [class.error-color]="isSexIncorrect || (sex.touched && (sex.value === 'choose'|| sex.value === ''))">
 
-            <option value="choose">SEX</option>
-            <option value="MALE">MALE</option>
-            <option value="FEMALE">FEMALE</option>
-
+            <option value="">SEX</option>
+            <option *ngFor="let enumSex of clothEnumsFields?.clothSex" value="{{enumSex}}">{{enumSex}}</option>
+            <!--            <option value="FEMALE">FEMALE</option>-->
           </select>
 
         </article>
 
         <article class="admin-form-options-first-column-brand">
 
-          <select #brand="ngModel" name="brand" id="brand" ngModel required [class.error-color]="isBrandIncorrect || (brand.touched && (brand.value === 'choose'|| brand.value === ''))">
+          <select #brand="ngModel" name="brand" id="brand" ngModel='' required
+                  [class.error-color]="isBrandIncorrect || (brand.touched && (brand.value === 'choose'|| brand.value === ''))">
 
-            <option value="choose">BRAND</option>
-            <option value="NIKE">NIKE</option>
-            <option value="CHELSEA">CHELSEA</option>
-
+            <option value="">BRAND</option>
+            <option *ngFor="let enumBrand of clothEnumsFields?.clothBrand" value={{enumBrand}}>{{enumBrand}}</option>
+<!--            <option value="CHELSEA">CHELSEA</option>-->
           </select>
 
         </article>
 
         <article class="admin-form-options-first-column-color">
 
-          <select #color="ngModel" name="color" id="color" ngModel required [class.error-color]="isColorIncorrect || (color.touched && (color.value === 'choose'|| color.value === ''))">
+          <select #color="ngModel" name="color" id="color" ngModel='' required
+                  [class.error-color]="isColorIncorrect || (color.touched && (color.value === 'choose'|| color.value === ''))">
 
-            <option value="choose">COLOR</option>
-            <option value="RED">RED</option>
-            <option value="BROWN">BROWN</option>
+            <option value="">COLOR</option>
+            <option *ngFor="let enumColor of clothEnumsFields?.clothColor" value="{{enumColor}}">{{enumColor}}</option>
+<!--            <option value="BROWN">BROWN</option>-->
 
           </select>
 
@@ -76,21 +81,23 @@
 
         <article class="admin-form-options-second-column-type">
 
-          <select #type="ngModel" name="type" id="type" ngModel required [class.error-color]="isTypeIncorrect || (type.touched && (type.value === 'choose'|| type.value === ''))">
-            <option value="choose">TYPE</option>
-            <option value="PULOVER">PULOVER</option>
-            <option value="DRESS">DRESS</option>
+          <select #type="ngModel" name="type" id="type" ngModel='' required
+                  [class.error-color]="isTypeIncorrect || (type.touched && (type.value === 'choose'|| type.value === ''))">
+            <option value="">TYPE</option>
+            <option *ngFor="let enumType of clothEnumsFields?.clothType" value="{{enumType}}">{{enumType}}</option>
+<!--            <option value="DRESS">DRESS</option>-->
           </select>
 
         </article>
 
         <article class="admin-form-options-second-column-size">
 
-          <select #size="ngModel" name="size" id="size" ngModel required [class.error-color]="isSizeIncorrect || (size.touched && (size.value === 'choose'|| size.value === ''))">
+          <select #size="ngModel" name="size" id="size" ngModel='' required
+                  [class.error-color]="isSizeIncorrect || (size.touched && (size.value === 'choose'|| size.value === ''))">
 
-            <option value="choose">SIZE</option>
-            <option value="XXL">XXL</option>
-            <option value="XS">XS</option>
+            <option value="">SIZE</option>
+            <option *ngFor="let enumSize of clothEnumsFields?.clothSize" value="{{enumSize}}">{{enumSize}}</option>
+<!--            <option value="XS">XS</option>-->
 
           </select>
 
@@ -98,12 +105,13 @@
 
         <article class="admin-form-options-second-column-season">
 
-          <select #season="ngModel" name="season" id="season" ngModel required [class.error-color]="isSeasonIncorrect || (season.touched && (season.value === 'choose'|| season.value === ''))">
+          <select #season="ngModel" name="season" id="season" ngModel='' required
+                  [class.error-color]="isSeasonIncorrect || (season.touched && (season.value === 'choose'|| season.value === ''))">
 
-            <option value="choose">SEASON</option>
-            <option value="WINTER">Winter</option>
-            <option value="SUMMER">Summer</option>
-            <option value="AUTUMN">Autumn</option>
+            <option value="">SEASON</option>
+            <option *ngFor="let enumSeason of clothEnumsFields?.clothSeason" value="{{enumSeason}}">{{enumSeason}}</option>
+<!--            <option value="SUMMER">Summer</option>-->
+<!--            <option value="AUTUMN">Autumn</option>-->
 
           </select>
 
@@ -124,26 +132,12 @@
 
       <article class="admin-form-composition-selects" [class.error-background]="isCompositionIncorrect">
 
-        <article class="admin-form-composition-selects-article">
+        <article class="admin-form-composition-selects-article" *ngFor="let enumComposition of clothEnumsFields?.clothComposition">
 
-          <input type="radio" name="composition" id="composition" value="NYLON" ngModel required>
-          <label for="composition">NYLON</label>
+          <input type="radio" name="composition" id="composition" value="{{enumComposition}}" ngModel required>
+          <label for="composition">{{enumComposition}}</label>
 
         </article>
-
-<!--        <article class="admin-form-composition-selects-article">-->
-
-<!--          <input type="radio" name="composition" id="composition" ngModel>-->
-<!--          <label for="composition">COTTON</label>-->
-
-<!--        </article>-->
-
-<!--        <article class="admin-form-composition-selects-article">-->
-
-<!--          <input type="radio" name="composition" id="composition" ngModel>-->
-<!--          <label for="composition">FLAX</label>-->
-
-<!--        </article>-->
 
       </article>
 
@@ -159,7 +153,8 @@
 
       <article class="admin-form-description-textarea">
 
-        <textarea #description="ngModel" name="description" id="description" ngModel required [class.error-background]="isDescriptionIncorrect || (description.touched && description.value.length <= 5 )"></textarea>
+        <textarea #description="ngModel" name="description" id="description" ngModel required
+                  [class.error-background]="isDescriptionIncorrect || (description.touched && description.value.length <= 5 )"></textarea>
 
       </article>
 
@@ -171,7 +166,8 @@
 
         <h2 class="no-margin">Start price</h2>
 
-        <input #startPrice="ngModel" type="number" name="startPrice" id="startPrice" ngModel required [class.error-border]="isStartPriceIncorrect || (startPrice.touched && startPrice.value.length === 0)">
+        <input #startPrice="ngModel" type="number" name="startPrice" id="startPrice" ngModel required
+               [class.error-border]="isStartPriceIncorrect || (startPrice.touched && startPrice.value.length === 0)">
 
       </article>
 
@@ -179,7 +175,8 @@
 
         <h2 class="no-margin">New price</h2>
 
-        <input #newPrice="ngModel" type="number" name="newPrice" id="newPrice" ngModel required [class.error-border]="isNewPriceIncorrect || (newPrice.touched && newPrice.value.length === 0)">
+        <input #newPrice="ngModel" type="number" name="newPrice" id="newPrice" ngModel required
+               [class.error-border]="isNewPriceIncorrect || (newPrice.touched && newPrice.value.length === 0)">
 
       </article>
 

@@ -7,6 +7,7 @@ import {AuthenticationModule} from "../authentication/authentication.module";
 import { CartBoxComponent } from './cart-box/cart-box.component';
 import {SharedModule} from "../shared/shared.module";
 import {AlertMessagesComponent} from "./alert-messages/alert-messages.component";
+import { LoadingComponent } from './loading/loading.component';
 
 
 
@@ -15,7 +16,8 @@ import {AlertMessagesComponent} from "./alert-messages/alert-messages.component"
     FooterComponent,
     HeaderComponent,
     CartBoxComponent,
-    AlertMessagesComponent
+    AlertMessagesComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,
