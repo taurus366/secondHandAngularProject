@@ -327,6 +327,7 @@ h3.discounts-title-ul-article-title {
   flex-direction: column;
   flex-wrap: wrap;
   align-items: flex-start;
+  align-content: center;
 }
 
 /* WOMEN */
@@ -364,6 +365,7 @@ h3.men-title-ul-article-title {
   flex-direction: column;
   flex-wrap: wrap;
   align-items: flex-start;
+  align-content: center;
 }
 /* MEN */
 
@@ -400,6 +402,7 @@ h3.children-title-ul-article-title {
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
+  align-content: center;
 }
 /* CHILDREN */
 
@@ -436,6 +439,7 @@ h3.shoes-title-ul-article-title {
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
+  align-content: center;
 }
 
 .shoes-ul > li:first-child > a:first-child ,.shoes-ul > li:last-child > a:first-child {
@@ -476,6 +480,7 @@ h3.accessories-title-ul-article-title {
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
+  align-content: center;
 }
 
 .accessories-ul > li:first-child > a:first-child ,.accessories-ul > li:last-child > a:first-child {

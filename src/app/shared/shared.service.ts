@@ -86,6 +86,10 @@ export class SharedService {
         if (value.id === 'women-cloth-nav' && value.checked){
           type.push(value.name);
         }
+        if (value.id === 'men-cloth-nav' && value.checked){
+          type.push(value.name);
+        }
+
 
         if (value.value.length > 0) {
           arrayOfValues[key] = value.value;
@@ -98,5 +102,11 @@ export class SharedService {
     return arrayOfValues;
   }
 
+  capitalizeFirstLetter(word : string):string {
+    let capitalizedString :string = "";
+    capitalizedString += word.charAt(0);
+    capitalizedString += word.slice(1,).toLowerCase();
+    return capitalizedString;
+  }
 
 }

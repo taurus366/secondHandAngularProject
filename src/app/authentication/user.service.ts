@@ -5,6 +5,7 @@ import {IUSER} from "../shared/interfaces/IUSER";
 import {BooleansService} from "../shared/booleans.service";
 import {ICLOTHSENUMS} from "../shared/interfaces/ICLOTHSENUMS";
 import {ICLOTHES} from "../shared/interfaces/ICLOTHES";
+import {SharedService} from "../shared/shared.service";
 
 // for lan connection
 const apiUrlLan = environment.apiURL;
@@ -16,12 +17,57 @@ export class UserService {
 
   user: IUSER | undefined;
 
+  clothEnum: ICLOTHSENUMS | undefined;
+  femaleNavigation: string[] | undefined;
+  maleNavigation: string[] | undefined;
+  girlsNavigation: string[] | undefined;
+  boysNavigation: string[] | undefined;
+
   // getIsLogged(): boolean {
   //   // HERE I MUST CALL API TO CHECK IF USER'S TOKEN ARE VALID
   //   return this.validateUserToken();
   // }
 
-  constructor(private http: HttpClient, private booleanService: BooleansService) {
+  constructor(private http: HttpClient, private booleanService: BooleansService, private sharedService:SharedService) {
+  }
+
+   getAllClothesEnumsForFields(): void {
+    console.log("work")
+    this.getAllFieldsForClothes()
+      .subscribe({
+        next: value => {
+          this.clothEnum = value;
+
+        },
+        error: err => {
+          this.sharedService
+            .showAlertMsg
+            .error(err)
+        },
+        complete: () => {
+          this.femaleNavigation = this.filterClothesType('FEMALE');
+          this.maleNavigation = this.filterClothesType('MALE');
+          this.girlsNavigation = this.filterClothesType('GIRLS');
+          this.boysNavigation = this.filterClothesType('BOYS');
+        }
+      })
+  }
+
+  filterClothesType(gender: string): string[] {
+    let arrayNav: string[] = [];
+    this.clothEnum
+      ?.clothType.filter((value: string) => {
+      let strings = value.split("=");
+      strings[1].split("/")
+        .forEach(value1 => {
+          if (value1 === gender) {
+            arrayNav.push(this.sharedService.capitalizeFirstLetter(strings[0]));
+          }
+
+        })
+    })
+    return arrayNav;
+
   }
 
   login(data: { email: string, password: string }) {

@@ -9,9 +9,9 @@
 
       <ul class="nav-ul" (change)="filterChangedDetect()">
 
-        <li class="nav-ul-li" *ngFor="let clothType of clothEnum?.clothType">
-          <input type="checkbox" [name]="clothType" class="cloth-type" id="women-cloth-nav">
-          {{capitalizeFirstLetter(clothType)}}
+        <li class="nav-ul-li" *ngFor="let clothType of userService.femaleNavigation">
+          <input type="checkbox" [name]="clothType.toUpperCase()" class="cloth-type" id="women-cloth-nav">
+        {{clothType}}
         </li>
 
 
@@ -25,92 +25,14 @@
         <h5 class="no-margin">MEN CLOTHES</h5>
       </article>
 
-      <ul class="nav-ul">
+      <ul class="nav-ul" (change)="filterChangedDetect()">
 
-        <li class="nav-ul-li">
-          <input type="checkbox" name="clothType" id="cloth-type">
-          Tracksuits
+        <li class="nav-ul-li" *ngFor="let maleNav of userService.maleNavigation">
+          <input type="checkbox" [name]="maleNav.toUpperCase()" class="cloth-type" id="men-cloth-nav">
+          {{maleNav}}
         </li>
 
-        <li class="nav-ul-li">
-          <input type="checkbox" name="clothType" id="cloth-type">
-          Swimwear
-        </li>
 
-        <li class="nav-ul-li">
-          <input type="checkbox" name="clothType" id="cloth-type">
-          Underwear
-        </li>
-
-        <li class="nav-ul-li">
-          <input type="checkbox" name="clothType" id="cloth-type">
-          Blouses
-        </li>
-
-        <li class="nav-ul-li">
-          <input type="checkbox" name="clothType" id="cloth-type">
-          Bicycle equipment
-        </li>
-
-        <li class="nav-ul-li">
-          <input type="checkbox" name="clothType" id="cloth-type">
-          Jeans
-        </li>
-
-        <li class="nav-ul-li">
-          <input type="checkbox" name="clothType" id="cloth-type">
-          Winter equipment
-        </li>
-
-        <li class="nav-ul-li">
-          <input type="checkbox" name="clothType" id="cloth-type">
-          Elets
-        </li>
-
-        <li class="nav-ul-li">
-          <input type="checkbox" name="clothType" id="cloth-type">
-          Vests
-        </li>
-
-        <li class="nav-ul-li">
-          <input type="checkbox" name="clothType" id="cloth-type">
-          Wedges
-        </li>
-
-        <li class="nav-ul-li">
-          <input type="checkbox" name="clothType" id="cloth-type">
-          Costumes
-        </li>
-
-        <li class="nav-ul-li">
-          <input type="checkbox" name="clothType" id="cloth-type">
-          Shorts
-        </li>
-
-        <li class="nav-ul-li">
-          <input type="checkbox" name="clothType" id="cloth-type">
-          Coats
-        </li>
-
-        <li class="nav-ul-li">
-          <input type="checkbox" name="clothType" id="cloth-type">
-          Pants
-        </li>
-
-        <li class="nav-ul-li">
-          <input type="checkbox" name="clothType" id="cloth-type">
-          T-shirts
-        </li>
-
-        <li class="nav-ul-li">
-          <input type="checkbox" name="clothType" id="cloth-type">
-          Sportwear
-        </li>
-
-        <li class="nav-ul-li">
-          <input type="checkbox" name="clothType" id="cloth-type">
-          Football equipment
-        </li>
 
       </ul>
     </nav>
@@ -127,7 +49,7 @@
 
           <option value="" selected hidden>Brands</option>
           <option value="">any</option>
-          <ng-container *ngFor="let brand of clothEnum?.clothBrand">
+          <ng-container *ngFor="let brand of userService.clothEnum?.clothBrand">
             <option value="{{brand}}">{{brand}}</option>
           </ng-container>
 
@@ -144,7 +66,7 @@
 
           <option value="" selected hidden>Sizes</option>
           <option value="">any</option>
-          <ng-container *ngFor="let size of clothEnum?.clothSize">
+          <ng-container *ngFor="let size of userService.clothEnum?.clothSize">
             <option value="{{size}}">{{size}}</option>
           </ng-container>
 
@@ -173,7 +95,7 @@
 
           <option value="" selected hidden>Color</option>
           <option value="">any</option>
-          <ng-container *ngFor="let color of clothEnum?.clothColor">
+          <ng-container *ngFor="let color of userService.clothEnum?.clothColor">
             <option value="{{color}}" [ngStyle]="{'backgroundColor': color}">{{color}}</option>
 
           </ng-container>

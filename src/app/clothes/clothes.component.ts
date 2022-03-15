@@ -12,17 +12,23 @@ import {ICLOTHSENUMS} from "../shared/interfaces/ICLOTHSENUMS";
 })
 export class ClothesComponent implements OnInit {
 
-  constructor(public activatedRoute: ActivatedRoute, public sharedService: SharedService, private userService: UserService, private renderer2: Renderer2) {
+  constructor(public activatedRoute: ActivatedRoute, public sharedService: SharedService, public userService: UserService, private renderer2: Renderer2) {
   }
 
   clothes: ICLOTHES | undefined;
-  clothEnum: ICLOTHSENUMS | undefined;
+  // clothEnum: ICLOTHSENUMS | undefined;
+  // femaleNavigation: string[] | undefined;
+  // maleNavigation: string[] | undefined;
+  // girlsNavigation: string[] | undefined;
+  // boysNavigation: string[] | undefined;
 
   currentPageNumber: number = 0;
   totalPages: number = 1;
 
   womenNav: boolean = false;
   menNav: boolean = false;
+  girlsNav : boolean = false;
+  boysNav : boolean = false;
 
   showPriceFilter: boolean = false;
 
@@ -32,16 +38,23 @@ export class ClothesComponent implements OnInit {
       if (who === 'men') {
         this.falseAll();
         this.menNav = true;
+        this.getAllOrSpecificClothes({pageSize: 1,
+          sex:this.getWomenNav() ? 'FEMALE' : this.getMenNav() ? 'MALE': ''});
+
       } else if (who === 'women') {
         this.falseAll();
         this.womenNav = true;
+        this.getAllOrSpecificClothes({pageSize: 1,
+          sex:this.getWomenNav() ? 'FEMALE' : this.getMenNav() ? 'MALE': ''});
       }
     });
 
-    this.getAllOrSpecificClothes({pageSize: 1});
+    // this.getAllOrSpecificClothes({pageSize: 1});
 
-    this.getAllClothesEnumsForFields();
+    // this.userService.getAllClothesEnumsForFields();
   }
+
+
 
   getAllOrSpecificClothes(
     data?: {
@@ -76,8 +89,9 @@ export class ClothesComponent implements OnInit {
       .subscribe({
         next: value => {
           this.clothes = value;
-           this.totalPages = value.totalPages === 0 ? 1 : value.totalPages;
+          this.totalPages = value.totalPages === 0 ? 1 : value.totalPages;
           this.currentPageNumber = value.pageable.pageNumber;
+
         },
         error: err => {
           this.sharedService
@@ -90,6 +104,23 @@ export class ClothesComponent implements OnInit {
       });
   }
 
+  // filterClothesType(gender: string): string[] {
+  //   let arrayNav: string[] = [];
+  //   this.clothEnum
+  //     ?.clothType.filter((value: string) => {
+  //     let strings = value.split("=");
+  //     strings[1].split("/")
+  //       .forEach(value1 => {
+  //         if (value1 === gender) {
+  //           arrayNav.push(this.sharedService.capitalizeFirstLetter(strings[0]));
+  //         }
+  //
+  //       })
+  //   })
+  //   return arrayNav;
+  //
+  // }
+
   //PAGEABLE FUNCTION
   getPreviousPage(paginationNumber: HTMLInputElement): void {
     if (!this.clothes?.first) {
@@ -101,6 +132,7 @@ export class ClothesComponent implements OnInit {
 
       data['pageNo'] = this.currentPageNumber - 1;
       data['pageSize'] = 1;
+      data['sex'] = this.getWomenNav() ? 'FEMALE' : this.getMenNav() ? 'MALE': '';
 
       this.getAllOrSpecificClothes(data);
       this.sharedService
@@ -119,7 +151,7 @@ export class ClothesComponent implements OnInit {
 
       data['pageNo'] = this.currentPageNumber + 1;
       data['pageSize'] = 1;
-
+      data['sex'] = this.getWomenNav() ? 'FEMALE' : this.getMenNav() ? 'MALE': '';
 
       this.getAllOrSpecificClothes(data);
       this.sharedService
@@ -139,6 +171,7 @@ export class ClothesComponent implements OnInit {
 
       data['pageNo'] = parseInt(paginationCustomNumber.value) - 1;
       data['pageSize'] = 1;
+      data['sex'] = this.getWomenNav() ? 'FEMALE' : this.getMenNav() ? 'MALE': '';
 
       this.getAllOrSpecificClothes(data);
       this.currentPageNumber = parseInt(paginationCustomNumber.value);
@@ -154,6 +187,7 @@ export class ClothesComponent implements OnInit {
   changeCurrentPageNumberBox(): void {
     let selectRootElement = this.renderer2.selectRootElement("#pagination-number-input");
     selectRootElement.value = this.currentPageNumber + 1;
+
   }
 
   filterChangedDetect() {
@@ -162,9 +196,10 @@ export class ClothesComponent implements OnInit {
         '#clothes-discounts',
         '#clothes-size',
         '#clothes-brand',
-        '#women-cloth-nav']);
+        '#women-cloth-nav',
+        '#men-cloth-nav']);
     data['pageSize'] = 1;
-
+    data['sex'] = this.getWomenNav() ? 'FEMALE' : this.getMenNav() ? 'MALE': this.girlsNav ? 'GIRLS' : this.boysNav ? 'BOYS' : new DOMException("SEX is not selected!");
     this.getAllOrSpecificClothes(data);
   }
 
@@ -188,27 +223,25 @@ export class ClothesComponent implements OnInit {
   }
 
 
-  private getAllClothesEnumsForFields(): void {
-    this.userService
-      .getAllFieldsForClothes()
-      .subscribe({
-        next: value => {
-          this.clothEnum = value;
-        },
-        error: err => {
-          this.sharedService
-            .showAlertMsg
-            .error(err)
-        },
-        complete: () => {
-        }
-      })
-  }
+  // private getAllClothesEnumsForFields(): void {
+  //   this.userService
+  //     .getAllFieldsForClothes()
+  //     .subscribe({
+  //       next: value => {
+  //         this.userService.clothEnum = value;
+  //       },
+  //       error: err => {
+  //         this.sharedService
+  //           .showAlertMsg
+  //           .error(err)
+  //       },
+  //       complete: () => {
+  //         this.userService.femaleNavigation = this.userService.filterClothesType('FEMALE');
+  //         this.userService.maleNavigation = this.userService.filterClothesType('MALE');
+  //         this.userService.girlsNavigation = this.userService.filterClothesType('GIRLS');
+  //         this.userService.boysNavigation = this.userService.filterClothesType('BOYS');
+  //       }
+  //     })
+  // }
 
-  capitalizeFirstLetter(word : string):string {
-    let capitalizedString :string = "";
-   capitalizedString += word.charAt(0);
-   capitalizedString += word.slice(1,).toLowerCase();
-   return capitalizedString;
-  }
 }

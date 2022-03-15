@@ -31,16 +31,20 @@ export class HeaderComponent implements OnInit {
 
   // @Output() showPopupWindow = new EventEmitter();
 
-  constructor(private userService:UserService, public booleansService:BooleansService, public publicMethod:SharedService) {
+  constructor(public userService:UserService, public booleansService:BooleansService, public publicMethod:SharedService) {
   }
 
   checkStatusOfWindow(): boolean {
    return this.booleansService.checkStatusOfWindow();
   }
 
-  ngOnInit(): void {
-     // document.querySelector('body')!.addEventListener("click",this.clickEv.bind(this))
-      this.validateLoggedUserEvery10Minutes();
+  async ngOnInit() {
+    // document.querySelector('body')!.addEventListener("click",this.clickEv.bind(this))
+    this.validateLoggedUserEvery10Minutes();
+
+    //  LOAD USERS ENUMS AND FIELDS!
+    await this.userService.getAllClothesEnumsForFields();
+
   }
 
 
