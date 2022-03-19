@@ -1,4 +1,4 @@
-import {Component, OnInit, Renderer2} from '@angular/core';
+import {Component, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {UserService} from "../../authentication/user.service";
 import {SharedService} from "../../shared/shared.service";
@@ -15,9 +15,14 @@ let FORM_SUCCESSFUL_ADDED_NEW_ITEM:string = "";
 })
 export class AdminClothComponent implements OnInit {
 
+  @ViewChild('form',{static:false})  form3 : NgForm | undefined;
 
   clothEnumsFields: ICLOTHSENUMS | undefined;
   isClothEnumsFieldsLoaded : boolean = false;
+
+  shoesEnumsFields: string[] | undefined;
+  clothesEnumsFields: string[] = [];
+  accessoriesEnumsFields: string[] | undefined;
 
   constructor(private userService:UserService,private sharedService:SharedService, private renderer2:Renderer2, private booleanService:BooleansService) {
     this.booleanService.showLoadingPage();
@@ -33,6 +38,9 @@ export class AdminClothComponent implements OnInit {
       .subscribe({
         next:value => {
           this.clothEnumsFields = value;
+          this.shoesEnumsFields = value.shoesType;
+          this.accessoriesEnumsFields = value.accessoriesType;
+          // this.clothesEnumsFields = value.clothType;
         },
         error:err => {
           this.sharedService
@@ -41,12 +49,35 @@ export class AdminClothComponent implements OnInit {
         },
         complete:() => {
           this.isClothEnumsFieldsLoaded = true;
-          console.log(this.clothEnumsFields);
-          console.log(this.isClothEnumsFieldsLoaded);
           this.booleanService.hideLoadingPage();
+          this.addClothesTypeToOneFilter();
         }
       })
 
+
+  }
+
+  addClothesTypeToOneFilter() {
+    this.clothesEnumsFields?.push("CLOTHES");
+
+    this.clothEnumsFields?.clothType
+      .forEach(value => {
+        this.clothesEnumsFields?.push(value);
+      });
+
+    this.clothesEnumsFields?.push("ACCESSORIES");
+
+    this.accessoriesEnumsFields!
+      .forEach(value => {
+        this.clothesEnumsFields?.push(value);
+      });
+
+    this.clothesEnumsFields?.push("SHOES");
+
+    this.shoesEnumsFields!
+      .forEach(value => {
+        this.clothesEnumsFields?.push(value);
+      })
 
   }
 
@@ -56,7 +87,12 @@ export class AdminClothComponent implements OnInit {
 
   formData : FormData = this.createNewFormData();
 
+ public getArrayFirstString(item : string) : string {
 
+     let strings: string[] = item.split("=");
+
+     return strings[0];
+  }
 
   createNewFormData() :FormData{
     return new FormData();
@@ -277,6 +313,7 @@ export class AdminClothComponent implements OnInit {
     this.userService.addNewCloth(this.formData).subscribe({
       next:value => {
          console.log(value)
+
       },
       error:err => {
         console.log(err)
@@ -344,7 +381,7 @@ export class AdminClothComponent implements OnInit {
           .showAlertMsg
           .success(FORM_SUCCESSFUL_ADDED_NEW_ITEM);
         this.formData = this.createNewFormData();
-
+        form.resetForm();
       }
     })
   }

@@ -27,10 +27,39 @@ export class ClothesComponent implements OnInit {
 
   womenNav: boolean = false;
   menNav: boolean = false;
-  girlsNav : boolean = false;
-  boysNav : boolean = false;
+  childrenNav: boolean = false; //CHILDREN
+  girlsNav: boolean = false; //CHILDREN
+  boysNav: boolean = false; //CHILDREN
+  shoesNav: boolean = false;
+  accessoriesNav: boolean = false;
+
+  //CHILDREN NAV
+  showGirlsNavChildren: boolean = false;
+  showBoysNavChildren: boolean = false;
+
+  //ACCESSORIES NAV
+  showWomenNavAccessories: boolean = false;
+  showMenNavAccessories: boolean = false;
+  showGirlsNavAccessories: boolean = false;
+  showBoysNavAccessories: boolean = false;
+
+  //SHOES NAV
+  showWomenNavShoes: boolean = false;
+  showMenNavShoes: boolean = false;
+  showGirlsNavShoes: boolean = false;
+  showBoysNavShoes: boolean = false;
+
 
   showPriceFilter: boolean = false;
+
+  //PIPE FILTER
+  girlsFilter = {gender:'GIRLS'};
+  boysFilter = {gender:'BOYS'};
+  womenFilter = {gender:'FEMALE'};
+  menFilter = {gender:'MALE'};
+
+  //DEFAULT
+  pageSize: number = 1;
 
 
   ngOnInit(): void {
@@ -38,22 +67,44 @@ export class ClothesComponent implements OnInit {
       if (who === 'men') {
         this.falseAll();
         this.menNav = true;
-        this.getAllOrSpecificClothes({pageSize: 1,
-          sex:this.getWomenNav() ? 'FEMALE' : this.getMenNav() ? 'MALE': ''});
 
       } else if (who === 'women') {
         this.falseAll();
         this.womenNav = true;
-        this.getAllOrSpecificClothes({pageSize: 1,
-          sex:this.getWomenNav() ? 'FEMALE' : this.getMenNav() ? 'MALE': ''});
+
+      } else if (who === 'children') {
+        this.falseAll();
+        this.childrenNav = true;
+
+      } else if (who === 'boys') {
+        this.falseAll();
+        this.boysNav = true;
+
+      } else if (who === 'girls') {
+        this.falseAll();
+        this.girlsNav = true;
+
+      } else if (who === 'shoes') {
+        this.falseAll();
+        this.shoesNav = true;
+
+      } else if (who === 'accessories') {
+        this.falseAll();
+        this.accessoriesNav = true;
       }
+
+      this.getAllOrSpecificClothes({
+        pageSize: this.pageSize,
+        sex: this.getWomenNav() ? 'FEMALE' : this.getMenNav() ? 'MALE' : this.getChildrenNav() ? 'CHILDREN' : this.getBoysNav() ? 'BOYS' : this.getGirlsNav() ? 'GIRLS' : '',
+        itemType: this.getChildrenNav() ? 'CLOTH' : this.getWomenNav() ? 'CLOTH' : this.getMenNav() ? 'CLOTH' : this.getAccessoriesNav() ? 'ACCESSORIES' : this.getShoesNav() ? 'SHOES' : ''
+      });
+
     });
 
     // this.getAllOrSpecificClothes({pageSize: 1});
 
     // this.userService.getAllClothesEnumsForFields();
   }
-
 
 
   getAllOrSpecificClothes(
@@ -68,7 +119,8 @@ export class ClothesComponent implements OnInit {
       priceHigh?: number,
       sortBy?: string,
       sex?: string,
-      type?: string[]
+      type?: string[],
+      itemType?: string    // ADDED JUST NOW
     }
   ): void {
 
@@ -84,7 +136,8 @@ export class ClothesComponent implements OnInit {
         priceHigh: data?.priceHigh != undefined ? data!.priceHigh : -1,
         sortBy: data?.sortBy != undefined ? data!.sortBy : '',
         sex: data?.sex != undefined ? data!.sex : '',
-        type: data?.type != undefined ? data!.type : Array.of()
+        type: data?.type != undefined ? data!.type : Array.of(),
+        itemType: data?.itemType != undefined ? data!.itemType : ''
       })
       .subscribe({
         next: value => {
@@ -104,23 +157,6 @@ export class ClothesComponent implements OnInit {
       });
   }
 
-  // filterClothesType(gender: string): string[] {
-  //   let arrayNav: string[] = [];
-  //   this.clothEnum
-  //     ?.clothType.filter((value: string) => {
-  //     let strings = value.split("=");
-  //     strings[1].split("/")
-  //       .forEach(value1 => {
-  //         if (value1 === gender) {
-  //           arrayNav.push(this.sharedService.capitalizeFirstLetter(strings[0]));
-  //         }
-  //
-  //       })
-  //   })
-  //   return arrayNav;
-  //
-  // }
-
   //PAGEABLE FUNCTION
   getPreviousPage(paginationNumber: HTMLInputElement): void {
     if (!this.clothes?.first) {
@@ -131,8 +167,9 @@ export class ClothesComponent implements OnInit {
           '#clothes-brand']);
 
       data['pageNo'] = this.currentPageNumber - 1;
-      data['pageSize'] = 1;
-      data['sex'] = this.getWomenNav() ? 'FEMALE' : this.getMenNav() ? 'MALE': '';
+      data['pageSize'] = this.pageSize;
+      data['sex'] = this.getWomenNav() ? 'FEMALE' : this.getMenNav() ? 'MALE' : this.getChildrenNav() ? 'CHILDREN' : '';
+      data['itemType'] = this.getChildrenNav() ? 'CLOTH' : this.getWomenNav() ? 'CLOTH' : this.getMenNav() ? 'CLOTH' : '';
 
       this.getAllOrSpecificClothes(data);
       this.sharedService
@@ -150,8 +187,9 @@ export class ClothesComponent implements OnInit {
           '#clothes-brand']);
 
       data['pageNo'] = this.currentPageNumber + 1;
-      data['pageSize'] = 1;
-      data['sex'] = this.getWomenNav() ? 'FEMALE' : this.getMenNav() ? 'MALE': '';
+      data['pageSize'] = this.pageSize;
+      data['sex'] = this.getWomenNav() ? 'FEMALE' : this.getMenNav() ? 'MALE' : this.getChildrenNav() ? 'CHILDREN' : '';
+      data['itemType'] = this.getChildrenNav() ? 'CLOTH' : this.getWomenNav() ? 'CLOTH' : this.getMenNav() ? 'CLOTH' : '';
 
       this.getAllOrSpecificClothes(data);
       this.sharedService
@@ -170,8 +208,9 @@ export class ClothesComponent implements OnInit {
           '#clothes-brand']);
 
       data['pageNo'] = parseInt(paginationCustomNumber.value) - 1;
-      data['pageSize'] = 1;
-      data['sex'] = this.getWomenNav() ? 'FEMALE' : this.getMenNav() ? 'MALE': '';
+      data['pageSize'] = this.pageSize;
+      data['sex'] = this.getWomenNav() ? 'FEMALE' : this.getMenNav() ? 'MALE' : this.getChildrenNav() ? 'CHILDREN' : '';
+      data['itemType'] = this.getChildrenNav() ? 'CLOTH' : this.getWomenNav() ? 'CLOTH' : this.getMenNav() ? 'CLOTH' : '';
 
       this.getAllOrSpecificClothes(data);
       this.currentPageNumber = parseInt(paginationCustomNumber.value);
@@ -190,28 +229,66 @@ export class ClothesComponent implements OnInit {
 
   }
 
-  filterChangedDetect() {
+  filterChangedDetect(type?: string) {
     let data = this.sharedService
       .callDocumentQuerySelectorByString(['#clothes-colors',
         '#clothes-discounts',
         '#clothes-size',
         '#clothes-brand',
         '#women-cloth-nav',
-        '#men-cloth-nav']);
-    data['pageSize'] = 1;
-    data['sex'] = this.getWomenNav() ? 'FEMALE' : this.getMenNav() ? 'MALE': this.girlsNav ? 'GIRLS' : this.boysNav ? 'BOYS' : new DOMException("SEX is not selected!");
+        '#men-cloth-nav',
+        type != null ? type === 'BOYS' ? '#boys-cloth-nav' : type === 'GIRLS' ? '#girls-cloth-nav' : '' : '']);
+
+    let isTypeOk: boolean = false;
+
+
+    if (type != null) {
+
+      if (type === 'BOYS') {
+        this.sharedService.cleanCheckedBoxes('#girls-cloth-nav');
+
+      } else if (type === 'GIRLS') {
+        this.sharedService.cleanCheckedBoxes('#boys-cloth-nav');
+      }
+      isTypeOk = this.checkIfCheckedBoxes(type);
+    }
+
+    data['pageSize'] = this.pageSize;
+
+    data['sex'] = this.getWomenNav() ? 'FEMALE' : this.getMenNav() ? 'MALE' : this.getGirlsNav() ? 'GIRLS' : this.getBoysNav() ? 'BOYS' : isTypeOk ? type : this.getChildrenNav() ? 'CHILDREN' : new DOMException("SEX is not selected!");
     this.getAllOrSpecificClothes(data);
   }
 
+
   //PAGEABLE FUNCTION
 
+  checkIfCheckedBoxes(el: string): boolean {
+
+    let isMatch: boolean = false;
+    let temp: any = undefined;
+    document.querySelectorAll(el === 'BOYS' ? '#boys-cloth-nav' : '#girls-cloth-nav')
+      .forEach(value => {
+        temp = value;
+        if (temp.checked) {
+          isMatch = true;
+        }
+      })
+
+    return isMatch;
+  }
+
   calculatePercentOfDiscount(oldPrice: number, newPrice: number): number {
-    return ((oldPrice - newPrice) / oldPrice) * 100;
+    return Math.round(((oldPrice - newPrice) / oldPrice) * 100);
   }
 
   falseAll(): void {
     this.womenNav = false;
     this.menNav = false;
+    this.childrenNav = false;
+    this.girlsNav = false;
+    this.boysNav = false;
+    this.shoesNav = false;
+    this.accessoriesNav = false;
   }
 
   getWomenNav(): boolean {
@@ -222,26 +299,33 @@ export class ClothesComponent implements OnInit {
     return this.menNav;
   }
 
+  getChildrenNav(): boolean {
+    return this.childrenNav;
+  }
 
-  // private getAllClothesEnumsForFields(): void {
-  //   this.userService
-  //     .getAllFieldsForClothes()
-  //     .subscribe({
-  //       next: value => {
-  //         this.userService.clothEnum = value;
-  //       },
-  //       error: err => {
-  //         this.sharedService
-  //           .showAlertMsg
-  //           .error(err)
-  //       },
-  //       complete: () => {
-  //         this.userService.femaleNavigation = this.userService.filterClothesType('FEMALE');
-  //         this.userService.maleNavigation = this.userService.filterClothesType('MALE');
-  //         this.userService.girlsNavigation = this.userService.filterClothesType('GIRLS');
-  //         this.userService.boysNavigation = this.userService.filterClothesType('BOYS');
-  //       }
-  //     })
-  // }
+  getGirlsNav(): boolean {
+    return this.girlsNav;
+  }
 
+  getBoysNav(): boolean {
+    return this.boysNav;
+  }
+
+  getShoesNav(): boolean {
+    return this.shoesNav;
+  }
+
+  getAccessoriesNav(): boolean {
+    return this.accessoriesNav;
+  }
+
+
+  hideOrShowCardLikes(event: any) {
+    let likesIcon = document.querySelector(`.clothes-card-text`);
+    if (likesIcon?.classList.contains("hidden")) {
+      likesIcon?.classList.remove("hidden");
+    }else {
+      likesIcon?.classList.add("hidden");
+    }
+  }
 }

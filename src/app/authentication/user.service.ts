@@ -15,13 +15,8 @@ const apiUrlLan = environment.apiURL;
 })
 export class UserService {
 
-  user: IUSER | undefined;
-
   clothEnum: ICLOTHSENUMS | undefined;
-  femaleNavigation: string[] | undefined;
-  maleNavigation: string[] | undefined;
-  girlsNavigation: string[] | undefined;
-  boysNavigation: string[] | undefined;
+
 
   // getIsLogged(): boolean {
   //   // HERE I MUST CALL API TO CHECK IF USER'S TOKEN ARE VALID
@@ -32,7 +27,7 @@ export class UserService {
   }
 
    getAllClothesEnumsForFields(): void {
-    console.log("work")
+
     this.getAllFieldsForClothes()
       .subscribe({
         next: value => {
@@ -45,28 +40,58 @@ export class UserService {
             .error(err)
         },
         complete: () => {
-          this.femaleNavigation = this.filterClothesType('FEMALE');
-          this.maleNavigation = this.filterClothesType('MALE');
-          this.girlsNavigation = this.filterClothesType('GIRLS');
-          this.boysNavigation = this.filterClothesType('BOYS');
         }
       })
   }
 
-  filterClothesType(gender: string): string[] {
+  filterClothesType(gender: string,type? : string): string[] {
     let arrayNav: string[] = [];
-    this.clothEnum
-      ?.clothType.filter((value: string) => {
-      let strings = value.split("=");
-      strings[1].split("/")
-        .forEach(value1 => {
-          if (value1 === gender) {
-            arrayNav.push(this.sharedService.capitalizeFirstLetter(strings[0]));
-          }
+
+
+    if (gender === 'ACCESSORIES'){
+        this.clothEnum
+          ?.accessoriesType.forEach(value => {
+          let array = value.split("=")[1].split("/");
+          array
+            .forEach(value1 => {
+              if (value1 === type){
+                arrayNav.push(value1);
+              }
+            })
 
         })
-    })
-    return arrayNav;
+      return arrayNav;
+
+    }else if (gender === 'SHOES') {
+      this.clothEnum
+        ?.shoesType.forEach(value => {
+        let array = value.split("=")[1].split("/");
+        array
+          .forEach(value1 => {
+            if (value1 === type){
+              arrayNav.push(value1);
+            }
+          })
+
+      })
+      return arrayNav;
+
+    } else  {
+
+      this.clothEnum
+        ?.clothType.forEach(value => {
+        let strings = value.split("=");
+        strings[1].split("/")
+          .forEach(value1 => {
+            if (value1 === gender) {
+              arrayNav.push(this.sharedService.capitalizeFirstLetter(strings[0]));
+            }
+
+          })
+      })
+      return arrayNav;
+
+    }
 
   }
 
@@ -107,7 +132,8 @@ export class UserService {
     priceHigh: number,
     sortBy: string,
     sex: string,
-    type: string[]
+    type: string[],
+    itemType: string
   }) {
     let pagination = "?";
 
@@ -147,6 +173,10 @@ export class UserService {
         .forEach(value => {
           pagination += pagination.length === 1 ? 'type='+value : '&type='+value;
         });
+    }
+
+    if (data.itemType != ''){
+      pagination += pagination.length === 1 ? 'itemType'+data.itemType : '&itemType='+data.itemType;
     }
 
     return this.http.get<ICLOTHES>(`${apiUrlLan}/clothes/get/all${pagination.length > 1 ? pagination : ''}`, {

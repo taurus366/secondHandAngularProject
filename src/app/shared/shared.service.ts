@@ -47,14 +47,36 @@ export class SharedService {
     selectorItems
       .forEach(value => {
 
-        document.querySelectorAll(value)
-          .forEach(value1 => {
-            itemsArray!.push(value1);
-          });
+       if (value.length > 0){
+         document.querySelectorAll(value)
+           .forEach(value1 => {
+             itemsArray!.push(value1);
+           });
+       }
 
       })
 
+
     return this.readFilterValues(itemsArray)!;
+  }
+
+  cleanCheckedBoxes(element: string){
+
+    let elements : any[] = [];
+    document
+      .querySelectorAll(element)
+      .forEach(value => {
+        elements.push(value);
+      })
+
+    elements
+      .forEach(value => {
+        if (value.checked){
+          value.checked = false;
+
+        }
+      })
+
   }
 
   readFilterValues(elements: any[]) {
@@ -87,6 +109,12 @@ export class SharedService {
           type.push(value.name);
         }
         if (value.id === 'men-cloth-nav' && value.checked){
+          type.push(value.name);
+        }
+        if (value.id === 'boys-cloth-nav' && value.checked){
+          type.push(value.name);
+        }
+        if (value.id === 'girls-cloth-nav' && value.checked){
           type.push(value.name);
         }
 

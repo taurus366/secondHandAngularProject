@@ -1,41 +1,263 @@
 <div class="main-container">
 
   <section class="main-nav-women-men-left">
-    <nav *ngIf="getWomenNav()" class="main-nav-women">
 
-      <article class="nav-men-header">
-        <h5 class="no-margin">WOMEN CLOTHES</h5>
-      </article>
+    <ng-template
+      *ngTemplateOutlet="getMenNav() ? showMenNav : getWomenNav() ? showWomenNav : getChildrenNav() ? showChildrenNav : getGirlsNav() ? showGirlsNav : getBoysNav() ? showBoysNav : getShoesNav() ? showShoesNav : getAccessoriesNav() ? showAccessoriesNav : null "></ng-template>
 
-      <ul class="nav-ul" (change)="filterChangedDetect()">
+    <!--    MEN NAV-->
+    <ng-template #showMenNav>
+      <nav *ngIf="getMenNav()" class="main-nav-men">
+        <article class="nav-men-header">
+          <h5 class="no-margin">MEN CLOTHES</h5>
+        </article>
 
-        <li class="nav-ul-li" *ngFor="let clothType of userService.femaleNavigation">
-          <input type="checkbox" [name]="clothType.toUpperCase()" class="cloth-type" id="women-cloth-nav">
-        {{clothType}}
-        </li>
+        <ul class="nav-ul" (change)="filterChangedDetect()">
 
-
-
-
-      </ul>
-    </nav>
-
-    <nav *ngIf="getMenNav()" class="main-nav-men">
-      <article class="nav-men-header">
-        <h5 class="no-margin">MEN CLOTHES</h5>
-      </article>
-
-      <ul class="nav-ul" (change)="filterChangedDetect()">
-
-        <li class="nav-ul-li" *ngFor="let maleNav of userService.maleNavigation">
-          <input type="checkbox" [name]="maleNav.toUpperCase()" class="cloth-type" id="men-cloth-nav">
-          {{maleNav}}
-        </li>
+          <li class="nav-ul-li" *ngFor="let maleNav of userService.clothEnum?.clothType | filterPipe:menFilter">
+            <input type="checkbox" [name]="maleNav.toUpperCase()" class="cloth-type" id="men-cloth-nav">
+            {{maleNav}}
+          </li>
 
 
+        </ul>
+      </nav>
+    </ng-template>
 
-      </ul>
-    </nav>
+    <!--WOMEN NAV-->
+    <ng-template #showWomenNav>
+      <nav *ngIf="getWomenNav()" class="main-nav-women">
+
+        <article class="nav-men-header">
+          <h5 class="no-margin">WOMEN CLOTHES</h5>
+        </article>
+
+        <ul class="nav-ul" (change)="filterChangedDetect()">
+
+          <li class="nav-ul-li" *ngFor="let femaleNav of userService.clothEnum?.clothType | filterPipe:womenFilter">
+            <input type="checkbox" [name]="femaleNav.toUpperCase()" class="cloth-type" id="women-cloth-nav">
+            {{femaleNav}}
+          </li>
+
+        </ul>
+      </nav>
+    </ng-template>
+
+    <!--    CHILDREN NAV-->
+    <ng-template #showChildrenNav>
+
+      <ng-template #arrowUp>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+      </ng-template>
+      <ng-template #arrowDown>
+        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+      </ng-template>
+
+      <nav class="main-nav-women">
+
+        <article class="nav-men-header">
+          <h5 class="no-margin children-header" (click)="showGirlsNavChildren = !showGirlsNavChildren">GIRLS CLOTHES
+            <ng-template [ngTemplateOutlet]="showGirlsNavChildren ? arrowUp : arrowDown"></ng-template>
+          </h5>
+        </article>
+
+        <ul class="nav-ul" *ngIf="showGirlsNavChildren" (change)="filterChangedDetect('GIRLS')">
+          <li class="nav-ul-li" *ngFor="let girlNav of userService.clothEnum?.clothType | filterPipe:girlsFilter">
+            <input type="checkbox" [name]="girlNav.toUpperCase()" class="cloth-type" id="girls-cloth-nav">
+            {{girlNav}}
+          </li>
+        </ul>
+
+        <article class="nav-men-header">
+          <h5 class="no-margin children-header" (click)="showBoysNavChildren = !showBoysNavChildren">BOYS CLOTHES
+            <ng-template [ngTemplateOutlet]="showBoysNavChildren ? arrowUp : arrowDown"></ng-template>
+          </h5>
+        </article>
+
+        <ul class="nav-ul" *ngIf="showBoysNavChildren" (change)="filterChangedDetect('BOYS')">
+          <li class="nav-ul-li" *ngFor="let boyNav of userService.clothEnum?.clothType | filterPipe:boysFilter">
+            <input type="checkbox" [name]="boyNav.toUpperCase()" class="cloth-type" id="boys-cloth-nav">
+            {{boyNav}}
+          </li>
+        </ul>
+      </nav>
+
+    </ng-template>
+
+    <!--    GIRLS NAV-- DOESNT USE THEM YET -->
+    <ng-template #showGirlsNav>
+      <nav class="main-nav-women">
+
+        <article class="nav-men-header">
+          <h5 class="no-margin">GIRLS CLOTHES</h5>
+        </article>
+
+        <ul class="nav-ul" (change)="filterChangedDetect('GIRLS')">
+          <li class="nav-ul-li" *ngFor="let girlNav of userService.clothEnum?.clothType | filterPipe:girlsFilter">
+            <input type="checkbox" [name]="girlNav.toUpperCase()" class="cloth-type" id="women-cloth-nav">
+            {{girlNav}}
+          </li>
+        </ul>
+
+      </nav>
+    </ng-template>
+
+    <!--    BOYS NAV-- DOESNT USE THEM YET -->
+    <ng-template #showBoysNav>
+      <nav class="main-nav-women">
+
+        <article class="nav-men-header">
+          <h5 class="no-margin">BOYS CLOTHES</h5>
+        </article>
+
+        <ul class="nav-ul" (change)="filterChangedDetect('BOYS')">
+          <li class="nav-ul-li" *ngFor="let boyNav of userService.clothEnum?.clothType | filterPipe:boysFilter">
+            <input type="checkbox" [name]="boyNav.toUpperCase()" class="cloth-type" id="women-cloth-nav">
+            {{boyNav}}
+          </li>
+        </ul>
+
+      </nav>
+    </ng-template>
+
+    <!--    SHOES NAV-->
+    <ng-template #showShoesNav>
+
+      <ng-template #arrowUp>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+      </ng-template>
+      <ng-template #arrowDown>
+        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+      </ng-template>
+
+      <nav class="main-nav-women">
+
+        <article class="nav-men-header">
+          <h5 class="no-margin children-header" (click)="showGirlsNavShoes = !showGirlsNavShoes">GIRLS SHOES
+            <ng-template [ngTemplateOutlet]="showGirlsNavShoes ? arrowUp : arrowDown"></ng-template>
+          </h5>
+        </article>
+
+        <ul class="nav-ul" *ngIf="showGirlsNavShoes" (change)="filterChangedDetect('GIRLS')">
+          <li class="nav-ul-li" *ngFor="let girlNav of userService.clothEnum?.shoesType | filterPipe:girlsFilter">
+            <input type="checkbox" [name]="girlNav.toUpperCase()" class="cloth-type" id="girls-cloth-nav">
+            {{girlNav}}
+          </li>
+        </ul>
+
+        <article class="nav-men-header">
+          <h5 class="no-margin children-header" (click)="showBoysNavShoes = !showBoysNavShoes">BOYS SHOES
+            <ng-template [ngTemplateOutlet]="showBoysNavShoes ? arrowUp : arrowDown"></ng-template>
+          </h5>
+        </article>
+
+        <ul class="nav-ul" *ngIf="showBoysNavShoes" (change)="filterChangedDetect('BOYS')">
+          <li class="nav-ul-li" *ngFor="let boyNav of userService.clothEnum?.shoesType | filterPipe:boysFilter">
+            <input type="checkbox" [name]="boyNav.toUpperCase()" class="cloth-type" id="boys-cloth-nav">
+            {{boyNav}}
+          </li>
+        </ul>
+
+        <article class="nav-men-header">
+          <h5 class="no-margin children-header" (click)="showWomenNavShoes = !showWomenNavShoes">WOMEN SHOES
+            <ng-template [ngTemplateOutlet]="showWomenNavShoes ? arrowUp : arrowDown"></ng-template>
+          </h5>
+        </article>
+
+        <ul class="nav-ul" *ngIf="showWomenNavShoes" (change)="filterChangedDetect('BOYS')">
+          <li class="nav-ul-li" *ngFor="let boyNav of userService.clothEnum?.shoesType | filterPipe:womenFilter">
+            <input type="checkbox" [name]="boyNav.toUpperCase()" class="cloth-type" id="boys-cloth-nav">
+            {{boyNav}}
+          </li>
+        </ul>
+
+        <article class="nav-men-header">
+          <h5 class="no-margin children-header" (click)="showMenNavShoes = !showMenNavShoes">MEN SHOES
+            <ng-template [ngTemplateOutlet]="showMenNavShoes ? arrowUp : arrowDown"></ng-template>
+          </h5>
+        </article>
+
+        <ul class="nav-ul" *ngIf="showMenNavShoes" (change)="filterChangedDetect()">
+          <li class="nav-ul-li" *ngFor="let menNav of userService.clothEnum?.shoesType | filterPipe:menFilter">
+            <input type="checkbox" [name]="menNav.toUpperCase()" class="cloth-type" id="boys-cloth-nav">
+            {{menNav}}
+          </li>
+        </ul>
+
+      </nav>
+
+    </ng-template>
+
+    <!--  ACCESSORIES NAV-->
+    <ng-template #showAccessoriesNav>
+
+      <ng-template #arrowUp>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+      </ng-template>
+      <ng-template #arrowDown>
+        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+      </ng-template>
+
+      <nav class="main-nav-women">
+
+        <article class="nav-men-header">
+          <h5 class="no-margin children-header" (click)="showGirlsNavAccessories = !showGirlsNavAccessories">GIRLS
+            ACCESSORIES
+            <ng-template [ngTemplateOutlet]="showGirlsNavAccessories ? arrowUp : arrowDown"></ng-template>
+          </h5>
+        </article>
+
+        <ul class="nav-ul" *ngIf="showGirlsNavAccessories" (change)="filterChangedDetect('GIRLS')">
+          <li class="nav-ul-li" *ngFor="let girlNav of userService.clothEnum?.accessoriesType | filterPipe:girlsFilter">
+            <input type="checkbox" [name]="girlNav.toUpperCase()" class="cloth-type" id="girls-cloth-nav">
+            {{girlNav}}
+          </li>
+        </ul>
+
+        <article class="nav-men-header">
+          <h5 class="no-margin children-header" (click)="showBoysNavAccessories = !showBoysNavAccessories">BOYS
+            ACCESSORIES
+            <ng-template [ngTemplateOutlet]="showBoysNavAccessories ? arrowUp : arrowDown"></ng-template>
+          </h5>
+        </article>
+
+        <ul class="nav-ul" *ngIf="showBoysNavAccessories" (change)="filterChangedDetect('BOYS')">
+          <li class="nav-ul-li" *ngFor="let boyNav of userService.clothEnum?.accessoriesType | filterPipe:boysFilter">
+            <input type="checkbox" [name]="boyNav.toUpperCase()" class="cloth-type" id="boys-cloth-nav">
+            {{boyNav}}
+          </li>
+        </ul>
+
+        <article class="nav-men-header">
+          <h5 class="no-margin children-header" (click)="showWomenNavAccessories = !showWomenNavAccessories">WOMEN
+            ACCESSORIES
+            <ng-template [ngTemplateOutlet]="showWomenNavAccessories ? arrowUp : arrowDown"></ng-template>
+          </h5>
+        </article>
+
+        <ul class="nav-ul" *ngIf="showWomenNavAccessories" (change)="filterChangedDetect('BOYS')">
+          <li class="nav-ul-li" *ngFor="let boyNav of userService.clothEnum?.accessoriesType | filterPipe:womenFilter">
+            <input type="checkbox" [name]="boyNav.toUpperCase()" class="cloth-type" id="boys-cloth-nav">
+            {{boyNav}}
+          </li>
+        </ul>
+
+        <article class="nav-men-header">
+          <h5 class="no-margin children-header" (click)="showMenNavAccessories = !showMenNavAccessories">MEN ACCESSORIES
+            <ng-template [ngTemplateOutlet]="showMenNavAccessories ? arrowUp : arrowDown"></ng-template>
+          </h5>
+        </article>
+
+        <ul class="nav-ul" *ngIf="showMenNavAccessories" (change)="filterChangedDetect()">
+          <li class="nav-ul-li" *ngFor="let menNav of userService.clothEnum?.accessoriesType | filterPipe:menFilter">
+            <input type="checkbox" [name]="menNav.toUpperCase()" class="cloth-type" id="boys-cloth-nav">
+            {{menNav}}
+          </li>
+        </ul>
+
+      </nav>
+
+    </ng-template>
 
   </section>
 
@@ -111,7 +333,7 @@
         <ng-template *ngTemplateOutlet="showPriceFilter ? showedText : hiddenText">
         </ng-template>
 
-        <ng-template #showedText >
+        <ng-template #showedText>
           <p class="no-margin color-text">HIDE FILTER</p>
         </ng-template>
         <ng-template #hiddenText>
@@ -154,17 +376,17 @@
 
       <div class="main-clothes-card" *ngFor="let cloth of clothes?.content">
         <section class="clothes-card-icon-text">
-          <article class="clothes-card-text">
+          <article class="clothes-card-text hidden">
 
             <article class="card-text-arrow-icon">
-
             </article>
 
             <p class="no-margin clothes-like-customer-text"><span>{{cloth.likes}}</span> customers like this</p>
 
           </article>
 
-          <article class="clothes-card-icon-favorite">
+          <article class="clothes-card-icon-favorite" (mouseenter)="hideOrShowCardLikes($event)"
+                   (mouseleave)="hideOrShowCardLikes($event)">
             <!-- <img src="/assets/images/assets/icon_favourite_off.png" alt=""> -->
             <img src="/assets/images/assets/icon_favourite_on.png" alt="icon">
           </article>

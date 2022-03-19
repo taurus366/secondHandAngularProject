@@ -2,15 +2,17 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ParamGuardActivate} from "./guard/param-guard.activate";
 import {AlertMessagesGeneratorDirective} from './alert-messages-generator.directive';
-import { EmailValidatorDirective } from './email-validator.directive';
-import { PasswordValidatorDirective } from './password-validator.directive';
+import {EmailValidatorDirective} from './email-validator.directive';
+import {PasswordValidatorDirective} from './password-validator.directive';
+import {FilterPipePipe} from './filter-pipe.pipe';
 
 
 @NgModule({
   declarations: [
     AlertMessagesGeneratorDirective,
     EmailValidatorDirective,
-    PasswordValidatorDirective
+    PasswordValidatorDirective,
+    FilterPipePipe
   ],
   imports: [
     CommonModule
@@ -18,10 +20,11 @@ import { PasswordValidatorDirective } from './password-validator.directive';
   providers: [
     ParamGuardActivate
   ],
-    exports: [
-        EmailValidatorDirective,
-        PasswordValidatorDirective
-    ]
+  exports: [
+    EmailValidatorDirective,
+    PasswordValidatorDirective,
+    FilterPipePipe
+  ]
 })
 export class SharedModule {
 }

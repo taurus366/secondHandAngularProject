@@ -20,6 +20,12 @@ export interface ICLOTHSENUMS {
   ],
   clothSex: [
     name:string
+  ],
+  accessoriesType: [
+    name:string
+  ],
+  shoesType: [
+    name:string
   ]
 
 }

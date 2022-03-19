@@ -83,9 +83,9 @@
 
           <select #type="ngModel" name="type" id="type" ngModel='' required
                   [class.error-color]="isTypeIncorrect || (type.touched && (type.value === 'choose'|| type.value === ''))">
-            <option value="">TYPE</option>
-            <option *ngFor="let enumType of clothEnumsFields?.clothType" value="{{enumType}}">{{enumType}}</option>
-<!--            <option value="DRESS">DRESS</option>-->
+            <option value="" hidden>TYPE</option>
+            <option *ngFor="let enumType of clothesEnumsFields" [class.title-fields]="getArrayFirstString(enumType) === 'CLOTHES' ||  getArrayFirstString(enumType) === 'SHOES' ||  getArrayFirstString(enumType) === 'ACCESSORIES'"  [disabled]="getArrayFirstString(enumType) === 'CLOTHES' ||  getArrayFirstString(enumType) === 'SHOES' ||  getArrayFirstString(enumType) === 'ACCESSORIES'" [value]="getArrayFirstString(enumType)">{{getArrayFirstString(enumType)}}</option>
+
           </select>
 
         </article>
