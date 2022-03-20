@@ -4,6 +4,8 @@ import {SharedService} from "../shared/shared.service";
 import {UserService} from "../authentication/user.service";
 import {ICLOTHES} from "../shared/interfaces/ICLOTHES";
 import {ICLOTHSENUMS} from "../shared/interfaces/ICLOTHSENUMS";
+import {ifStmt} from "@angular/compiler/src/output/output_ast";
+import {of} from "rxjs";
 
 @Component({
   selector: 'app-clothes',
@@ -63,6 +65,9 @@ export class ClothesComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+
+
     this.activatedRoute.params.subscribe(({who}) => {
       if (who === 'men') {
         this.falseAll();
@@ -229,38 +234,91 @@ export class ClothesComponent implements OnInit {
 
   }
 
+
   filterChangedDetect(type?: string) {
+    let isTypeOk: boolean = false;
+
+    if (type != null) {
+
+
+      if (type === 'BOYS') {
+
+        this.cleanNavsAndCleanBoxes('BOYS');
+
+        this.getChildrenNav() ? this.showBoysNavChildren = true : this.getAccessoriesNav() ? this.showBoysNavAccessories = true : this.getShoesNav() ? this.showBoysNavShoes = true : '';
+
+      } else if (type === 'GIRLS') {
+
+        this.cleanNavsAndCleanBoxes('GIRLS');
+
+        this.getChildrenNav() ? this.showGirlsNavChildren = true : this.getAccessoriesNav() ? this.showGirlsNavAccessories = true : this.getShoesNav() ? this.showGirlsNavShoes = true : '';
+
+      } else if (type === 'WOMEN'){
+
+        this.cleanNavsAndCleanBoxes('WOMEN');
+
+        this.getAccessoriesNav() ? this.showWomenNavAccessories = true : this.getShoesNav() ? this.showWomenNavShoes = true : '';
+
+      } else if (type === 'MEN') {
+
+        this.cleanNavsAndCleanBoxes('MEN');
+
+         this.getAccessoriesNav() ? this.showMenNavAccessories = true : this.getShoesNav() ? this.showMenNavShoes = true : '';
+
+      }
+      isTypeOk = this.checkIfCheckedBoxes(type);
+    }
+
     let data = this.sharedService
       .callDocumentQuerySelectorByString(['#clothes-colors',
         '#clothes-discounts',
         '#clothes-size',
         '#clothes-brand',
-        '#women-cloth-nav',
-        '#men-cloth-nav',
-        type != null ? type === 'BOYS' ? '#boys-cloth-nav' : type === 'GIRLS' ? '#girls-cloth-nav' : '' : '']);
-
-    let isTypeOk: boolean = false;
+        this.showWomenNavShoes || this.showWomenNavAccessories || this.getWomenNav() ? '#women-cloth-nav' : this.showMenNavShoes || this.showMenNavAccessories || this.getMenNav() ? '#men-cloth-nav' : '',
+        type !== null || true ? type === 'BOYS' || this.showBoysNavChildren || this.getBoysNav() ? '#boys-cloth-nav' : type === 'GIRLS' || this.showGirlsNavChildren || this.getGirlsNav() ? '#girls-cloth-nav' : '' : '']);
 
 
-    if (type != null) {
 
-      if (type === 'BOYS') {
-        this.sharedService.cleanCheckedBoxes('#girls-cloth-nav');
 
-      } else if (type === 'GIRLS') {
-        this.sharedService.cleanCheckedBoxes('#boys-cloth-nav');
-      }
-      isTypeOk = this.checkIfCheckedBoxes(type);
-    }
 
     data['pageSize'] = this.pageSize;
+  console.log(this.showGirlsNavChildren)
+    data['sex'] = this.getWomenNav() || this.showWomenNavShoes || this.showWomenNavAccessories ? 'FEMALE' : this.getMenNav() || this.showMenNavShoes || this.showMenNavAccessories? 'MALE' : this.getGirlsNav() || this.showGirlsNavChildren || this.showGirlsNavAccessories ? 'GIRLS' : this.getBoysNav() || this.showBoysNavChildren || this.showBoysNavAccessories ? 'BOYS' : isTypeOk ? type : this.getChildrenNav() ? 'CHILDREN' : new DOMException("SEX is not selected!");
 
-    data['sex'] = this.getWomenNav() ? 'FEMALE' : this.getMenNav() ? 'MALE' : this.getGirlsNav() ? 'GIRLS' : this.getBoysNav() ? 'BOYS' : isTypeOk ? type : this.getChildrenNav() ? 'CHILDREN' : new DOMException("SEX is not selected!");
+    data['itemType'] = this.getChildrenNav() || this.getMenNav() || this.getWomenNav() || this.getGirlsNav() || this.getBoysNav()? 'CLOTH' : this.getAccessoriesNav() ? 'ACCESSORIES' : this.getShoesNav() ? 'SHOES' : '';
     this.getAllOrSpecificClothes(data);
   }
 
 
   //PAGEABLE FUNCTION
+
+  private cleanNavsAndCleanBoxes(off?: string){
+    this.showGirlsNavShoes = false;
+    this.showBoysNavShoes = false;
+    this.showWomenNavShoes = false;
+    this.showMenNavShoes = false;
+
+    this.showWomenNavAccessories = false;
+    this.showBoysNavAccessories = false;
+    this.showMenNavAccessories = false;
+    this.showGirlsNavAccessories = false;
+
+    this.showGirlsNavChildren = false;
+    this.showBoysNavChildren = false;
+
+    if (off !== 'MEN'){
+      this.sharedService.cleanCheckedBoxes('#men-cloth-nav');
+    }
+    if (off !== 'GIRLS') {
+      this.sharedService.cleanCheckedBoxes('#girls-cloth-nav');
+    }
+    if (off !== 'WOMEN') {
+      this.sharedService.cleanCheckedBoxes('#women-cloth-nav');
+    }
+    if (off !== 'BOYS') {
+      this.sharedService.cleanCheckedBoxes('#boys-cloth-nav');
+    }
+  }
 
   checkIfCheckedBoxes(el: string): boolean {
 

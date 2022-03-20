@@ -164,9 +164,9 @@
           </h5>
         </article>
 
-        <ul class="nav-ul" *ngIf="showWomenNavShoes" (change)="filterChangedDetect('BOYS')">
+        <ul class="nav-ul" *ngIf="showWomenNavShoes" (change)="filterChangedDetect('WOMEN')">
           <li class="nav-ul-li" *ngFor="let boyNav of userService.clothEnum?.shoesType | filterPipe:womenFilter">
-            <input type="checkbox" [name]="boyNav.toUpperCase()" class="cloth-type" id="boys-cloth-nav">
+            <input type="checkbox" [name]="boyNav.toUpperCase()" class="cloth-type" id="women-cloth-nav">
             {{boyNav}}
           </li>
         </ul>
@@ -177,9 +177,9 @@
           </h5>
         </article>
 
-        <ul class="nav-ul" *ngIf="showMenNavShoes" (change)="filterChangedDetect()">
+        <ul class="nav-ul" *ngIf="showMenNavShoes" (change)="filterChangedDetect('MEN')">
           <li class="nav-ul-li" *ngFor="let menNav of userService.clothEnum?.shoesType | filterPipe:menFilter">
-            <input type="checkbox" [name]="menNav.toUpperCase()" class="cloth-type" id="boys-cloth-nav">
+            <input type="checkbox" [name]="menNav.toUpperCase()" class="cloth-type" id="men-cloth-nav">
             {{menNav}}
           </li>
         </ul>
@@ -235,9 +235,9 @@
           </h5>
         </article>
 
-        <ul class="nav-ul" *ngIf="showWomenNavAccessories" (change)="filterChangedDetect('BOYS')">
+        <ul class="nav-ul" *ngIf="showWomenNavAccessories" (change)="filterChangedDetect('WOMEN')">
           <li class="nav-ul-li" *ngFor="let boyNav of userService.clothEnum?.accessoriesType | filterPipe:womenFilter">
-            <input type="checkbox" [name]="boyNav.toUpperCase()" class="cloth-type" id="boys-cloth-nav">
+            <input type="checkbox" [name]="boyNav.toUpperCase()" class="cloth-type" id="women-cloth-nav">
             {{boyNav}}
           </li>
         </ul>
@@ -248,9 +248,9 @@
           </h5>
         </article>
 
-        <ul class="nav-ul" *ngIf="showMenNavAccessories" (change)="filterChangedDetect()">
+        <ul class="nav-ul" *ngIf="showMenNavAccessories" (change)="filterChangedDetect('MEN')">
           <li class="nav-ul-li" *ngFor="let menNav of userService.clothEnum?.accessoriesType | filterPipe:menFilter">
-            <input type="checkbox" [name]="menNav.toUpperCase()" class="cloth-type" id="boys-cloth-nav">
+            <input type="checkbox" [name]="menNav.toUpperCase()" class="cloth-type" id="men-cloth-nav">
             {{menNav}}
           </li>
         </ul>
@@ -274,9 +274,6 @@
           <ng-container *ngFor="let brand of userService.clothEnum?.clothBrand">
             <option value="{{brand}}">{{brand}}</option>
           </ng-container>
-
-          <!--          <option value="guess">GUESS</option>-->
-          <!--          <option value="cavalli">CAVALLI</option>-->
 
         </select>
 
