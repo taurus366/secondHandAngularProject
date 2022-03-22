@@ -15,7 +15,7 @@ let FORM_SUCCESSFUL_ADDED_NEW_ITEM:string = "";
 })
 export class AdminClothComponent implements OnInit {
 
-  @ViewChild('form',{static:false})  form3 : NgForm | undefined;
+
 
   clothEnumsFields: ICLOTHSENUMS | undefined;
   isClothEnumsFieldsLoaded : boolean = false;
@@ -116,11 +116,9 @@ export class AdminClothComponent implements OnInit {
 
   handleFileInput(event:any) {
     let selectedFile : File = <File>event.target.files[0];
-    console.log(event.target.id)
 
     switch (event.target.id) {
       case 'coverDissabledImg':
-        console.log("works")
        if ( this.formData.get('coverPicture')) {
          this.formData.set('coverPicture',selectedFile);
        }else {
@@ -310,12 +308,14 @@ export class AdminClothComponent implements OnInit {
     this.formData.append("type",type);
 
     // this.formData.get("picture")
+    this.booleanService.showLoadingPage();
     this.userService.addNewCloth(this.formData).subscribe({
       next:value => {
-         console.log(value)
+         console.log(value);
 
       },
       error:err => {
+        this.booleanService.hideLoadingPage();
         console.log(err)
         let err_msg :string = "";
 
@@ -382,6 +382,7 @@ export class AdminClothComponent implements OnInit {
           .success(FORM_SUCCESSFUL_ADDED_NEW_ITEM);
         this.formData = this.createNewFormData();
         form.resetForm();
+        this.booleanService.hideLoadingPage();
       }
     })
   }

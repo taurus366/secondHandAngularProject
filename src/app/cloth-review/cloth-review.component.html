@@ -4,14 +4,18 @@
 
     <article class="cloth-preview-small-images">
 
-      <img class="preview-small-image" src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg"
+      <img class="preview-small-image" src="{{cloth?.coverPicture?.url}}" (click)="showPictureInMain = cloth?.coverPicture?.url"
            alt="">
 
-      <img class="preview-small-image" src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg"
+
+      <img class="preview-small-image" src="{{cloth?.frontPicture?.url}}" (click)="showPictureInMain = cloth?.frontPicture?.url"
            alt="">
 
-      <img class="preview-small-image" src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg"
-           alt="">
+      <ng-container *ngFor="let clothh of cloth?.sidePictures">
+        <img class="preview-small-image" src="{{clothh?.url}}" (click)="showPictureInMain = clothh?.url"
+             alt="">
+      </ng-container>
+
 
     </article>
 
@@ -21,7 +25,7 @@
         <!-- AFTER LIKED THE ITEM < SHOULD SHOW THE ICON BELOW -->
         <!-- <img class="cloth-favorite-on" src="/assets/images/assets/icon_favourite_on.png" alt=""> -->
       </article>
-      <img src="/assets/images/arrivedCharges/pulover-by-malene-birger-2.jpg" alt="">
+      <img src="{{showPictureInMain}}" alt="img">
     </article>
 
   </section>
@@ -29,28 +33,30 @@
   <section class="cloth-information">
 
     <article class="cloth-type-name">
-      <span>Pulover</span>
+      <span>{{cloth?.type}}</span>
     </article>
 
     <article class="cloth-brand-name">
-      <span>GUESS</span>
+      <span>{{cloth?.brand}}</span>
     </article>
 
     <article class="cloth-size">
-      <p><b>Size</b>: <span>S</span></p>
+      <p><b>Size</b>: <span>{{cloth?.size}}</span></p>
     </article>
 
     <article class="cloth-underline"></article>
 
     <article class="cloth-reccomend-price-from-supplier">
-      <p><span><b>66.80 BGN</b></span> reccomend price from suplier.</p>
+      <p><span><b>{{cloth?.startPrice}} BGN</b></span> reccomend price from suplier.</p>
     </article>
 
     <article class="cloth-price-from-secondhand">
       <p class="no-margin cloth-price-header">Price SECOND HAND</p>
       <p class="no-margin">
                         <span class="price-cloth-span">
-                            <b class="price-cloth-b">46.33 BGN</b> -30.64%
+                            <b class="price-cloth-b">{{cloth?.newPrice}}
+                              BGN</b> -{{sharedService?.calculatePercentOfDiscount(cloth?.startPrice, cloth?.newPrice)}}
+                          %
                         </span>
         saved
       </p>
@@ -66,15 +72,15 @@
 
     <article class="cloth-information-sex-color-season">
 
-      <p class="no-margin"><b>Sex: </b><span>Female</span></p>
+      <p class="no-margin"><b>Sex: </b><span>{{cloth?.sex}}</span></p>
 
-      <p class="no-margin"><b>Color: </b><span>Black</span></p>
+      <p class="no-margin"><b>Color: </b><span>{{cloth?.color}}</span></p>
 
-      <p class="no-margin"><b>Season: </b><span>Winter</span></p>
+      <p class="no-margin"><b>Season: </b><span>{{cloth?.season}}</span></p>
 
-      <p class="no-margin"><b>Composition: </b><span>Nylon</span></p>
+      <p class="no-margin"><b>Composition: </b><span>{{cloth?.composition}}</span></p>
 
-      <p class="no-margin"><b>Description: </b><span>Тhe product has no traces of use</span></p>
+      <p class="no-margin"><b>Description: </b><span>{{cloth?.description}}</span></p>
 
     </article>
 

@@ -3,9 +3,7 @@ import {ActivatedRoute} from "@angular/router";
 import {SharedService} from "../shared/shared.service";
 import {UserService} from "../authentication/user.service";
 import {ICLOTHES} from "../shared/interfaces/ICLOTHES";
-import {ICLOTHSENUMS} from "../shared/interfaces/ICLOTHSENUMS";
-import {ifStmt} from "@angular/compiler/src/output/output_ast";
-import {of} from "rxjs";
+
 
 @Component({
   selector: 'app-clothes',
@@ -335,9 +333,9 @@ export class ClothesComponent implements OnInit {
     return isMatch;
   }
 
-  calculatePercentOfDiscount(oldPrice: number, newPrice: number): number {
-    return Math.round(((oldPrice - newPrice) / oldPrice) * 100);
-  }
+  // calculatePercentOfDiscount(oldPrice: number, newPrice: number): number {
+  //   return Math.round(((oldPrice - newPrice) / oldPrice) * 100);
+  // }
 
   falseAll(): void {
     this.womenNav = false;

@@ -371,7 +371,7 @@
     <!--    IF CLOTHES ALREADY DOWNLOADED FROM API THEN I MUST SHOW THEM AND HIDE LOADING SPINNER-->
     <section class="main-clothes-list">
 
-      <div class="main-clothes-card" *ngFor="let cloth of clothes?.content">
+      <div class="main-clothes-card" [class.sold-clothes]="cloth.quantity < 1" *ngFor="let cloth of clothes?.content">
         <section class="clothes-card-icon-text">
           <article class="clothes-card-text hidden">
 
@@ -384,12 +384,12 @@
 
           <article class="clothes-card-icon-favorite" (mouseenter)="hideOrShowCardLikes($event)"
                    (mouseleave)="hideOrShowCardLikes($event)">
-            <!-- <img src="/assets/images/assets/icon_favourite_off.png" alt=""> -->
-            <img src="/assets/images/assets/icon_favourite_on.png" alt="icon">
+             <img src="/assets/images/assets/icon_favourite_off.png" alt="">
+<!--            <img src="/assets/images/assets/icon_favourite_on.png" alt="icon">-->
           </article>
         </section>
 
-        <section class="clothes-card-img">
+        <section class="clothes-card-img" ng-if="" [routerLink]="cloth.quantity < 1  ? [] : ['/item/review/',cloth.id]">
 
           <img src="{{cloth.coverPicture.url}}" alt="img">
 
@@ -428,7 +428,7 @@
           </article>
 
           <article class="clothes-card-saved-percent">
-            <p class="no-margin">- <span>{{calculatePercentOfDiscount(cloth.startPrice, cloth.newPrice)}}</span>%</p>
+            <p class="no-margin">- <span>{{sharedService.calculatePercentOfDiscount(cloth.startPrice, cloth.newPrice)}}</span>%</p>
           </article>
 
         </section>

@@ -1,4 +1,4 @@
-import {RouterModule, Routes} from "@angular/router";
+import {PreloadAllModules, RouterModule, Routes} from "@angular/router";
 import {ClothesComponent} from "./clothes/clothes.component";
 import {AsideMainComponent} from "./user-profile/aside-main/aside-main.component";
 import {CanDeactivateGuard} from "./shared/guard/can-deactivated-guard.service";
@@ -29,11 +29,12 @@ const routes: Routes = [
   },
   // TO VIEW PRODUCT INFO
   {
-    path: 'review/:id',
+    path: 'item/review/:id',
     component: ClothReviewComponent
   },
   {
     path: 'profile',
+     loadChildren: () => import('./user-profile/user-profile.module').then(user => user.UserProfileModule),
     component: AsideMainComponent,
     canDeactivate: [CanDeactivateGuard],
     canActivate:[ParamGuardActivate],
@@ -48,4 +49,6 @@ const routes: Routes = [
   }
 ];
 
-export const AppRoutingModule = RouterModule.forRoot(routes);
+export const AppRoutingModule = RouterModule.forRoot(routes, {
+  preloadingStrategy: PreloadAllModules
+});

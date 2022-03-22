@@ -137,4 +137,9 @@ export class SharedService {
     return capitalizedString;
   }
 
+  calculatePercentOfDiscount(oldPrice: any, newPrice: any): number {
+
+    return Math.round(((parseFloat(oldPrice) - parseFloat(newPrice)) / parseFloat(oldPrice)) * 100);
+  }
+
 }

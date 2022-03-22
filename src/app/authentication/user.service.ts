@@ -6,6 +6,7 @@ import {BooleansService} from "../shared/booleans.service";
 import {ICLOTHSENUMS} from "../shared/interfaces/ICLOTHSENUMS";
 import {ICLOTHES} from "../shared/interfaces/ICLOTHES";
 import {SharedService} from "../shared/shared.service";
+import {ICLOTH} from "../shared/interfaces/ICLOTH";
 
 // for lan connection
 const apiUrlLan = environment.apiURL;
@@ -99,25 +100,28 @@ export class UserService {
     // HERE I MUST CALL API FOR LOGIN THE USER THEN SAVE RECEIVED USER INFO
     return this.http.post<IUSER>(`${apiUrlLan}/users/login`, data, {
       observe: 'response',
-      withCredentials: true,
-      responseType: 'json'
+      // withCredentials: true,
+      // headers: {
+      //   'Content-type': 'application/json'
+      // },
+      // responseType: 'json'
     })
   };
 
   register(data: { email: string, password: string, confirmPassword: string, sex: string, firstName: string, lastName: string }) {
     //  HERE I MUST CALL API FOR REGISTER NEW USER THEN SAVE RECEIVED USER INFO
     return this.http.post<IUSER>(`${apiUrlLan}/users/register`, data, {
-      observe: 'response',
-      withCredentials: true,
-      responseType: 'json'
+      observe: 'response'
+      // withCredentials: true,
+      // responseType: 'json'
     });
   }
 
   logout() {
     return this.http.get(`${apiUrlLan}/users/logout`, {
-      observe: 'response',
-      withCredentials: true,
-      responseType: 'json'
+      observe: 'response'
+      // withCredentials: true,
+      // responseType: 'json'
     })
   }
 
@@ -190,28 +194,27 @@ export class UserService {
   addNewCloth(data: {}) {
     console.log(data);
     return this.http.post(`${apiUrlLan}/admin/cloth/create`, data, {
-      // observe: "response",
-      withCredentials: true,
+      observe: "response"
+      // withCredentials: true,
       // headers: {'Content-Type': 'multipart/form-data'}
-      responseType: "json"
+      // responseType: "json"
       // responseType:""
     })
   };
 
   getAllFieldsForClothes() {
     return this.http.get<ICLOTHSENUMS>(`${apiUrlLan}/fields`, {
-      withCredentials: true
+      // withCredentials: true
     })
   }
-
 
   validateUserToken(): boolean {
     let isLogged = false;
     //  HERE I MUST CALL API FOR VALIDATE TOKEN THEN I MUST RETURN BOOLEAN IF THE USER LOGGED!
     this.http.get<IUSER>(`${apiUrlLan}/users/validate`, {
-      observe: 'response',
-      withCredentials: true,
-      responseType: 'json'
+      observe: 'response'
+      // withCredentials: true,
+      // responseType: 'json'
     }).subscribe({
       next: value => {
         this.booleanService.setIsLoggedTrue();
@@ -231,5 +234,9 @@ export class UserService {
     return isLogged;
   }
 
+  getClothById(id: number) {
+
+    return this.http.get<ICLOTH>(`clothesId/${apiUrlLan}/clothes/get/${id}`);
+  }
 
 }

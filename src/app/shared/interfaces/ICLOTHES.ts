@@ -3,6 +3,7 @@ export interface ICLOTHES {
   content: [
     {
       id: number,
+      quantity: number,
       type: string,
       brand: string,
       size: string,
