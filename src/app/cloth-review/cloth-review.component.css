@@ -129,9 +129,15 @@
   margin-top: 25px;
 }
 
-.cloth-add-btn {
+.cloth-add-btn-add {
   width: 100%;
   background-color: #33CC33;
+  border: none;
+}
+
+.cloth-add-btn-added {
+  width: 100%;
+  background-color: #b38e4d;
   border: none;
 }
 

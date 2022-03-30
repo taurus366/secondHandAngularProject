@@ -5,9 +5,11 @@ import {CanDeactivateGuard} from "./shared/guard/can-deactivated-guard.service";
 import {ParamGuardActivate} from "./shared/guard/param-guard.activate";
 import {ClothReviewComponent} from "./cloth-review/cloth-review.component";
 import {MainComponent} from "./home/main/main.component";
+import {Error404Component} from "./core/error404/error404.component";
 
 
 const routes: Routes = [
+
   {
     path: '',
     pathMatch: 'full',
@@ -42,7 +44,13 @@ const routes: Routes = [
       authenticationRequired: true,
       authenticationFailureUrl: "/"
     }
-  },
+  }
+  ,
+  {
+    path: '404',
+    component: Error404Component
+  }
+  ,
   {
     path: '**',
     redirectTo: 'home'

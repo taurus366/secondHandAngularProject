@@ -3,7 +3,10 @@ import {ActivatedRoute} from "@angular/router";
 import {SharedService} from "../shared/shared.service";
 import {UserService} from "../authentication/user.service";
 import {ICLOTHES} from "../shared/interfaces/ICLOTHES";
+import {BooleansService} from "../shared/booleans.service";
 
+let CART_ALREADY_ADDED: string = "";
+let CART_ADD_SUCCESSFUL: string = "";
 
 @Component({
   selector: 'app-clothes',
@@ -12,15 +15,10 @@ import {ICLOTHES} from "../shared/interfaces/ICLOTHES";
 })
 export class ClothesComponent implements OnInit {
 
-  constructor(public activatedRoute: ActivatedRoute, public sharedService: SharedService, public userService: UserService, private renderer2: Renderer2) {
+  constructor(public activatedRoute: ActivatedRoute, public sharedService: SharedService, public userService: UserService, private renderer2: Renderer2, private booleanService: BooleansService) {
   }
 
   clothes: ICLOTHES | undefined;
-  // clothEnum: ICLOTHSENUMS | undefined;
-  // femaleNavigation: string[] | undefined;
-  // maleNavigation: string[] | undefined;
-  // girlsNavigation: string[] | undefined;
-  // boysNavigation: string[] | undefined;
 
   currentPageNumber: number = 0;
   totalPages: number = 1;
@@ -53,18 +51,18 @@ export class ClothesComponent implements OnInit {
   showPriceFilter: boolean = false;
 
   //PIPE FILTER
-  girlsFilter = {gender:'GIRLS'};
-  boysFilter = {gender:'BOYS'};
-  womenFilter = {gender:'FEMALE'};
-  menFilter = {gender:'MALE'};
+  girlsFilter = {gender: 'GIRLS'};
+  boysFilter = {gender: 'BOYS'};
+  womenFilter = {gender: 'FEMALE'};
+  menFilter = {gender: 'MALE'};
 
   //DEFAULT
   pageSize: number = 1;
 
 
   ngOnInit(): void {
-
-
+    CART_ALREADY_ADDED = this.sharedService.formMessages.CART.CART_ALREADY_ADDED;
+    CART_ADD_SUCCESSFUL = this.sharedService.formMessages.CART.CART_ADD_SUCCESSFUL;
 
     this.activatedRoute.params.subscribe(({who}) => {
       if (who === 'men') {
@@ -251,7 +249,7 @@ export class ClothesComponent implements OnInit {
 
         this.getChildrenNav() ? this.showGirlsNavChildren = true : this.getAccessoriesNav() ? this.showGirlsNavAccessories = true : this.getShoesNav() ? this.showGirlsNavShoes = true : '';
 
-      } else if (type === 'WOMEN'){
+      } else if (type === 'WOMEN') {
 
         this.cleanNavsAndCleanBoxes('WOMEN');
 
@@ -261,7 +259,7 @@ export class ClothesComponent implements OnInit {
 
         this.cleanNavsAndCleanBoxes('MEN');
 
-         this.getAccessoriesNav() ? this.showMenNavAccessories = true : this.getShoesNav() ? this.showMenNavShoes = true : '';
+        this.getAccessoriesNav() ? this.showMenNavAccessories = true : this.getShoesNav() ? this.showMenNavShoes = true : '';
 
       }
       isTypeOk = this.checkIfCheckedBoxes(type);
@@ -276,21 +274,18 @@ export class ClothesComponent implements OnInit {
         type !== null || true ? type === 'BOYS' || this.showBoysNavChildren || this.getBoysNav() ? '#boys-cloth-nav' : type === 'GIRLS' || this.showGirlsNavChildren || this.getGirlsNav() ? '#girls-cloth-nav' : '' : '']);
 
 
-
-
-
     data['pageSize'] = this.pageSize;
-  console.log(this.showGirlsNavChildren)
-    data['sex'] = this.getWomenNav() || this.showWomenNavShoes || this.showWomenNavAccessories ? 'FEMALE' : this.getMenNav() || this.showMenNavShoes || this.showMenNavAccessories? 'MALE' : this.getGirlsNav() || this.showGirlsNavChildren || this.showGirlsNavAccessories ? 'GIRLS' : this.getBoysNav() || this.showBoysNavChildren || this.showBoysNavAccessories ? 'BOYS' : isTypeOk ? type : this.getChildrenNav() ? 'CHILDREN' : new DOMException("SEX is not selected!");
+    console.log(this.showGirlsNavChildren)
+    data['sex'] = this.getWomenNav() || this.showWomenNavShoes || this.showWomenNavAccessories ? 'FEMALE' : this.getMenNav() || this.showMenNavShoes || this.showMenNavAccessories ? 'MALE' : this.getGirlsNav() || this.showGirlsNavChildren || this.showGirlsNavAccessories ? 'GIRLS' : this.getBoysNav() || this.showBoysNavChildren || this.showBoysNavAccessories ? 'BOYS' : isTypeOk ? type : this.getChildrenNav() ? 'CHILDREN' : new DOMException("SEX is not selected!");
 
-    data['itemType'] = this.getChildrenNav() || this.getMenNav() || this.getWomenNav() || this.getGirlsNav() || this.getBoysNav()? 'CLOTH' : this.getAccessoriesNav() ? 'ACCESSORIES' : this.getShoesNav() ? 'SHOES' : '';
+    data['itemType'] = this.getChildrenNav() || this.getMenNav() || this.getWomenNav() || this.getGirlsNav() || this.getBoysNav() ? 'CLOTH' : this.getAccessoriesNav() ? 'ACCESSORIES' : this.getShoesNav() ? 'SHOES' : '';
     this.getAllOrSpecificClothes(data);
   }
 
 
   //PAGEABLE FUNCTION
 
-  private cleanNavsAndCleanBoxes(off?: string){
+  private cleanNavsAndCleanBoxes(off?: string) {
     this.showGirlsNavShoes = false;
     this.showBoysNavShoes = false;
     this.showWomenNavShoes = false;
@@ -304,7 +299,7 @@ export class ClothesComponent implements OnInit {
     this.showGirlsNavChildren = false;
     this.showBoysNavChildren = false;
 
-    if (off !== 'MEN'){
+    if (off !== 'MEN') {
       this.sharedService.cleanCheckedBoxes('#men-cloth-nav');
     }
     if (off !== 'GIRLS') {
@@ -332,10 +327,6 @@ export class ClothesComponent implements OnInit {
 
     return isMatch;
   }
-
-  // calculatePercentOfDiscount(oldPrice: number, newPrice: number): number {
-  //   return Math.round(((oldPrice - newPrice) / oldPrice) * 100);
-  // }
 
   falseAll(): void {
     this.womenNav = false;
@@ -375,13 +366,65 @@ export class ClothesComponent implements OnInit {
     return this.accessoriesNav;
   }
 
-
   hideOrShowCardLikes(event: any) {
     let likesIcon = document.querySelector(`.clothes-card-text`);
     if (likesIcon?.classList.contains("hidden")) {
       likesIcon?.classList.remove("hidden");
-    }else {
+    } else {
       likesIcon?.classList.add("hidden");
     }
+  }
+
+  // CHANGED THE LOCATION TO SHAREDSERVICE
+  // checkItemIsAdded(itemId: number): boolean {
+  //   let isAdded: boolean = false;
+  //   this.booleanService.getUserCartBoxItems()
+  //     ?.forEach(value => {
+  //       if (value.id === itemId) {
+  //         isAdded = true;
+  //       }
+  //     })
+  //
+  //   return isAdded;
+  // }
+
+  addToCart(cloth : any) {
+
+    this.userService
+      .addItemToCart(cloth.id)
+      .subscribe({
+        next:value => {
+
+          if (value.body != null){
+            this.booleanService
+            // @ts-ignore
+              .addNewItemToExistsCartThenUpdate(value.body);
+
+            this.sharedService
+              .showAlertMsg
+              .success(CART_ADD_SUCCESSFUL)
+
+          }
+        },
+        error:err => {
+
+          if (err.status === 400){
+
+            this.sharedService
+              .showAlertMsg
+              .error(CART_ALREADY_ADDED);
+
+          } else {
+
+            this.sharedService
+              .showAlertMsg
+              .error(err.message);
+          }
+
+        },
+        complete: () => {
+
+        }
+      })
   }
 }

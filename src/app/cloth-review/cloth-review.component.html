@@ -63,9 +63,17 @@
     </article>
 
     <article class="cloth-add-bag-btn">
-      <button class="second-hand-btn cloth-add-btn">ADD TO CART</button>
-      <!-- SHOW IF THE ITEM HAS ALREADY ADDED TO CART  -->
-      <!-- <button class="second-hand-btn cloth-add-btn">ADDED TO CART</button> -->
+
+      <ng-container [ngTemplateOutlet]="sharedService.checkItemIsAdded(cloth?.id) == true ? added : add"></ng-container>
+
+      <ng-template #added>
+        <button class="second-hand-btn cloth-add-btn-added">ADDED TO CART</button>
+      </ng-template>
+
+      <ng-template #add>
+        <button class="second-hand-btn cloth-add-btn-add" (click)="addToCart(cloth!)">ADD TO CART</button>
+      </ng-template>
+
     </article>
 
     <article class="cloth-underline"></article>

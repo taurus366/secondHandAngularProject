@@ -1,0 +1,25 @@
+.error-code,
+.error-text,
+.error-btn {
+  text-align: center;
+}
+
+.error-text-article:nth-child(2) > p,
+.error-text-article:nth-child(3) > p {
+  margin: 0;
+  font-size: 30px;
+}
+
+.error-text-article:nth-child(1) > p {
+  font-size: 50px;
+  margin: 0 0 10px 0;
+}
+
+.error-code-p {
+  margin: 0;
+  font-size: 150px;
+}
+
+.error-btn {
+  margin: 10px 0 ;
+}

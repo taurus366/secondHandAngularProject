@@ -384,8 +384,8 @@
 
           <article class="clothes-card-icon-favorite" (mouseenter)="hideOrShowCardLikes($event)"
                    (mouseleave)="hideOrShowCardLikes($event)">
-             <img src="/assets/images/assets/icon_favourite_off.png" alt="">
-<!--            <img src="/assets/images/assets/icon_favourite_on.png" alt="icon">-->
+            <img src="/assets/images/assets/icon_favourite_off.png" alt="">
+            <!--            <img src="/assets/images/assets/icon_favourite_on.png" alt="icon">-->
           </article>
         </section>
 
@@ -428,18 +428,25 @@
           </article>
 
           <article class="clothes-card-saved-percent">
-            <p class="no-margin">- <span>{{sharedService.calculatePercentOfDiscount(cloth.startPrice, cloth.newPrice)}}</span>%</p>
+            <p class="no-margin">-
+              <span>{{sharedService.calculatePercentOfDiscount(cloth.startPrice, cloth.newPrice)}}</span>%</p>
           </article>
 
         </section>
 
         <section class="clothes-card-btn">
 
-          <article class="btn-add">ADD</article>
 
+          <ng-container [ngTemplateOutlet]="sharedService.checkItemIsAdded(cloth.id) == true ? added : add"></ng-container>
+
+          <ng-template #add>
+            <article class="btn-add" (click)="addToCart(cloth)">ADD</article>
+          </ng-template>
           <!-- IF THE ITEM HAS ADDED ALREADY ! -->
 
-          <!-- <article class="nonbtn-added">ADDED BY ME</article> -->
+          <ng-template #added>
+            <article class="nonbtn-added">ADDED BY ME</article>
+          </ng-template>
 
           <!-- <input type="button" value="ADD"> -->
 

@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AlertMessagesGeneratorDirective} from "./alert-messages-generator.directive";
+import {BooleansService} from "./booleans.service";
 
 
 @Injectable({
@@ -7,14 +8,34 @@ import {AlertMessagesGeneratorDirective} from "./alert-messages-generator.direct
 })
 export class SharedService {
 
-  constructor(private alertMsg: AlertMessagesGeneratorDirective) {
+  constructor(private alertMsg: AlertMessagesGeneratorDirective,private booleanService:BooleansService) {
   }
 
   formMessages = {
-    FORM_ERROR_MSG: 'Please correct the information where box in red',
-    FORM_PASSWORDS_ARE_NOT_MATCH_MSG: '[ Passwords aren\'t matched ]',
-    SUCCESSFUL_LOGGED_MSG: 'Successfully registered! Logged automatically!',
-    FORM_SUCCESSFUL_ADDED_NEW_ITEM: 'Successfully added new cloth!'
+    FORM: {
+      FORM_ERROR_MSG: 'Please correct the information where box in red',
+      FORM_PASSWORDS_ARE_NOT_MATCH_MSG: '[ Passwords aren\'t matched ]',
+      FORM_SUCCESSFUL_ADDED_NEW_ITEM: 'Successfully added new cloth!'
+    },
+    LOG: {
+      SUCCESSFUL_LOGGED_MSG: 'Successfully registered! Logged automatically!'
+    },
+    CART: {
+      CART_DELETE_ERROR: 'Something has gone wrong, please try it again or contact with the customer',
+      CART_ADD_ERROR: 'Something has gone wrong, please try it again or contact with the customer',
+      CART_ADD_SUCCESSFUL:'Successful added item to Cart.',
+      CART_DELETE_SUCCESSFUL:'Successful deleted item from Cart.',
+      CART_ALREADY_ADDED: 'The item which you are trying to add is exists in your cart!'
+    },
+    LIKE: {
+      LIKE_DELETE_ERROR: 'Something has gone wrong, please try it again or contact with the customer',
+      LIKE_ADD_ERROR: 'Something has gone wrong, please try it again or contact with the customer',
+      LIKE_ADD_SUCCESSFUL: 'Successful liked item.',
+      LIKE_DELETE_SUCCESSFUL: 'Successful unliked item.',
+      LIKE_ALREADY_ADDED: 'The item which you are trying to like is already liked by you!'
+    }
+
+
   }
 
 
@@ -140,6 +161,18 @@ export class SharedService {
   calculatePercentOfDiscount(oldPrice: any, newPrice: any): number {
 
     return Math.round(((parseFloat(oldPrice) - parseFloat(newPrice)) / parseFloat(oldPrice)) * 100);
+  }
+
+  checkItemIsAdded(itemId?: number): boolean {
+    let isAdded: boolean = false;
+    this.booleanService.getUserCartBoxItems()
+      ?.forEach(value => {
+        if (value.id === itemId) {
+          isAdded = true;
+        }
+      })
+
+    return isAdded;
   }
 
 }

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {BooleansService} from "../../shared/booleans.service";
 import {SharedService} from "../../shared/shared.service";
 import {UserService} from "../../authentication/user.service";
+import {ICLOTH} from "../../shared/interfaces/ICLOTH";
 
 
 @Component({
@@ -17,10 +18,14 @@ export class HeaderComponent implements OnInit {
   hideShoesArticle: boolean = false;
   hideAccessoriesArticle: boolean = false;
   showCartBox : boolean = false;
+  showLikeBox : boolean = false;
 
 
-  cartItemCounter = 1;
-  likedItemCounter = 3;
+
+
+
+  // cartItemCounter : number = this.booleansService.cartItemCounter;
+  // likedItemCounter : number = this.booleansService.likedItemCounter;
 
   hideHeartTextDropDown = false;
   hideCartTextDropDown = false;
@@ -34,18 +39,20 @@ export class HeaderComponent implements OnInit {
   constructor(public userService:UserService, public booleansService:BooleansService, public publicMethod:SharedService) {
   }
 
+
   checkStatusOfWindow(): boolean {
    return this.booleansService.checkStatusOfWindow();
   }
 
-  async ngOnInit() {
+   ngOnInit() {
     // document.querySelector('body')!.addEventListener("click",this.clickEv.bind(this))
     this.validateLoggedUserEvery10Minutes();
 
     //  LOAD USERS ENUMS AND FIELDS!
-    await this.userService.getAllClothesEnumsForFields();
+    this.userService.getAllClothesEnumsForFields();
 
   }
+
 
 
    validateLoggedUserEvery10Minutes() {
@@ -125,7 +132,6 @@ export class HeaderComponent implements OnInit {
   //  this.publicMethod.preventDefault(event);
     // this.showPopupWindow.emit();
     this.booleansService.unhideLoginRegisterWindow();
-    console.log("clicked")
   }
 
 
@@ -165,6 +171,36 @@ export class HeaderComponent implements OnInit {
   }
 // CART BOX HIDE LOGIC
 
+//LIKE BOX HIDE LOGIC
+  startListenLikeBoxHide(){
+    document.querySelector('body')!.addEventListener("click",this.clickEvLikeBoxHide.bind(this));
+  }
+
+  clickEvLikeBoxHide(event: MouseEvent, ...args:string[]) {
+    this.counter ++ ;
+    let isClickedOut: boolean = false;
+
+    let eventTargetParrentClassList = (event.target as Element).parentElement!.classList;
+
+    for (let i = 0; i < eventTargetParrentClassList.length; i++) {
+      let classNames: String[] = eventTargetParrentClassList[i].split("-");
+
+      classNames
+        .forEach(value => {
+
+          if (value === 'clothes' || value === 'cloth' || value === 'box'){
+            isClickedOut = true;
+          }
+        })
+    }
+
+    if (!isClickedOut && this.showLikeBox && args.length === 0 && this.counter > 1){
+      this.showLikeBox = false;
+      this.counter = 0;
+      document.querySelector('body')!.removeAllListeners!('click');
+    }
+  }
+//LIKE BOX HIDE LOGIC
 
 }
 

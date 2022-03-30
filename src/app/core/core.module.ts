@@ -8,6 +8,8 @@ import { CartBoxComponent } from './cart-box/cart-box.component';
 import {SharedModule} from "../shared/shared.module";
 import {AlertMessagesComponent} from "./alert-messages/alert-messages.component";
 import { LoadingComponent } from './loading/loading.component';
+import { Error404Component } from './error404/error404.component';
+import { LikeBoxComponent } from './like-box/like-box.component';
 
 
 
@@ -17,7 +19,9 @@ import { LoadingComponent } from './loading/loading.component';
     HeaderComponent,
     CartBoxComponent,
     AlertMessagesComponent,
-    LoadingComponent
+    LoadingComponent,
+    Error404Component,
+    LikeBoxComponent
   ],
   imports: [
     CommonModule,

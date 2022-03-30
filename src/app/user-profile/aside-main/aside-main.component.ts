@@ -41,7 +41,9 @@ export class AsideMainComponent implements OnInit {
           this.booleansService.setIsLoggedFalse();
           this.booleansService.setIsAdminFalse();
           this.route.navigate(["/"]);
-          this.sharedService.showAlertMsg.success("Successfully logged out !")
+          this.sharedService.showAlertMsg.success("Successfully logged out !");
+          this.userService
+            .populateUserCartBoxAndCounter();
         }
       })
   }

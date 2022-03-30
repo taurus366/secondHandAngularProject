@@ -31,8 +31,8 @@ export class RegisterWindowComponent implements OnInit {
   // emailValidator = emailValidator;
 
   ngOnInit(): void {
-    FORM_ERROR_MSG = this.sharedService.formMessages.FORM_ERROR_MSG;
-    FORM_PASSWORDS_ARE_NOT_MATCH_MSG = this.sharedService.formMessages.FORM_PASSWORDS_ARE_NOT_MATCH_MSG;
+    FORM_ERROR_MSG = this.sharedService.formMessages.FORM.FORM_ERROR_MSG;
+    FORM_PASSWORDS_ARE_NOT_MATCH_MSG = this.sharedService.formMessages.FORM.FORM_PASSWORDS_ARE_NOT_MATCH_MSG;
   }
 
   register(form: NgForm) {

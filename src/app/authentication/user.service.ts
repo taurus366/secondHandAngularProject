@@ -7,6 +7,8 @@ import {ICLOTHSENUMS} from "../shared/interfaces/ICLOTHSENUMS";
 import {ICLOTHES} from "../shared/interfaces/ICLOTHES";
 import {SharedService} from "../shared/shared.service";
 import {ICLOTH} from "../shared/interfaces/ICLOTH";
+import {ICART} from "../shared/interfaces/ICART";
+
 
 // for lan connection
 const apiUrlLan = environment.apiURL;
@@ -24,10 +26,28 @@ export class UserService {
   //   return this.validateUserToken();
   // }
 
-  constructor(private http: HttpClient, private booleanService: BooleansService, private sharedService:SharedService) {
+  constructor(private http: HttpClient, private booleanService: BooleansService, private sharedService: SharedService) {
   }
 
-   getAllClothesEnumsForFields(): void {
+  //METHODS
+
+  populateUserCartBoxAndCounter() {
+    this.populateClientCartBox()
+      .subscribe(value => {
+        this.booleanService.cartBoxItems = value;
+        this.booleanService.updateCartItemsThings();
+      })
+  }
+
+  populateUserLikeBoxAndCounter() {
+    this.populateClientLikeBox()
+      .subscribe( value => {
+        this.booleanService.likeBoxItems = value;
+        this.booleanService.updateLikeItemsThings();
+      })
+  }
+
+  getAllClothesEnumsForFields(): void {
 
     this.getAllFieldsForClothes()
       .subscribe({
@@ -45,31 +65,19 @@ export class UserService {
       })
   }
 
-  filterClothesType(gender: string,type? : string): string[] {
+  // METHODS END
+
+  filterClothesType(gender: string, type?: string): string[] {
     let arrayNav: string[] = [];
 
 
-    if (gender === 'ACCESSORIES'){
-        this.clothEnum
-          ?.accessoriesType.forEach(value => {
-          let array = value.split("=")[1].split("/");
-          array
-            .forEach(value1 => {
-              if (value1 === type){
-                arrayNav.push(value1);
-              }
-            })
-
-        })
-      return arrayNav;
-
-    }else if (gender === 'SHOES') {
+    if (gender === 'ACCESSORIES') {
       this.clothEnum
-        ?.shoesType.forEach(value => {
+        ?.accessoriesType.forEach(value => {
         let array = value.split("=")[1].split("/");
         array
           .forEach(value1 => {
-            if (value1 === type){
+            if (value1 === type) {
               arrayNav.push(value1);
             }
           })
@@ -77,7 +85,21 @@ export class UserService {
       })
       return arrayNav;
 
-    } else  {
+    } else if (gender === 'SHOES') {
+      this.clothEnum
+        ?.shoesType.forEach(value => {
+        let array = value.split("=")[1].split("/");
+        array
+          .forEach(value1 => {
+            if (value1 === type) {
+              arrayNav.push(value1);
+            }
+          })
+
+      })
+      return arrayNav;
+
+    } else {
 
       this.clothEnum
         ?.clothType.forEach(value => {
@@ -142,45 +164,45 @@ export class UserService {
     let pagination = "?";
 
     if (data.pageNo != -1) {
-     pagination += pagination.length === 1 ? 'pageNo='+data.pageNo : '&pageNo='+data.pageNo;
+      pagination += pagination.length === 1 ? 'pageNo=' + data.pageNo : '&pageNo=' + data.pageNo;
     }
     if (data.pageSize != -1) {
-      pagination += pagination.length === 1 ? 'pageSize='+data.pageSize : '&pageSize='+data.pageSize;
+      pagination += pagination.length === 1 ? 'pageSize=' + data.pageSize : '&pageSize=' + data.pageSize;
     }
     if (data.brand != '') {
-      pagination += pagination.length === 1 ? 'brand='+data.brand : '&brand='+data.brand;
+      pagination += pagination.length === 1 ? 'brand=' + data.brand : '&brand=' + data.brand;
     }
     if (data.size != '') {
-      pagination += pagination.length === 1 ? 'size='+data.size : '&size='+data.size;
+      pagination += pagination.length === 1 ? 'size=' + data.size : '&size=' + data.size;
     }
     if (data.discount != -1) {
-      pagination += pagination.length === 1 ? 'discount='+data.discount : '&discount='+data.discount;
+      pagination += pagination.length === 1 ? 'discount=' + data.discount : '&discount=' + data.discount;
     }
     if (data.color != '') {
-      pagination += pagination.length === 1 ? 'color='+data.color : '&color='+data.color;
+      pagination += pagination.length === 1 ? 'color=' + data.color : '&color=' + data.color;
     }
     if (data.priceLow != -1) {
-      pagination += pagination.length === 1 ? 'priceLow='+data.priceLow : '&priceLow='+data.priceLow;
+      pagination += pagination.length === 1 ? 'priceLow=' + data.priceLow : '&priceLow=' + data.priceLow;
     }
     if (data.priceHigh != -1) {
-      pagination += pagination.length === 1 ? 'priceHigh='+data.priceHigh : '&priceHigh='+data.priceHigh;
+      pagination += pagination.length === 1 ? 'priceHigh=' + data.priceHigh : '&priceHigh=' + data.priceHigh;
     }
     if (data.sortBy != '') {
-      pagination += pagination.length === 1 ? 'sortBy='+data.sortBy : '&sortBy='+data.sortBy;
+      pagination += pagination.length === 1 ? 'sortBy=' + data.sortBy : '&sortBy=' + data.sortBy;
     }
     if (data.sex !== '') {
-      pagination += pagination.length === 1 ? 'sex='+data.sex : '&sex='+data.sex;
+      pagination += pagination.length === 1 ? 'sex=' + data.sex : '&sex=' + data.sex;
     }
 
     if (data.type.length > 0) {
       data.type
         .forEach(value => {
-          pagination += pagination.length === 1 ? 'type='+value : '&type='+value;
+          pagination += pagination.length === 1 ? 'type=' + value : '&type=' + value;
         });
     }
 
-    if (data.itemType != ''){
-      pagination += pagination.length === 1 ? 'itemType'+data.itemType : '&itemType='+data.itemType;
+    if (data.itemType != '') {
+      pagination += pagination.length === 1 ? 'itemType' + data.itemType : '&itemType=' + data.itemType;
     }
 
     return this.http.get<ICLOTHES>(`${apiUrlLan}/clothes/get/all${pagination.length > 1 ? pagination : ''}`, {
@@ -188,6 +210,49 @@ export class UserService {
       responseType: "json"
     })
   }
+
+  // CART
+  addItemToCart(data: { id: number }) {
+
+    return this.http.post<ICART>(`${apiUrlLan}/cart/add`, data, {
+      observe: 'response'
+    })
+  }
+
+  removeItemFromCart(data: { id: number }) {
+    return this.http.delete(`${apiUrlLan}/cart/remove/${data.id}`, {
+      observe: "response"
+    });
+  }
+
+  populateClientCartBox() {
+
+    return this.http.get<ICART[]>(`${apiUrlLan}/cart/get`);
+
+  }
+
+  // CART END
+
+  // LIKES
+  addItemToLike(data: { id: number }) {
+    return this.http.post<ICART>(`${apiUrlLan}/like/like`, data, {
+      observe: "response"
+    })
+  }
+
+  removeItemFromLike(data: {id:number}) {
+    return this.http.delete(`${apiUrlLan}/like/unlike/${data.id}`,{
+      observe: "response"
+    })
+  }
+
+  populateClientLikeBox() {
+
+    return this.http.get<ICART[]>(`${apiUrlLan}/like/get`);
+
+  }
+
+  // LIKES END
 
   // ADMIN METHODS
 
@@ -201,6 +266,8 @@ export class UserService {
       // responseType:""
     })
   };
+
+  // ADMIN METHODS END
 
   getAllFieldsForClothes() {
     return this.http.get<ICLOTHSENUMS>(`${apiUrlLan}/fields`, {
@@ -238,5 +305,8 @@ export class UserService {
 
     return this.http.get<ICLOTH>(`clothesId/${apiUrlLan}/clothes/get/${id}`);
   }
+
+
+
 
 }

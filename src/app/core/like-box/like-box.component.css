@@ -33,19 +33,19 @@
 
 /* CLOTHES BOX */
 
-.header-bag-dropdown-clothes-box {
+.header-bag-dropdown-clothes-box-likes {
   font-size: 25px;
-  min-height: 370px;
+  min-height: 142px;
   width: 350px;
   position: absolute;
   border: solid 1px #e5e5e5;
-  right: -68px;
-  bottom: -390px;
+  right: -1px;
+  bottom: -160px;
   z-index: 9998;
   background-color: white;
 }
 
-.header-bag-dropdown-clothes-box::before {
+.header-bag-dropdown-clothes-box-likes::before {
   /* content: url(images/assets/cart-arrow.png);
   position: absolute;
   right: 62px;
@@ -111,11 +111,11 @@
   margin-top: 5px;
 }
 
-.header-bag-dropdown-clothes-box {
+.header-bag-dropdown-clothes-box-likes {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  justify-content: space-evenly;
+  justify-content: flex-start;
 }
 
 .cloth-information-type,

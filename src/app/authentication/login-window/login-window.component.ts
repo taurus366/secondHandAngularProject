@@ -71,7 +71,9 @@ export class LoginWindowComponent implements OnInit {
         complete: () => {
           this.booleanService.setIsLoggedTrue();
           this.booleanService.hideShowLoginRegisterWindow();
-          this.sharedService.showAlertMsg.success("Successfully logged!")
+          this.sharedService.showAlertMsg.success("Successfully logged!");
+          this.userService
+            .populateUserCartBoxAndCounter();
 
         }
       })

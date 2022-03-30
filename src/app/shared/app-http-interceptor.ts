@@ -33,7 +33,10 @@ export class AppHttpInterceptor implements HttpInterceptor {
       }))
 
       return reqStream$.pipe(catchError(err => {
-        this.router.navigate(['/error']);
+        if (err.status === 404){
+          this.router.navigate(['/404']);
+        }
+
         return [err];
       }));
 

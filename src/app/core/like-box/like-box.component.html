@@ -1,22 +1,22 @@
 
-<ng-container [ngTemplateOutlet]="booleansService.getUserCartItemCounter() > 0 ? showItems : showNoItems"></ng-container>
+<ng-container [ngTemplateOutlet]="booleanService.getUserLikesCounter() > 0 ? showItems : showNoItems"></ng-container>
 
 <ng-template #showItems>
 
 
-<!--  [ngClass]="{'header-bag-dropdown-clothes-box': cartBoxItemCounter > 0,'hidden' : cartBoxItemCounter <= 0}"-->
-  <section class="header-bag-dropdown-clothes-box">
+  <!--  [ngClass]="{'header-bag-dropdown-clothes-box': cartBoxItemCounter > 0,'hidden' : cartBoxItemCounter <= 0}"-->
+  <section class="header-bag-dropdown-clothes-box-likes">
     <article class="arrow-up">
       <img src="/assets/images/assets/cart-arrow.png" alt="">
     </article>
 
     <article class="clothes-box-header">
-      <h4 class="no-margin clothes-box-header-h4">ADDED IN CART</h4>
+      <h4 class="no-margin clothes-box-header-h4">LIKED ITEMS</h4>
     </article>
 
     <article class="clothes-box-items">
 
-      <section class="box-items-cloth" *ngFor="let cloth of booleansService.getUserCartBoxItems()">
+      <section class="box-items-cloth" *ngFor="let cloth of booleanService.getUserLikeBoxItems()">
 
         <article class="box-items-cloth-img" [routerLink]="['/item/review',cloth.id]">
           <img src="{{cloth.coverPicture.url}}" alt="img">
@@ -47,7 +47,7 @@
           </p>
         </article>
 
-        <article class="cloth-remove-icon" (click)="removeClientCartThenRefreshTheCart(cloth)">
+        <article class="cloth-remove-icon" (click)="removeClientLikeThenRefreshTheLikeBox(cloth)">
 
           <i class="fa fa-times"></i>
 
@@ -57,28 +57,28 @@
 
     </article>
 
-<!--    -->
-    <article class="clothes-box-items-summary">
-      <h5 class="no-margin cloth-total-price">TOTAL</h5>
-      <span class="cloth-total-price-number">{{booleansService.getUserCartTotalPrice()}} BGN</span>
-    </article>
+    <!--    -->
+<!--    <article class="clothes-box-items-summary">-->
+<!--      <h5 class="no-margin cloth-total-price">TOTAL</h5>-->
+<!--      <span class="cloth-total-price-number">{{booleansService.getUserCartTotalPrice()}} BGN</span>-->
+<!--    </article>-->
 
-    <article class="clothes-box-items-btn">
-      <button class="second-hand-btn cloth-btn">NEXT</button>
-    </article>
+<!--    <article class="clothes-box-items-btn">-->
+<!--      <button class="second-hand-btn cloth-btn">NEXT</button>-->
+<!--    </article>-->
   </section>
 
 </ng-template>
 
 <ng-template #showNoItems>
 
-  <section class="header-bag-dropdown-empty-box" [class.hidden]="booleansService.getUserCartItemCounter() > 0">
+  <section class="header-bag-dropdown-empty-box" [class.hidden]="booleanService.getUserLikesCounter() > 0">
     <article class="dropdown-header-text">
-      <h3 class="no-margin">ADDED IN BAG</h3>
+      <h3 class="no-margin">LIKED ITEMS</h3>
     </article>
 
     <article class="dropdown-main-text">
-      <p class="no-margin">There are no products in you shopping cart</p>
+      <p class="no-margin">There are no likes yet</p>
     </article>
   </section>
 
