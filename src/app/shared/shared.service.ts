@@ -163,15 +163,28 @@ export class SharedService {
     return Math.round(((parseFloat(oldPrice) - parseFloat(newPrice)) / parseFloat(oldPrice)) * 100);
   }
 
-  checkItemIsAdded(itemId?: number): boolean {
+  checkItemIsAddedCart(itemId?: number): boolean {
     let isAdded: boolean = false;
     this.booleanService.getUserCartBoxItems()
       ?.forEach(value => {
         if (value.id === itemId) {
           isAdded = true;
+          return;
         }
       })
 
+    return isAdded;
+  }
+
+  checkItemIsAddedLike(itemId?: number): boolean {
+    let isAdded: boolean = false;
+    this.booleanService.getUserLikeBoxItems()
+      ?.forEach(value => {
+        if (value.id === itemId) {
+          isAdded = true;
+          return;
+        }
+      })
     return isAdded;
   }
 

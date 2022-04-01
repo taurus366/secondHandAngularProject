@@ -61,6 +61,7 @@ export class LoginWindowComponent implements OnInit {
               this.booleanService.setIsAdminTrue();
             }
           });
+
         },
         error: err => {
 
@@ -74,6 +75,9 @@ export class LoginWindowComponent implements OnInit {
           this.sharedService.showAlertMsg.success("Successfully logged!");
           this.userService
             .populateUserCartBoxAndCounter();
+          this.userService
+            .populateUserLikeBoxAndCounter();
+
 
         }
       })

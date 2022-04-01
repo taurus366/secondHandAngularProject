@@ -235,7 +235,7 @@ export class UserService {
 
   // LIKES
   addItemToLike(data: { id: number }) {
-    return this.http.post<ICART>(`${apiUrlLan}/like/like`, data, {
+    return this.http.post<ICART>(`${apiUrlLan}/like/like`, data.id, {
       observe: "response"
     })
   }

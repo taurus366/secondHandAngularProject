@@ -33,7 +33,12 @@ export class LikeBoxComponent implements OnInit {
       .subscribe( {
         next: value => {
           this.booleanService
-            .removeItemFromLikeThenUpdate(cloth.id);
+            .removeItemFromLikeThenUpdate(cloth);
+
+          if (value.body != null){
+            this.booleanService
+              .likedOrUnlikedUpdateClothArray(value.body);
+          }
 
           this.sharedService
             .showAlertMsg

@@ -371,7 +371,7 @@
     <!--    IF CLOTHES ALREADY DOWNLOADED FROM API THEN I MUST SHOW THEM AND HIDE LOADING SPINNER-->
     <section class="main-clothes-list">
 
-      <div class="main-clothes-card" [class.sold-clothes]="cloth.quantity < 1" *ngFor="let cloth of clothes?.content">
+      <div class="main-clothes-card" [class.sold-clothes]="cloth.quantity < 1" *ngFor="let cloth of this.booleanService.clothes?.content">
         <section class="clothes-card-icon-text">
           <article class="clothes-card-text hidden">
 
@@ -382,10 +382,22 @@
 
           </article>
 
-          <article class="clothes-card-icon-favorite" (mouseenter)="hideOrShowCardLikes($event)"
-                   (mouseleave)="hideOrShowCardLikes($event)">
-            <img src="/assets/images/assets/icon_favourite_off.png" alt="">
-            <!--            <img src="/assets/images/assets/icon_favourite_on.png" alt="icon">-->
+          <article class="clothes-card-icon-favorite" (mouseenter)="hideOrShowCardLikes('enter')"
+                   (mouseleave)="hideOrShowCardLikes('leave')">
+
+            <ng-container [ngTemplateOutlet]="sharedService.checkItemIsAddedLike(cloth.id) ? showLike : showUnlike"></ng-container>
+
+            <ng-template #showLike>
+              <img src="/assets/images/assets/icon_favourite_on.png" alt="like-ico">
+            </ng-template>
+
+            <ng-template #showUnlike>
+              <img src="/assets/images/assets/icon_favourite_off.png" alt="un-like-ico" (click)="likeCloth(cloth!)">
+            </ng-template>
+
+
+
+
           </article>
         </section>
 
@@ -437,7 +449,7 @@
         <section class="clothes-card-btn">
 
 
-          <ng-container [ngTemplateOutlet]="sharedService.checkItemIsAdded(cloth.id) == true ? added : add"></ng-container>
+          <ng-container [ngTemplateOutlet]="sharedService.checkItemIsAddedCart(cloth.id) == true ? added : add"></ng-container>
 
           <ng-template #add>
             <article class="btn-add" (click)="addToCart(cloth)">ADD</article>

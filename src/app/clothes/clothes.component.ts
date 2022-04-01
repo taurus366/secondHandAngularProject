@@ -4,9 +4,13 @@ import {SharedService} from "../shared/shared.service";
 import {UserService} from "../authentication/user.service";
 import {ICLOTHES} from "../shared/interfaces/ICLOTHES";
 import {BooleansService} from "../shared/booleans.service";
+import {ICLOTH} from "../shared/interfaces/ICLOTH";
 
 let CART_ALREADY_ADDED: string = "";
 let CART_ADD_SUCCESSFUL: string = "";
+let LIKE_ADD_SUCCESSFUL: string = "";
+let LIKE_ADD_ERROR: string = "";
+let LIKE_ALREADY_ADDED:string = "";
 
 @Component({
   selector: 'app-clothes',
@@ -15,10 +19,10 @@ let CART_ADD_SUCCESSFUL: string = "";
 })
 export class ClothesComponent implements OnInit {
 
-  constructor(public activatedRoute: ActivatedRoute, public sharedService: SharedService, public userService: UserService, private renderer2: Renderer2, private booleanService: BooleansService) {
+  constructor(public activatedRoute: ActivatedRoute, public sharedService: SharedService, public userService: UserService, private renderer2: Renderer2, public booleanService: BooleansService) {
   }
 
-  clothes: ICLOTHES | undefined;
+  // clothes: ICLOTHES | undefined;
 
   currentPageNumber: number = 0;
   totalPages: number = 1;
@@ -63,6 +67,9 @@ export class ClothesComponent implements OnInit {
   ngOnInit(): void {
     CART_ALREADY_ADDED = this.sharedService.formMessages.CART.CART_ALREADY_ADDED;
     CART_ADD_SUCCESSFUL = this.sharedService.formMessages.CART.CART_ADD_SUCCESSFUL;
+    LIKE_ADD_SUCCESSFUL = this.sharedService.formMessages.LIKE.LIKE_ADD_SUCCESSFUL;
+    LIKE_ADD_ERROR = this.sharedService.formMessages.LIKE.LIKE_ADD_ERROR;
+    LIKE_ALREADY_ADDED = this.sharedService.formMessages.LIKE.LIKE_ALREADY_ADDED
 
     this.activatedRoute.params.subscribe(({who}) => {
       if (who === 'men') {
@@ -142,7 +149,7 @@ export class ClothesComponent implements OnInit {
       })
       .subscribe({
         next: value => {
-          this.clothes = value;
+          this.booleanService.clothes = value;
           this.totalPages = value.totalPages === 0 ? 1 : value.totalPages;
           this.currentPageNumber = value.pageable.pageNumber;
 
@@ -160,7 +167,7 @@ export class ClothesComponent implements OnInit {
 
   //PAGEABLE FUNCTION
   getPreviousPage(paginationNumber: HTMLInputElement): void {
-    if (!this.clothes?.first) {
+    if (!this.booleanService.clothes?.first) {
       let data = this.sharedService
         .callDocumentQuerySelectorByString(['#clothes-colors',
           '#clothes-discounts',
@@ -179,7 +186,7 @@ export class ClothesComponent implements OnInit {
   }
 
   getNextPage(paginationNumber: HTMLInputElement): void {
-    if (!this.clothes?.last) {
+    if (!this.booleanService.clothes?.last) {
 
       let data = this.sharedService
         .callDocumentQuerySelectorByString(['#clothes-colors',
@@ -366,13 +373,16 @@ export class ClothesComponent implements OnInit {
     return this.accessoriesNav;
   }
 
-  hideOrShowCardLikes(event: any) {
+  hideOrShowCardLikes(type: string) {
+
     let likesIcon = document.querySelector(`.clothes-card-text`);
-    if (likesIcon?.classList.contains("hidden")) {
+
+    if (type=== 'enter') {
       likesIcon?.classList.remove("hidden");
-    } else {
+    }else if (type === 'leave') {
       likesIcon?.classList.add("hidden");
     }
+
   }
 
   // CHANGED THE LOCATION TO SHAREDSERVICE
@@ -426,5 +436,52 @@ export class ClothesComponent implements OnInit {
 
         }
       })
+  }
+
+  likeCloth(cloth: ICLOTH) {
+    let id: number = cloth.id;
+    this.userService
+      .addItemToLike({id})
+      .subscribe({
+        next: value => {
+          this.sharedService
+            .showAlertMsg
+            .success(LIKE_ADD_SUCCESSFUL);
+
+          if (value.body != null) {
+            this.booleanService
+              .addNewItemToExistsLikeThenUpdate(value.body);
+
+            this.likedClothUpdate(value.body);
+
+          }
+
+        },
+        error: err => {
+          console.log(err.status)
+          if (err.status === 400) {
+            this.sharedService
+              .showAlertMsg
+              .error(LIKE_ALREADY_ADDED);
+          }else {
+            this.sharedService
+              .showAlertMsg
+              .error(LIKE_ADD_ERROR);
+          }
+
+        }
+      })
+
+
+  }
+
+  likedClothUpdate(cloth: ICLOTH) {
+   this.booleanService
+     .likedOrUnlikedUpdateClothArray(cloth);
+
+  }
+
+  getClothes():ICLOTHES | undefined {
+   return this.booleanService.clothes;
   }
 }

@@ -28,22 +28,29 @@ export class AsideMainComponent implements OnInit {
   }
 
   checkIsAdmin(): boolean {
-    return this.booleansService.isAdmin;
+    return this.booleansService.getIsAdmin();
   }
 
   logout():void{
     this.userService.logout()
       .subscribe({
-        error:err => {
-          console.log(err);
-        },
-        complete:() => {
+        next:value => {
           this.booleansService.setIsLoggedFalse();
           this.booleansService.setIsAdminFalse();
           this.route.navigate(["/"]);
           this.sharedService.showAlertMsg.success("Successfully logged out !");
+
+        },
+        error:err => {
+          console.log(err);
+        },
+        complete:() => {
+
+
           this.userService
             .populateUserCartBoxAndCounter();
+        this.userService
+          .populateUserLikeBoxAndCounter();
         }
       })
   }

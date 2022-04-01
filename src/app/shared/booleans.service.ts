@@ -1,5 +1,8 @@
 import {Injectable} from '@angular/core';
 import {ICLOTH} from "./interfaces/ICLOTH";
+import {ICLOTHES} from "./interfaces/ICLOTHES";
+import {ClothesComponent} from "../clothes/clothes.component";
+import {elementAt} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +10,16 @@ import {ICLOTH} from "./interfaces/ICLOTH";
 export class BooleansService {
 
   constructor() {
+  }
+
+  clothes: ICLOTHES | undefined;
+
+  likedOrUnlikedUpdateClothArray(cloth: ICLOTH | any) {
+    if (this.clothes != null){
+      this.clothes.content
+        .find(el => el.id === cloth.id)!.likes! = cloth.likes;
+    }
+
   }
 
   // USER CART
@@ -63,11 +76,14 @@ export class BooleansService {
     this.updateLikeItemsThings();
   }
 
-  removeItemFromLikeThenUpdate(itemID: number) {
+  removeItemFromLikeThenUpdate(item: ICLOTH) {
     this.likeBoxItems = this.cartBoxItems!
-      .filter(value => value.id !== itemID);
+      .filter(value => value.id !== item.id);
 
     this.updateLikeItemsThings();
+
+    // this.clothesComponent
+    //   .likedOrUnlikedUpdateClothArray(item);
   }
 
   getUserLikeBoxItems(): ICLOTH[] | undefined {

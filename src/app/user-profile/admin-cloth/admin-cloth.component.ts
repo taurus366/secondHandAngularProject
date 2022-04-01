@@ -29,8 +29,8 @@ export class AdminClothComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    FORM_ERROR_MSG = this.sharedService.formMessages.FORM_ERROR_MSG;
-    FORM_SUCCESSFUL_ADDED_NEW_ITEM = this.sharedService.formMessages.FORM_SUCCESSFUL_ADDED_NEW_ITEM;
+    FORM_ERROR_MSG = this.sharedService.formMessages.FORM.FORM_ERROR_MSG;
+    FORM_SUCCESSFUL_ADDED_NEW_ITEM = this.sharedService.formMessages.FORM.FORM_SUCCESSFUL_ADDED_NEW_ITEM;
 
 
     this.userService

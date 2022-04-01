@@ -7,6 +7,8 @@ import {BooleansService} from "../shared/booleans.service";
 
  let CART_ALREADY_ADDED : string = "";
  let CART_ADD_SUCCESSFUL : string = "";
+ let LIKE_ADD_SUCCESSFUL : string = "";
+ let LIKE_ADD_ERROR : string = "";
 
 @Component({
   selector: 'app-cloth-review',
@@ -24,6 +26,8 @@ export class ClothReviewComponent implements OnInit {
   ngOnInit(): void {
     CART_ALREADY_ADDED = this.sharedService.formMessages.CART.CART_ALREADY_ADDED;
     CART_ADD_SUCCESSFUL = this.sharedService.formMessages.CART.CART_ADD_SUCCESSFUL;
+    LIKE_ADD_SUCCESSFUL = this.sharedService.formMessages.LIKE.LIKE_ADD_SUCCESSFUL;
+    LIKE_ADD_ERROR = this.sharedService.formMessages.LIKE.LIKE_ADD_ERROR;
 
     this.activatedRoute.params.subscribe(({id}) => {
       this.userService
@@ -68,4 +72,30 @@ export class ClothReviewComponent implements OnInit {
       })
 
   }
+
+  likeCloth(cloth: ICLOTH) {
+    let id : number = cloth?.id;
+    this.userService
+      .addItemToLike({id})
+      .subscribe({
+        next: value => {
+          this.sharedService
+            .showAlertMsg
+            .success(LIKE_ADD_SUCCESSFUL);
+          if (value.body != null){
+            this.booleanService
+              .addNewItemToExistsLikeThenUpdate(value.body);
+          }
+
+        },
+        error:err => {
+          this.sharedService
+            .showAlertMsg
+            .error(LIKE_ADD_ERROR);
+        }
+      })
+
+  }
+
+
 }

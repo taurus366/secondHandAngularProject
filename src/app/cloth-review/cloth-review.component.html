@@ -17,11 +17,27 @@
       </ng-container>
 
 
+
     </article>
 
+
     <article class="cloth-preview-big-image">
+
       <article class="favorite-icon">
-        <img class="cloth-favorite-off" src="/assets/images/assets/icon_favourite_off.png" alt="">
+
+        <ng-container [ngTemplateOutlet]="sharedService.checkItemIsAddedLike(cloth?.id) ? showLike : showUnlike"></ng-container>
+
+        <ng-template #showUnlike >
+          <img class="cloth-favorite-off" src="/assets/images/assets/icon_favourite_off.png" alt="no-like" (click)="likeCloth(cloth!)">
+        </ng-template>
+
+        <ng-template #showLike>
+          <img class="cloth-favorite-on" src="/assets/images/assets/icon_favourite_on.png" alt="like">
+        </ng-template>
+
+
+
+
         <!-- AFTER LIKED THE ITEM < SHOULD SHOW THE ICON BELOW -->
         <!-- <img class="cloth-favorite-on" src="/assets/images/assets/icon_favourite_on.png" alt=""> -->
       </article>
@@ -64,7 +80,7 @@
 
     <article class="cloth-add-bag-btn">
 
-      <ng-container [ngTemplateOutlet]="sharedService.checkItemIsAdded(cloth?.id) == true ? added : add"></ng-container>
+      <ng-container [ngTemplateOutlet]="sharedService.checkItemIsAddedCart(cloth?.id) == true ? added : add"></ng-container>
 
       <ng-template #added>
         <button class="second-hand-btn cloth-add-btn-added">ADDED TO CART</button>
