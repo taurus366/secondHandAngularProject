@@ -15,7 +15,9 @@ export class SharedService {
     FORM: {
       FORM_ERROR_MSG: 'Please correct the information where box in red',
       FORM_PASSWORDS_ARE_NOT_MATCH_MSG: '[ Passwords aren\'t matched ]',
-      FORM_SUCCESSFUL_ADDED_NEW_ITEM: 'Successfully added new cloth!'
+      FORM_SUCCESSFUL_ADDED_NEW_ITEM: 'Successfully added new cloth!',
+      FORM_SUCCESSFUL_CHANGED_PASSWORD: 'Successfully changed password',
+      FORM_SUCCESSFUL_CHANGED_PERSONAL_DATA: 'Successfully changed personal data'
     },
     LOG: {
       SUCCESSFUL_LOGGED_MSG: 'Successfully registered! Logged automatically!'

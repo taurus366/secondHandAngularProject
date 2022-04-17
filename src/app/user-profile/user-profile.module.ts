@@ -10,6 +10,7 @@ import {RouterModule} from "@angular/router";
 import {CanDeactivateGuard} from "../shared/guard/can-deactivated-guard.service";
 import { AdminClothComponent } from './admin-cloth/admin-cloth.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {SharedModule} from "../shared/shared.module";
 
 
 
@@ -27,7 +28,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     CommonModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   exports: [
     AsideMainComponent

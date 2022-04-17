@@ -6,70 +6,139 @@
 
   <section class="own-address-addresses">
 
-    <section class="own-address-card">
+<!--    <section class="own-address-card">-->
 
-      <article class="float-left">
-        <input type="radio" name="own-address-radio" id="radio-address">
-      </article>
+<!--      <article class="float-left">-->
+<!--        <input type="radio" name="own-address-radio" id="radio-address">-->
+<!--      </article>-->
 
-      <article class="float-right">
-        <article class="address-card-first-last-name">
-          <article class="address-card-first-name">
-            <span>ALI</span>
-          </article>
+<!--      <article class="float-right">-->
+<!--        <article class="address-card-first-last-name">-->
+<!--          <article class="address-card-first-name">-->
+<!--            <span>ALI</span>-->
+<!--          </article>-->
 
-          <article class="address-card-last-name">
-            <span>ZINAL</span>
-          </article>
+<!--          <article class="address-card-last-name">-->
+<!--            <span>ZINAL</span>-->
+<!--          </article>-->
+<!--        </article>-->
+
+<!--        <article class="address-card-phonenumber">-->
+<!--          <p class="no-margin">TEL.: <span>0894396766</span></p>-->
+<!--        </article>-->
+
+<!--        <article class="address-card-city">-->
+<!--          <span>ASPARUHOVO</span>-->
+<!--        </article>-->
+
+<!--        <article class="address-card-address">-->
+
+<!--          <article class="address-card-street-and-number">-->
+<!--            <p class="no-margin"><span>SEDEMNATESETA</span> &#8470; <span>17</span></p>-->
+<!--          </article>-->
+
+<!--          <article class="address-card-block">-->
+<!--            <p class="no-margin">Bl. <span>350B</span></p>-->
+<!--          </article>-->
+
+<!--          <article class="address-card-entry">-->
+<!--            <p class="no-margin">ENTRY: <span>7</span></p>-->
+<!--          </article>-->
+
+<!--          <article class="address-card-floor">-->
+<!--            <p class="no-margin">FLOOR: <span>2</span></p>-->
+<!--          </article>-->
+
+<!--          <article class="address-card-apartment">-->
+<!--            <p class="no-margin">AP. <span>14</span></p>-->
+<!--          </article>-->
+
+<!--          <article class="address-card-info-address">-->
+<!--            <span>INFO ABOUT THE ADDRESS</span>-->
+<!--          </article>-->
+
+<!--          <article class="address-card-buttons">-->
+
+<!--            <a href="#ownEditAddress" class="address-card-edit" (click)="visibleOwnEditAddressForm();preventDefaultFunction($event)">EDIT</a>-->
+
+<!--            <a href="" class="address-card-delete">DELETE</a>-->
+
+<!--          </article>-->
+
+<!--        </article>-->
+
+<!--      </article>-->
+
+<!--    </section>-->
+
+
+      <section class="own-address-card" *ngFor="let userInfo of this.user?.addresses">
+
+        <article class="float-left">
+          <input type="radio" name="own-address-radio" id="radio-address">
         </article>
 
-        <article class="address-card-phonenumber">
-          <p class="no-margin">TEL.: <span>0894396766</span></p>
+        <article class="float-right">
+          <article class="address-card-first-last-name">
+            <article class="address-card-first-name">
+              <span>{{userInfo.firstName}}</span>
+            </article>
+
+            <article class="address-card-last-name">
+              <span>{{userInfo.lastName}}</span>
+            </article>
+          </article>
+
+          <article class="address-card-phonenumber">
+            <p class="no-margin">TEL.: <span>{{userInfo.phoneNumber}}</span></p>
+          </article>
+
+          <article class="address-card-city">
+            <span>{{userInfo.city}}</span>
+          </article>
+
+          <article class="address-card-address">
+
+            <article class="address-card-street-and-number">
+              <p class="no-margin"><span>{{userInfo.street}}</span> &#8470; <span>{{userInfo.streetNumber}}</span></p>
+            </article>
+
+            <article class="address-card-block">
+              <p class="no-margin">Bl. <span>{{userInfo.block}}</span></p>
+            </article>
+
+            <article class="address-card-entry">
+              <p class="no-margin">ENTRY: <span>{{userInfo.entry}}</span></p>
+            </article>
+
+            <article class="address-card-floor">
+              <p class="no-margin">FLOOR: <span>{{userInfo.floor}}</span></p>
+            </article>
+
+            <article class="address-card-apartment">
+              <p class="no-margin">AP. <span>{{userInfo.apartment}}</span></p>
+            </article>
+
+            <article class="address-card-info-address">
+              <span>{{userInfo.detailsAboutAddress}}</span>
+            </article>
+
+            <article class="address-card-buttons">
+
+              <a href="#ownEditAddress" class="address-card-edit" (click)="visibleOwnEditAddressForm();preventDefaultFunction($event)">EDIT</a>
+
+              <a href="" class="address-card-delete">DELETE</a>
+
+            </article>
+
+          </article>
+
         </article>
 
-        <article class="address-card-city">
-          <span>ASPARUHOVO</span>
-        </article>
+      </section>
 
-        <article class="address-card-address">
 
-          <article class="address-card-street-and-number">
-            <p class="no-margin"><span>SEDEMNATESETA</span> &#8470; <span>17</span></p>
-          </article>
 
-          <article class="address-card-block">
-            <p class="no-margin">Bl. <span>350B</span></p>
-          </article>
-
-          <article class="address-card-entry">
-            <p class="no-margin">ENTRY: <span>7</span></p>
-          </article>
-
-          <article class="address-card-floor">
-            <p class="no-margin">FLOOR: <span>2</span></p>
-          </article>
-
-          <article class="address-card-apartment">
-            <p class="no-margin">AP. <span>14</span></p>
-          </article>
-
-          <article class="address-card-info-address">
-            <span>INFO ABOUT THE ADDRESS</span>
-          </article>
-
-          <article class="address-card-buttons">
-
-            <a href="#ownEditAddress" class="address-card-edit" (click)="visibleOwnEditAddressForm()">EDIT</a>
-
-            <a href="" class="address-card-delete">DELETE</a>
-
-          </article>
-
-        </article>
-
-      </article>
-
-    </section>
 
 
 
@@ -87,79 +156,131 @@
 
   <article class="own-new-address-title">
     <p>NEW ADDRESS</p>
-    <i class="fas fa-times-circle own-new-address-title-icon" (click)="hideAllForms()"></i>
+    <i class="fas fa-times-circle own-new-address-title-icon" (click)="hideAllForms();this.hideCityPrediction()"></i>
   </article>
 
-  <form action="" method="post" class="own-new-address-form">
+  <form #ownNewAddressForm="ngForm" action="" method="post" class="own-new-address-form" (ngSubmit)="ownNewAddress(ownNewAddressForm)">
 
     <article class="own-new-address-first-name">
       <h2>Name</h2>
-      <input type="text" name="" id="firstName">
+      <input #firstName="ngModel" ngModel type="text" name="firstName" id="firstName" required [class.error-border]="firstName.touched && firstName.value.length <3 || firstName.errors?.length || isFirstNameIncorrect" [minLength]="3">
     </article>
 
     <article class="own-new-address-last-name">
       <h2>Last name</h2>
-      <input type="text" name="" id="lastName">
+      <input #lastName="ngModel" ngModel type="text" name="lastName" id="lastName" required [class.error-border]="lastName.touched && lastName.value.length <3 || lastName.errors?.length || isLastNameIncorrect" [minLength]="3">
     </article>
 
     <article class="own-new-address-phonenumber">
       <h2>Phone number</h2>
-      <input type="number" name="" id="phoneNumber">
+      <input #phoneNumber="ngModel" ngModel type="number" name="phoneNumber" id="phone" phoneValidator required [class.error-border]="phoneNumber.touched && phoneNumber.errors?.required || isPhoneIncorrect || phoneNumber.errors?.invalidNumber && phoneNumber.touched">
     </article>
 
     <article class="own-new-address-city">
       <h2>City*</h2>
-      <input type="text" name="" id="city">
+      <input #city="ngModel" ngModel type="text" name="city" id="city" required  (ngModelChange)="city.value.length > 2 ? getCity(city) : this.showCityPrediction = false" [class.error-border]="city.touched && city.value.length < 3 || isCityIncorrect" [minLength]="3">
     </article>
+
+    <!-- HERE IS CITY HELPER -->
+    <section *ngIf="showCityPrediction" class="address-city-hint">
+
+      <article *ngIf="this.cityPrediction?.length == 0 || this.cityPrediction == null">
+        <p class="address-city-hint-no-found">No cities/villages found!</p>
+      </article>
+
+      <article *ngIf=" this.cityPrediction != null && this.cityPrediction?.length! > 0" class="address-city-hint-found-article">
+        <table class="address-city-hint-found">
+          <thead>
+
+          <th>
+            Country
+          </th>
+          <th>
+            city/village
+          </th>
+          <th>
+            Region
+          </th>
+          <th>
+            PostCode
+          </th>
+
+          </thead>
+          <tbody>
+
+          <ng-container *ngFor="let cityF of cityPrediction">
+            <tr (click)="chosenCity(cityF.id,ownNewAddressForm)">
+             <td>
+               {{cityF.country}}
+             </td>
+              <td>
+                {{cityF.city}}
+              </td>
+              <td>
+                {{cityF.region}}
+              </td>
+              <td>
+                {{cityF.postCode}}
+              </td>
+            </tr>
+          </ng-container>
+
+          <!-- </tr> -->
+          </tbody>
+        </table>
+      </article>
+
+    </section>
+
 
     <article class="own-new-address-municipality">
       <h2>Municipality</h2>
-      <input type="text" name="" id="municipality">
+      <input #municipality="ngModel" ngModel type="text" name="municipality" id="municipality" disabled required>
     </article>
 
     <article class="own-new-address-postcode">
       <h2>ZIP</h2>
-      <input type="number" name="" id="postCode">
+      <input #zipCode="ngModel" ngModel type="number" name="zipCode" id="postCode" required>
     </article>
 
     <article class="own-new-address-neighborhood">
       <h2>Neighborhood</h2>
-      <input type="text" name="" id="neighborhood">
+      <input #neighborhood="ngModel" ngModel type="text" name="neighborhood" id="neighborhood">
     </article>
 
     <article class="own-new-address-street">
       <h2>Street</h2>
-      <input type="text" name="" id="street">
+      <input #street="ngModel" ngModel type="text" name="street" id="street">
     </article>
 
     <article class="own-new-address-streetnumber">
       <h2>&#8470;</h2>
-      <input type="number" name="" id="streetNumber">
+      <input #streetNumber="ngModel" ngModel type="number" name="streetNumber" id="streetNumber">
     </article>
 
     <article class="own-new-address-block">
       <h2>Block</h2>
-      <input type="text" name="" id="block">
+      <input #block="ngModel" ngModel type="text" name="block" id="block">
     </article>
 
     <article class="own-new-address-entry">
       <h2>Entry</h2>
-      <input type="text" name="" id="entry">
+      <input #entry="ngModel" ngModel type="text" name="entry" id="entry">
     </article>
 
     <article class="own-new-address-floor">
       <h2>Floor</h2>
-      <input type="number" name="" id="floor">
+      <input #floor="ngModel" ngModel type="number" name="floor" id="floor">
     </article>
 
     <article class="own-new-address-apartment">
       <h2>Apartment</h2>
-      <input type="text" name="" id="neighborhood">
+      <input #apartment="ngModel" ngModel type="text" name="apartment" id="neighborhood">
     </article>
 
     <article class="own-new-address-address-information">
       <h2>Details about address</h2>
-      <input type="text" name="" id="addressInformation">
+      <input #addressInformation="ngModel" ngModel type="text" name="addressInformation" id="addressInformation">
     </article>
 
     <article class="own-new-address-address-text-btn-article">
@@ -194,7 +315,7 @@
 
     <article class="own-edit-address-phonenumber">
       <h2>Phone number</h2>
-      <input type="number" name="" id="phoneNumber">
+      <input type="number" name="" id="phone">
     </article>
 
     <article class="own-edit-address-city">
@@ -343,7 +464,7 @@
 
     <article class="office-new-address-phonenumber">
       <h2>Phone number</h2>
-      <input type="number" name="" id="phoneNumber">
+      <input type="number" name="" id="phone">
     </article>
 
     <article class="office-new-address-city">
@@ -387,7 +508,7 @@
 
     <article class="office-edit-address-phonenumber">
       <h2>Phone number</h2>
-      <input type="number" name="" id="phoneNumber">
+      <input type="number" name="" id="phone">
     </article>
 
     <article class="office-edit-address-city">

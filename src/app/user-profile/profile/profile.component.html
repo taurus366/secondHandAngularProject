@@ -4,7 +4,7 @@
     <h4 class="no-margin personal-data-title-title">PERSONAL DATA</h4>
   </article>
 
-  <form action="" class="personal-data-form" method="post">
+  <form #formPersonalData="ngForm" action="" class="personal-data-form" method="post" (ngSubmit)="changePersonalData(formPersonalData)">
 
     <section class="float-left">
       <section class="personal-names">
@@ -16,7 +16,7 @@
           </article>
 
           <article class="personal-first-name-input">
-            <input type="text" name="" id="firstName" value="test1">
+            <input #firstName ="ngModel" ngModel type="text" name="firstName" id="firstName" [placeholder]="user?.firstName" [class.error-border]="isNameIncorrect">
           </article>
 
         </section>
@@ -28,7 +28,7 @@
           </article>
 
           <article class="personal-last-name-input">
-            <input type="text" name="" id="lastName" value="test">
+            <input #lastName="ngModel" ngModel type="text" name="lastName" id="lastName" [placeholder]="user?.lastName" [class.error-border]="isLastNameIncorrect">
           </article>
 
         </section>
@@ -42,7 +42,7 @@
         </article>
 
         <article class="personal-phonenumber-input">
-          <input type="number" name="" id="phone" value="08482343">
+          <input #phoneNumber="ngModel" ngModel type="number" name="phoneNumber" id="phone" [placeholder]="user?.phoneNumber?.length === 0 ? '' : user?.phoneNumber !== null ?user?.phoneNumber : '' " [class.error-border]="isPhoneNumberIncorrect || phoneNumber.touched && phoneNumber.errors?.invalidNumber" phoneValidator required>
         </article>
 
       </section>
@@ -54,14 +54,14 @@
         </article>
 
         <article class="personal-email-input">
-          <input type="email" disabled name="" id="email" placeholder="taurus.ali47@gmail.com">
+          <input type="email" disabled name="" id="email" [placeholder]="user?.email">
         </article>
 
       </section>
     </section>
 
     <section class="float-right">
-      <button class="second-hand-btn" type="submit" disabled>SAVE</button>
+      <button class="second-hand-btn" type="submit" >SAVE</button>
     </section>
 
   </form>
@@ -74,7 +74,7 @@
     <h4 class="no-margin change-password-title-title">CHANGE PASSWORD</h4>
   </article>
 
-  <form action="" class="change-password-form" method="post">
+  <form #formPassword="ngForm" action="" class="change-password-form" method="post" (ngSubmit)="changePassword(formPassword)">
 
 
     <section class="float-left">
@@ -86,7 +86,8 @@
         </article>
 
         <article class="change-password-current-password-input">
-          <input type="password" name="" id="password">
+          <input #currentPassword="ngModel" type="password" ngModel name="currentPassword" id="password" required
+          [class.error-border]="(currentPassword.touched && (currentPassword.value.length < 3 || currentPassword.value.length > 15) || isCurrentPasswordIncorrect || isCurrentPasswordDifferentThanNewPassword )" >
         </article>
 
       </section>
@@ -100,7 +101,7 @@
           </article>
 
           <article class="change-password-new-password-new-input">
-            <input type="password" name="" id="password-change">
+            <input #newPassword="ngModel" ngModel type="password" name="newPassword" id="password-change" required [class.error-border]="isNewPasswordIncorrect || ( newPassword.touched && ( newPassword.value.length < 6 || newPassword.value.length > 15)) || isCurrentPasswordDifferentThanNewPassword">
           </article>
         </section>
 
@@ -111,7 +112,7 @@
           </article>
 
           <article class="change-password-new-password-confirm-input">
-            <input type="password" name="" id="password-change">
+            <input #confirmPassword="ngModel" ngModel type="password" name="confirmPassword" id="password-change" required appPasswordValidator="newPassword" [class.error-border]="isConfirmPasswordIncorrect || (confirmPassword.touched && ( confirmPassword.value.length < 6 || confirmPassword.value.length > 15 ))">
           </article>
 
         </section>
@@ -124,7 +125,7 @@
 
     <section class="float-right">
 
-      <button type="submit" class="second-hand-btn" disabled>CHANGE</button>
+      <button type="submit" class="second-hand-btn" >CHANGE</button>
 
     </section>
 

@@ -56,11 +56,18 @@ export class LoginWindowComponent implements OnInit {
     this.userService.login(form.value)
       .subscribe({
         next: value => {
+          console.log(value)
           value.body?.roles.forEach(role => {
             if (role.role === 'ADMINISTRATOR') {
               this.booleanService.setIsAdminTrue();
             }
           });
+
+          if (value.body != null){
+            this.booleanService
+              .user = value.body;
+          }
+
 
         },
         error: err => {

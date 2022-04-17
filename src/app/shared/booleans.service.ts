@@ -3,6 +3,7 @@ import {ICLOTH} from "./interfaces/ICLOTH";
 import {ICLOTHES} from "./interfaces/ICLOTHES";
 import {ClothesComponent} from "../clothes/clothes.component";
 import {elementAt} from "rxjs";
+import {IUSER} from "./interfaces/IUSER";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class BooleansService {
   }
 
   clothes: ICLOTHES | undefined;
+  user: IUSER | undefined;
 
   likedOrUnlikedUpdateClothArray(cloth: ICLOTH | any) {
     if (this.clothes != null){

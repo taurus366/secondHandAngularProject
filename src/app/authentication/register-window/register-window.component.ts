@@ -36,9 +36,6 @@ export class RegisterWindowComponent implements OnInit {
   }
 
   register(form: NgForm) {
-      console.log(form)
-
-
 
     if (form.invalid) {
       let isSamePasswords : boolean;
@@ -123,11 +120,9 @@ export class RegisterWindowComponent implements OnInit {
     this.userService.register(form.value)
       .subscribe({
         next: value => {
-          // value.body?.roles.forEach(role => {
-          //   if (role.role === 'ADMINISTRATOR') {
-          //     this.booleanService.setIsAdminTrue();
-          //   }
-          // });
+          if (value.body != null) {
+            this.booleanService.user = value.body;
+          }
         },
         error: err => {
 
@@ -155,7 +150,7 @@ export class RegisterWindowComponent implements OnInit {
         complete: () => {
           this.booleanService.setIsLoggedTrue()
           this.booleanService.hideShowLoginRegisterWindow();
-          this.sharedService.showAlertMsg.success(SUCCESSFUL_LOGGED_MSG)
+          this.sharedService.showAlertMsg.success(SUCCESSFUL_LOGGED_MSG);
         }
       })
 

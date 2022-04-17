@@ -255,7 +255,7 @@ a.address-card-edit {
 
 #firstName,
 #lastName,
-#phoneNumber,
+#phone,
 #city,
 #postCode,
 #neighborhood,
@@ -312,4 +312,57 @@ a.add-address-btn {
 .address-card-last-name {
   display: inline-block;
   padding: 5px;
+}
+
+/* OWN NEW ADDRESS CITY HINT */
+.address-city-hint {
+  position: absolute;
+  border: 1px solid black;
+  top: 238px;
+  width: 93.5%;
+  left: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: rgb(245, 245, 245);
+}
+
+.address-city-hint-no-found {
+  font-size: 1.1rem;
+  margin: 5px 0px 5px 5px;
+}
+
+.address-city-hint-found-article {
+  max-height: 200px;
+  overflow: auto;
+  font-size: 1.2rem;
+}
+
+.address-city-hint-found > thead > tr > th,
+.address-city-hint-found > tbody > tr > td {
+  padding-left: 50px;
+  padding-bottom: 5px;
+  width: 10%;
+  text-align: center;
+}
+
+.address-city-hint-found > thead {
+  background-color: #b38b45;
+}
+
+.address-city-hint-found {
+  text-align: center;
+}
+
+.address-city-hint-found > tbody > tr > td {
+  padding-left: 0;
+}
+
+.address-city-hint-found > tbody > tr > td {
+  font-weight: bolder;
+}
+
+.address-city-hint-found > tbody > tr:hover {
+  /* background-color: red; */
+  color: #ccab72;
+  cursor: pointer;
 }

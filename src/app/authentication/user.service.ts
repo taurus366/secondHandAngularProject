@@ -8,6 +8,7 @@ import {ICLOTHES} from "../shared/interfaces/ICLOTHES";
 import {SharedService} from "../shared/shared.service";
 import {ICLOTH} from "../shared/interfaces/ICLOTH";
 import {ICART} from "../shared/interfaces/ICART";
+import {ICITY} from "../shared/interfaces/ICITY";
 
 
 // for lan connection
@@ -147,6 +148,25 @@ export class UserService {
     })
   }
 
+  changePassword(data: {currentPassword: string, newPassword: string, confirmPasswordL: string}) {
+
+    return this.http.put<IUSER>(`${apiUrlLan}/users/change/password`,data, {
+      observe:"response"
+    })
+  }
+
+  changePersonalData(data: {firstName:string, lastName:string, phoneNumber:string}){
+    return this.http.put<IUSER>(`${apiUrlLan}/users/change/data`,data,{
+      observe:"response"
+    })
+  }
+
+  createNewAddress(data:{}) {
+     return this.http.post(`${apiUrlLan}/users/new/address`,data,{
+       observe:"response"
+     })
+  }
+
   getClothesBySpecificValue(data: {
     pageNo: number,
     pageSize: number,
@@ -278,6 +298,7 @@ export class UserService {
   validateUserToken(): boolean {
     let isLogged = false;
     //  HERE I MUST CALL API FOR VALIDATE TOKEN THEN I MUST RETURN BOOLEAN IF THE USER LOGGED!
+    // I MUST UPDATE IUSER for info
     this.http.get<IUSER>(`${apiUrlLan}/users/validate`, {
       observe: 'response'
       // withCredentials: true,
@@ -291,7 +312,11 @@ export class UserService {
           } else {
             this.booleanService.setIsAdminFalse();
           }
-        })
+        });
+        if (value.body != null) {
+          this.booleanService
+            .user = value.body;
+        }
       },
       error: err => {
         this.booleanService.setIsLoggedFalse();
@@ -305,6 +330,14 @@ export class UserService {
 
     return this.http.get<ICLOTH>(`clothesId/${apiUrlLan}/clothes/get/${id}`);
   }
+
+
+//  ADDRESSES DB
+
+  getLocation(data:{location:string}) {
+    return this.http.get<ICITY[]>(`${apiUrlLan}/users/location?location=${data.location}`);
+  }
+
 
 
 
