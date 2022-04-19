@@ -20,8 +20,8 @@ export class PhoneValidatorDirective implements Validator{
     if (!control.value) {
       return {invalidNumber: true}
     }
-    console.log(control.value)
-    return /^(359([0-9]){9}?|89([0-9]){7}?)$/.test(control.value) ? null : { invalidNumber: true};
+
+    return /^(359([0-9]){9}?|[0]?89([0-9]){7}?)$/.test(control.value) ? null : { invalidNumber: true};
   }
 
 }

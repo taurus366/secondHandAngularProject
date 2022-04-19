@@ -161,11 +161,36 @@ export class UserService {
     })
   }
 
-  createNewAddress(data:{}) {
+  //ADDRESS METHODS
+
+  createNewAddress(data:{apartment: string,
+    block: string,
+    city: string,
+    detailsAboutAddress: string,
+    entry: string,
+    firstName: string,
+    floor: string,
+    lastName: string,
+    municipality: string,
+    neighborhood: string,
+    phoneNumber: string,
+    street: string,
+    streetNumber: string,
+    zip: string}) {
+    console.log(data);
+    console.log(data.street);
      return this.http.post(`${apiUrlLan}/users/new/address`,data,{
        observe:"response"
      })
   }
+
+  editCurrentAddress(data:{}) {
+    return this.http.post(`${apiUrlLan}/users/edit/address`,data, {
+      observe:"response"
+    })
+  }
+
+  //ADDRESS METHODS
 
   getClothesBySpecificValue(data: {
     pageNo: number,
