@@ -17,7 +17,9 @@ export class SharedService {
       FORM_PASSWORDS_ARE_NOT_MATCH_MSG: '[ Passwords aren\'t matched ]',
       FORM_SUCCESSFUL_ADDED_NEW_ITEM: 'Successfully added new cloth!',
       FORM_SUCCESSFUL_CHANGED_PASSWORD: 'Successfully changed password',
-      FORM_SUCCESSFUL_CHANGED_PERSONAL_DATA: 'Successfully changed personal data'
+      FORM_SUCCESSFUL_CHANGED_PERSONAL_DATA: 'Successfully changed personal data',
+      FORM_SUCCESSFUL_CHANGED_ADDRESS: 'Successfully changed own address',
+      FORM_SUCCESSFUL_DELETED_ADDRESS: 'Successfully deleted own address'
     },
     LOG: {
       SUCCESSFUL_LOGGED_MSG: 'Successfully registered! Logged automatically!'

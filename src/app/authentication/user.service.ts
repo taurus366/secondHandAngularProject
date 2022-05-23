@@ -9,6 +9,9 @@ import {SharedService} from "../shared/shared.service";
 import {ICLOTH} from "../shared/interfaces/ICLOTH";
 import {ICART} from "../shared/interfaces/ICART";
 import {ICITY} from "../shared/interfaces/ICITY";
+import {IADDRESS} from "../shared/interfaces/IADDRESS";
+import {IADDRESSSPEEDY} from "../shared/interfaces/IADDRESSSPEEDY";
+import {ICITYADDRESSSPEEDY} from "../shared/interfaces/ICITYADDRESSSPEEDY";
 
 
 // for lan connection
@@ -163,7 +166,7 @@ export class UserService {
 
   //ADDRESS METHODS
 
-  createNewAddress(data:{apartment: string,
+  createNewOwnAddress(data:{apartment: string,
     block: string,
     city: string,
     detailsAboutAddress: string,
@@ -179,13 +182,33 @@ export class UserService {
     zip: string}) {
     console.log(data);
     console.log(data.street);
-     return this.http.post(`${apiUrlLan}/users/new/address`,data,{
+     return this.http.post<IADDRESS>(`${apiUrlLan}/users/new/address`,data,{
        observe:"response"
      })
   }
 
-  editCurrentAddress(data:{}) {
-    return this.http.post(`${apiUrlLan}/users/edit/address`,data, {
+  editCurrentOwnAddress(data:{ apartment: string,
+    block: string,
+    city: string,
+    detailsAboutAddress: string,
+    entry: string,
+    firstName: string,
+    floor: string,
+    lastName: string,
+    municipality: string,
+    neighborhood: string,
+    phoneNumber: string,
+    street: string,
+    streetNumber: string,
+    zip: string,
+    id: number}) {
+    return this.http.post<IADDRESS>(`${apiUrlLan}/users/edit/address`,data, {
+      observe:"response"
+    })
+  }
+
+  deleteAddressById(data:{id:number}) {
+    return this.http.post(`${apiUrlLan}/users/delete/address?id=${data.id}`,{
       observe:"response"
     })
   }
@@ -359,9 +382,41 @@ export class UserService {
 
 //  ADDRESSES DB
 
-  getLocation(data:{location:string}) {
-    return this.http.get<ICITY[]>(`${apiUrlLan}/users/location?location=${data.location}`);
+  getLocation(data:{location:string,speedy:string}) {
+    return this.http.get<ICITY[]>(`${apiUrlLan}/users/location?${data.location.length > 0 ? 'location=' + `${data.location}` : 'speedy=' + `${data.speedy}` }`);
   }
+
+  getAddressByCityId(cityId:number) {
+    console.log(cityId)
+    return this.http.get<IADDRESSSPEEDY[]>(`${apiUrlLan}/users/address?city=${cityId}`);
+  }
+
+  createOfficeSpeedyAddress(data: { cityId: number, speedyOfficeId: number, firstName: string , lastName: string, phoneNumber: string}) {
+    return this.http.post<ICITYADDRESSSPEEDY>(`${apiUrlLan}/users/new/office/address`,data,{
+      observe:"response"
+    })
+  }
+
+//   createNewOwnAddress(data:{apartment: string,
+//     block: string,
+//     city: string,
+//     detailsAboutAddress: string,
+//     entry: string,
+//     firstName: string,
+//     floor: string,
+//     lastName: string,
+//     municipality: string,
+//     neighborhood: string,
+//     phoneNumber: string,
+//     street: string,
+//     streetNumber: string,
+//     zip: string}) {
+//     console.log(data);
+//     console.log(data.street);
+//      return this.http.post<IADDRESS>(`${apiUrlLan}/users/new/address`,data,{
+//        observe:"response"
+//      })
+//   }
 
 
 

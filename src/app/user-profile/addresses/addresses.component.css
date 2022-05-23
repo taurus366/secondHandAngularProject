@@ -326,6 +326,17 @@ a.add-address-btn {
   background-color: rgb(245, 245, 245);
 }
 
+/* OWN NEW ADDRESS HINT [SPEEDY] */
+.address-address-hint{
+  position: absolute;
+  border: 1px solid black;
+  top: 238px;
+  width: 45.6%;
+  left: 463px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: rgb(245, 245, 245);
+}
 .address-city-hint-no-found {
   font-size: 1.1rem;
   margin: 5px 0px 5px 5px;

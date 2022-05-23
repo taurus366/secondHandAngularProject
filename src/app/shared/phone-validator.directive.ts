@@ -16,7 +16,7 @@ export class PhoneValidatorDirective implements Validator{
   constructor() { }
 
   validate(control: AbstractControl): ValidationErrors | null {
-
+      console.log(control.value)
     if (!control.value) {
       return {invalidNumber: true}
     }

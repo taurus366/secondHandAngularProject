@@ -66,8 +66,9 @@ export class ProfileComponent implements OnInit,OnChanges {
       this.isLastNameIncorrect = formControl.lastName.value.length < 3 || formControl.lastName.value.length > 12;
     }
 
+    this.isPhoneNumberIncorrect = formControl.phoneNumber.errors?.invalidNumber;
+
     let lastNumber: string = '';
-    console.log(formControl.phoneNumber.value)
     // if (formControl.phoneNumber.value != null && formControl.phoneNumber.value !== "" && formControl.phoneNumber.value.length > 0){
     //  let regex = new RegExp('^(0?|359?)[0-9]{9}$');
     //   this.isPhoneNumberIncorrect = !regex.test(formControl.phoneNumber.value);

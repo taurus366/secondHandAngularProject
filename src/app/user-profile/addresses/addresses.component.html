@@ -6,81 +6,82 @@
 
   <section class="own-address-addresses">
 
-      <section class="own-address-card" *ngFor="let userInfo of this.user?.addresses">
+    <section class="own-address-card" *ngFor="let userAddress of this.user?.addresses">
 
-        <article class="float-left">
-          <input type="radio" name="own-address-radio" id="radio-address">
+      <article class="float-left">
+        <input type="radio" name="own-address-radio" id="radio-address">
+      </article>
+
+      <article class="float-right">
+        <article class="address-card-first-last-name">
+          <article class="address-card-first-name">
+            <span>{{userAddress.firstName}}</span>
+          </article>
+
+          <article class="address-card-last-name">
+            <span>{{userAddress.lastName}}</span>
+          </article>
         </article>
 
-        <article class="float-right">
-          <article class="address-card-first-last-name">
-            <article class="address-card-first-name">
-              <span>{{userInfo.firstName}}</span>
-            </article>
+        <article class="address-card-phonenumber">
+          <p class="no-margin">TEL.: <span>{{userAddress.phoneNumber}}</span></p>
+        </article>
 
-            <article class="address-card-last-name">
-              <span>{{userInfo.lastName}}</span>
-            </article>
+        <article class="address-card-city">
+          <span>{{userAddress.city}}</span>
+        </article>
+
+        <article class="address-card-address">
+
+          <article class="address-card-street-and-number">
+            <p class="no-margin"><span>{{userAddress.street}}</span> &#8470; <span>{{userAddress.streetNumber}}</span>
+            </p>
           </article>
 
-          <article class="address-card-phonenumber">
-            <p class="no-margin">TEL.: <span>{{userInfo.phoneNumber}}</span></p>
+          <article class="address-card-block">
+            <p class="no-margin">Bl. <span>{{userAddress.block}}</span></p>
           </article>
 
-          <article class="address-card-city">
-            <span>{{userInfo.city}}</span>
+          <article class="address-card-entry">
+            <p class="no-margin">ENTRY: <span>{{userAddress.entry}}</span></p>
           </article>
 
-          <article class="address-card-address">
+          <article class="address-card-floor">
+            <p class="no-margin">FLOOR: <span>{{userAddress.floor}}</span></p>
+          </article>
 
-            <article class="address-card-street-and-number">
-              <p class="no-margin"><span>{{userInfo.street}}</span> &#8470; <span>{{userInfo.streetNumber}}</span></p>
-            </article>
+          <article class="address-card-apartment">
+            <p class="no-margin">AP. <span>{{userAddress.apartment}}</span></p>
+          </article>
 
-            <article class="address-card-block">
-              <p class="no-margin">Bl. <span>{{userInfo.block}}</span></p>
-            </article>
+          <article class="address-card-info-address">
+            <span>{{userAddress.detailsAboutAddress}}</span>
+          </article>
 
-            <article class="address-card-entry">
-              <p class="no-margin">ENTRY: <span>{{userInfo.entry}}</span></p>
-            </article>
+          <article class="address-card-buttons">
 
-            <article class="address-card-floor">
-              <p class="no-margin">FLOOR: <span>{{userInfo.floor}}</span></p>
-            </article>
+            <a href="#ownEditAddress" class="address-card-edit"
+               (click)="visibleOwnEditAddressForm();preventDefaultFunction($event);editAddressId(userAddress.id)">EDIT</a>
 
-            <article class="address-card-apartment">
-              <p class="no-margin">AP. <span>{{userInfo.apartment}}</span></p>
-            </article>
-
-            <article class="address-card-info-address">
-              <span>{{userInfo.detailsAboutAddress}}</span>
-            </article>
-
-            <article class="address-card-buttons">
-
-              <a href="#ownEditAddress" class="address-card-edit" (click)="visibleOwnEditAddressForm();preventDefaultFunction($event);editAddressId(userInfo.id)">EDIT</a>
-
-              <a href="" class="address-card-delete">DELETE</a>
-
-            </article>
+            <a href="" class="address-card-delete"
+               (click)="deleteAddressById(userAddress.id);preventDefaultFunction($event)">DELETE</a>
 
           </article>
 
         </article>
 
-      </section>
+      </article>
 
-
-
-
+    </section>
 
 
   </section>
 
   <article class="own-address-add-btn">
 
-    <button *ngIf="!showOfficeNewAddressForm && !showOwnNewAddressForm && !showOwnEditAddressForm && !showOfficeEditAddressForm" class="second-hand-btn" (click)="visibleOwnNewAddressForm()"><a class="add-address-btn" >ADD ADDRESS</a></button>
+    <button
+      *ngIf="!showOfficeNewAddressForm && !showOwnNewAddressForm && !showOwnEditAddressForm && !showOfficeEditAddressForm"
+      class="second-hand-btn" (click)="visibleOwnNewAddressForm()"><a class="add-address-btn">ADD ADDRESS</a></button>
   </article>
 
 </section>
@@ -90,39 +91,48 @@
 
   <article class="own-new-address-title">
     <p>NEW ADDRESS</p>
-    <i class="fas fa-times-circle own-new-address-title-icon" (click)="hideAllForms();this.hideCityPrediction()"></i>
+    <i class="fas fa-times-circle own-new-address-title-icon" (click)="hideAllForms();this.hideCityPrediction();this.restartCityPrediction()"></i>
   </article>
 
-  <form #ownNewAddressForm="ngForm" action="" method="post" class="own-new-address-form" (ngSubmit)="ownNewAddress(ownNewAddressForm)">
+  <form #ownNewAddressForm="ngForm" action="" method="post" class="own-new-address-form"
+        (ngSubmit)="ownNewAddress(ownNewAddressForm)">
 
     <article class="own-new-address-first-name">
       <h2>Name</h2>
-      <input #firstName="ngModel" ngModel type="text" name="firstName" id="firstName" required [class.error-border]="firstName.touched && firstName.value.length <3 || firstName.errors?.length || isFirstNameIncorrect" [minLength]="3">
+      <input #firstName="ngModel" ngModel type="text" name="firstName" id="firstName" required
+             [class.error-border]="firstName.touched && firstName.value.length <3 || firstName.errors?.length || isFirstNameIncorrect"
+             [minLength]="3">
     </article>
 
     <article class="own-new-address-last-name">
       <h2>Last name</h2>
-      <input #lastName="ngModel" ngModel type="text" name="lastName" id="lastName" required [class.error-border]="lastName.touched && lastName.value.length <3 || lastName.errors?.length || isLastNameIncorrect" [minLength]="3">
+      <input #lastName="ngModel" ngModel type="text" name="lastName" id="lastName" required
+             [class.error-border]="lastName.touched && lastName.value.length <3 || lastName.errors?.length || isLastNameIncorrect"
+             [minLength]="3">
     </article>
 
     <article class="own-new-address-phonenumber">
       <h2>Phone number</h2>
-      <input #phoneNumber="ngModel" ngModel type="number" name="phoneNumber" id="phone" phoneValidator required [class.error-border]="phoneNumber.touched && phoneNumber.errors?.required || isPhoneIncorrect || phoneNumber.errors?.invalidNumber && phoneNumber.touched">
+      <input #phoneNumber="ngModel" ngModel type="number" name="phoneNumber" id="phone" phoneValidator required
+             [class.error-border]="phoneNumber.touched && phoneNumber.errors?.required || isPhoneIncorrect || phoneNumber.errors?.invalidNumber && phoneNumber.touched">
     </article>
 
     <article class="own-new-address-city">
       <h2>City*</h2>
-      <input #city="ngModel" ngModel type="text" name="city" id="city" required  (ngModelChange)="city.value.length > 2 ? getCity(city) : this.showCityPrediction = false" [class.error-border]="city.touched && city.value.length < 3 || isCityIncorrect" [minLength]="3">
+      <input #city="ngModel" ngModel type="text" name="city" id="city" required
+             (ngModelChange)="city.value.length > 2 ? getCity(city) : this.showCityPrediction = false"
+             [class.error-border]="city.touched && city.value.length < 3 || isCityIncorrect" [minLength]="3">
     </article>
 
     <!-- HERE IS CITY HELPER -->
-    <section *ngIf="showCityPrediction" class="address-city-hint">
+    <section *ngIf="showCityPrediction && showOwnNewAddressForm" class="address-city-hint">
 
       <article *ngIf="this.cityPrediction?.length == 0 || this.cityPrediction == null">
         <p class="address-city-hint-no-found">No cities/villages found!</p>
       </article>
 
-      <article *ngIf=" this.cityPrediction != null && this.cityPrediction?.length! > 0" class="address-city-hint-found-article">
+      <article *ngIf=" this.cityPrediction != null && this.cityPrediction?.length! > 0"
+               class="address-city-hint-found-article">
         <table class="address-city-hint-found">
           <thead>
 
@@ -144,9 +154,9 @@
 
           <ng-container *ngFor="let cityF of cityPrediction">
             <tr (click)="chosenCity(cityF.id,ownNewAddressForm)">
-             <td>
-               {{cityF.country}}
-             </td>
+              <td>
+                {{cityF.country}}
+              </td>
               <td>
                 {{cityF.city}}
               </td>
@@ -169,7 +179,7 @@
 
     <article class="own-new-address-municipality">
       <h2>Municipality</h2>
-      <input #municipality="ngModel" ngModel type="text" name="municipality" id="municipality"  disabled required>
+      <input #municipality="ngModel" ngModel type="text" name="municipality" id="municipality" disabled required>
     </article>
 
     <article class="own-new-address-postcode">
@@ -229,42 +239,52 @@
 
 <!--OWN EDIT ADDRESS -->
 <section *ngIf="showOwnEditAddressForm" class="own-edit-address" id="ownEditAddress">
-
   <article class="own-edit-address-title">
     <p>EDIT ADDRESS</p>
-    <i class="fas fa-times-circle own-new-address-title-icon" (click)="hideAllForms();this.hideCityPrediction()"></i>
+    <i class="fas fa-times-circle own-new-address-title-icon" (click)="hideAllForms();this.hideCityPrediction();this.restartCityPrediction()"></i>
   </article>
 
-  <form #editAddressForm=ngForm action="" method="post" class="own-edit-address-form" (ngSubmit)="editAddress(editAddressForm)">
-
+  <form #editAddressForm=ngForm action="" method="post" class="own-edit-address-form"
+        (ngSubmit)="editAddress(editAddressForm)">
     <article class="own-edit-address-first-name">
       <h2>Name</h2>
-      <input #editFirstName=ngModel ngModel="{{userEditAddress?.firstName}}" type="text" name="editFirstName" id="firstName"  required [class.error-border]="editFirstName.touched && editFirstName.value.length <3 || editFirstName.errors?.length || isFirstNameIncorrect" [minLength]="3">
+      <input #editFirstName=ngModel ngModel="{{userEditAddress?.firstName}}" type="text" name="editFirstName"
+             id="firstName" required
+             [class.error-border]="editFirstName.touched && editFirstName.value.length <3 || editFirstName.errors?.length || isFirstNameIncorrect"
+             [minLength]="3">
     </article>
 
     <article class="own-edit-address-last-name">
       <h2>Last name</h2>
-      <input #editLastName=ngModel ngModel="{{userEditAddress?.lastName}}" type="text" name="editLastName" id="lastName"  required [class.error-border]="editLastName.touched && editLastName.value.length <3 || editLastName.errors?.length || isLastNameIncorrect" [minLength]="3">
+      <input #editLastName=ngModel ngModel="{{userEditAddress?.lastName}}" type="text" name="editLastName" id="lastName"
+             required
+             [class.error-border]="editLastName.touched && editLastName.value.length <3 || editLastName.errors?.length || isLastNameIncorrect"
+             [minLength]="3">
     </article>
 
     <article class="own-edit-address-phonenumber">
       <h2>Phone number</h2>
-      <input #editPhoneNumber=ngModel ngModel="{{userEditAddress?.phoneNumber}}" type="number" name="editPhoneNumber" id="phone"  required phoneValidator [class.error-border]="editPhoneNumber.touched && editPhoneNumber.errors?.required || isPhoneIncorrect || editPhoneNumber.errors?.invalidNumber && editPhoneNumber.touched">
+      <input #editPhoneNumber=ngModel ngModel="{{userEditAddress?.phoneNumber}}" type="number" name="editPhoneNumber"
+             id="phone" required phoneValidator
+             [class.error-border]="editPhoneNumber.touched && editPhoneNumber.errors?.required || isPhoneIncorrect || editPhoneNumber.errors?.invalidNumber && editPhoneNumber.touched">
     </article>
 
     <article class="own-edit-address-city">
       <h2>City*</h2>
-      <input #editCity=ngModel ngModel="{{userEditAddress?.city}}" type="text" name="editCity" id="city"  required [class.error-border]="editCity.touched && editCity.value.length < 3 || isCityIncorrect" [minLength]="3" (ngModelChange)="editCity.value.length > 2 ? getCity(editCity) : this.showCityPrediction = false">
+      <input #editCity=ngModel ngModel="{{userEditAddress?.city}}" type="text" name="editCity" id="city" required
+             [class.error-border]="editCity.touched && editCity.value.length < 3 || isCityIncorrect" [minLength]="3"
+             (ngModelChange)="editCity.value.length > 2 ? getCity(editCity) : this.showCityPrediction = false">
     </article>
 
     <!-- HERE IS CITY HELPER -->
-    <section *ngIf="showCityPrediction" class="address-city-hint">
+    <section *ngIf="showCityPrediction && showOwnEditAddressForm" class="address-city-hint">
 
       <article *ngIf="this.cityPrediction?.length == 0 || this.cityPrediction == null">
         <p class="address-city-hint-no-found">No cities/villages found!</p>
       </article>
 
-      <article *ngIf=" this.cityPrediction != null && this.cityPrediction?.length! > 0" class="address-city-hint-found-article">
+      <article *ngIf=" this.cityPrediction != null && this.cityPrediction?.length! > 0"
+               class="address-city-hint-found-article">
         <table class="address-city-hint-found">
           <thead>
 
@@ -310,52 +330,58 @@
 
     <article class="own-edit-address-municipality">
       <h2>Municipality</h2>
-      <input #editMunicipality=ngModel disabled ngModel="{{userEditAddress?.municipality}}" type="text" name="editMunicipality" id="municipality" >
+      <input #editMunicipality=ngModel disabled ngModel="{{userEditAddress?.municipality}}" type="text"
+             name="editMunicipality" id="municipality">
     </article>
 
     <article class="own-edit-address-postcode">
       <h2>ZIP</h2>
-      <input #editZip=ngModel ngModel="{{userEditAddress?.zip}}" type="number" name="editZip" id="postCode" value={{userEditAddress?.zip}}>
+      <input #editZip=ngModel ngModel="{{userEditAddress?.zip}}" type="number" name="editZip" id="postCode"
+             value={{userEditAddress?.zip}}>
     </article>
 
     <article class="own-edit-address-neighborhood">
       <h2>Neighborhood</h2>
-      <input #editNeighborhood=ngModel ngModel="{{userEditAddress?.neighborhood}}" type="text" name="editNeighborhood" id="neighborhood" >
+      <input #editNeighborhood=ngModel ngModel="{{userEditAddress?.neighborhood}}" type="text" name="editNeighborhood"
+             id="neighborhood">
     </article>
 
     <article class="own-edit-address-street">
       <h2>Street</h2>
-      <input #editStreet=ngModel ngModel="{{userEditAddress?.street}}" type="text" name="editStreet" id="street" >
+      <input #editStreet=ngModel ngModel="{{userEditAddress?.street}}" type="text" name="editStreet" id="street">
     </article>
 
     <article class="own-edit-address-streetnumber">
       <h2>&#8470;</h2>
-      <input #editStreetNumber=ngModel ngModel="{{userEditAddress?.streetNumber}}" type="number" name="editStreetNumber" id="streetNumber" >
+      <input #editStreetNumber=ngModel ngModel="{{userEditAddress?.streetNumber}}" type="number" name="editStreetNumber"
+             id="streetNumber">
     </article>
 
     <article class="own-edit-address-block">
       <h2>Block</h2>
-      <input #editBlock=ngModel ngModel="{{userEditAddress?.block}}" type="text" name="editBlock" id="block" >
+      <input #editBlock=ngModel ngModel="{{userEditAddress?.block}}" type="text" name="editBlock" id="block">
     </article>
 
     <article class="own-edit-address-entry">
       <h2>Entry</h2>
-      <input #editEntry=ngModel ngModel="{{userEditAddress?.entry}}" type="text" name="editEntry" id="entry" >
+      <input #editEntry=ngModel ngModel="{{userEditAddress?.entry}}" type="text" name="editEntry" id="entry">
     </article>
 
     <article class="own-edit-address-floor">
       <h2>Floor</h2>
-      <input #editFloor=ngModel ngModel="{{userEditAddress?.floor}}" type="number" name="editFloor" id="floor" >
+      <input #editFloor=ngModel ngModel="{{userEditAddress?.floor}}" type="number" name="editFloor" id="floor">
     </article>
 
     <article class="own-edit-address-apartment">
       <h2>Apartment</h2>
-      <input #editApartment=ngModel ngModel="{{userEditAddress?.apartment}}" type="text" name="editApartment"  id="neighborhood" >
+      <input #editApartment=ngModel ngModel="{{userEditAddress?.apartment}}" type="text" name="editApartment"
+             id="neighborhood">
     </article>
 
     <article class="own-edit-address-address-information">
       <h2>Details about address</h2>
-      <input #editDetailsAboutAddress=ngModel ngModel="{{userEditAddress?.detailsAboutAddress}}" type="text" name="editDetailsAboutAddress" id="addressInformation" >
+      <input #editDetailsAboutAddress=ngModel ngModel="{{userEditAddress?.detailsAboutAddress}}" type="text"
+             name="editDetailsAboutAddress" id="addressInformation">
     </article>
 
     <article class="own-edit-address-address-text-btn-article">
@@ -368,7 +394,8 @@
 
 </section>
 
-
+<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+<!--OFFICE ADDRESSES-->
 <section class="office-address">
 
   <article class="office-address-title">
@@ -409,7 +436,8 @@
 
         <article class="address-card-buttons">
 
-          <a href="#officeEditAddress" class="address-card-edit" (click)="visibleOfficeEditAddressForm()">EDIT</a>
+          <a href="#officeEditAddress" class="address-card-edit"
+             (click)="visibleOfficeEditAddressForm();preventDefaultFunction($event)">EDIT</a>
 
           <a href="" class="address-card-delete">DELETE</a>
 
@@ -420,9 +448,12 @@
     </section>
 
   </section>
-
+  <!-- OFFICE ADD NEW ADDRESS BUTTON-->
   <article class="office-address-add-btn">
-    <button *ngIf="!showOfficeNewAddressForm && !showOwnNewAddressForm && !showOwnEditAddressForm && !showOfficeEditAddressForm" class="second-hand-btn" (click)="visibleOfficeNewAddressForm()"><a href="#officeNewAddress" class="add-address-btn">ADD ADDRESS</a></button>
+    <button
+      *ngIf="!showOfficeNewAddressForm && !showOwnNewAddressForm && !showOwnEditAddressForm && !showOfficeEditAddressForm"
+      class="second-hand-btn" (click)="visibleOfficeNewAddressForm();preventDefaultFunction($event)"><a
+      href="#officeNewAddress" class="add-address-btn">ADD ADDRESS</a></button>
   </article>
 
 </section>
@@ -432,35 +463,128 @@
 
   <article class="office-new-address-title">
     <p>NEW ADRESS</p>
-    <i class="fas fa-times-circle office-new-address-title-icon" (click)="hideAllForms()"></i>
+    <i class="fas fa-times-circle office-new-address-title-icon" (click)="hideAllForms();this.hideCityPrediction();this.restartCityPrediction()"></i>
   </article>
 
-  <form action="" method="post" class="office-new-address-form">
+  <form #speedyAddressForm="ngForm" action="" method="post" class="office-new-address-form" (ngSubmit)="speedyNewAddress(speedyAddressForm)">
 
     <article class="office-new-address-first-name">
       <h2>Name</h2>
-      <input type="text" name="" id="firstName">
+      <input #firstName="ngModel" ngModel type="text" name="firstName" id="firstName"
+             [class.error-border]="firstName.touched && firstName.value.length < 3 || isFirstNameIncorrect" [minLength]="3" required>
     </article>
 
     <article class="office-new-address-last-name">
       <h2>Last name</h2>
-      <input type="text" name="" id="lastName">
+      <input #lastName="ngModel" ngModel type="text" name="lastName" id="lastName"
+             [class.error-border]="lastName.touched && lastName.value.length < 3 || isLastNameIncorrect" [minLength]="3" required>
     </article>
 
     <article class="office-new-address-phonenumber">
       <h2>Phone number</h2>
-      <input type="number" name="" id="phone">
+      <input #phone="ngModel" ngModel type="number" name="phone" id="phone" phoneValidator required
+             [class.error-border]="phone.touched && phone.errors?.required || isPhoneIncorrect || phone.errors?.invalidNumber && phone.touched">
     </article>
 
     <article class="office-new-address-city">
       <h2>City*</h2>
-      <input type="text" name="" id="city">
+      <input #city="ngModel" ngModel type="text" name="city" id="city" required
+             (ngModelChange)="city.value.length > 2 ? getCity(city,'speedy') : this.showCityPrediction = false"
+             [class.error-border]="city.touched && city.value.length < 3 || isCityIncorrect" [minLength]="3">
     </article>
+
+    <!-- HERE IS CITY HELPER -->
+<!--    <section *ngIf="showSpeedyCityPrediction && showOfficeNewAddressForm" class="address-city-hint">-->
+    <section *ngIf="showCityPrediction && showOfficeNewAddressForm" class="address-city-hint">
+
+      <article *ngIf="this.cityPrediction?.length == 0 || this.cityPrediction == null">
+        <p class="address-city-hint-no-found">No cities/villages found!</p>
+      </article>
+
+      <article *ngIf=" this.cityPrediction != null && this.cityPrediction?.length! > 0"
+               class="address-city-hint-found-article">
+        <table class="address-city-hint-found">
+          <thead>
+
+          <th>
+            Country
+          </th>
+          <th>
+            city/village
+          </th>
+          <th>
+            Region
+          </th>
+          <th>
+            PostCode
+          </th>
+
+          </thead>
+          <tbody>
+
+          <ng-container *ngFor="let cityF of cityPrediction">
+            <tr (click)="chosenCity(cityF.id,speedyAddressForm)">
+              <td>
+                {{cityF.country}}
+              </td>
+              <td>
+                {{cityF.city}}
+              </td>
+              <td>
+                {{cityF.region}}
+              </td>
+              <td>
+                {{cityF.postCode}}
+              </td>
+            </tr>
+          </ng-container>
+
+          <!-- </tr> -->
+          </tbody>
+        </table>
+      </article>
+
+    </section>
 
     <article class="office-new-address-office">
       <h2>Speedy's Office*</h2>
-      <input type="text" name="" id="officeSpeedy">
+      <input #officeSpeedy="ngModel" ngModel type="text" name="officeSpeedy" id="officeSpeedy" disabled required
+      [class.error-border]="officeSpeedy.touched && officeSpeedy.value.length == 0 || isSpeedyAddressIncorrect" >
     </article>
+
+<!--    HERE IS ADDRESS HELPER-->
+    <section *ngIf="showAddressPrediction && showOfficeNewAddressForm"  class="address-address-hint">
+
+      <article *ngIf="this.speedyAddress?.length == 0 || this.speedyAddress == null">
+        <p class="address-city-hint-no-found">No cities/villages found!</p>
+      </article>
+
+      <article *ngIf=" this.speedyAddress != null && this.speedyAddress?.length! > 0"
+               class="address-city-hint-found-article">
+        <table class="address-city-hint-found">
+          <thead>
+
+          <th>
+            Address
+          </th>
+
+          </thead>
+          <tbody>
+
+          <ng-container *ngFor="let address of speedyAddress">
+            <tr (click)="chosenAddress(address.id,speedyAddressForm)">
+              <td>
+                {{address.name}}
+              </td>
+            </tr>
+          </ng-container>
+
+          <!-- </tr> -->
+          </tbody>
+        </table>
+      </article>
+
+    </section>
 
     <article class="office-new-address-address-text-btn-article">
       <p>*Please, select a location from the list automatically displayed.</p>

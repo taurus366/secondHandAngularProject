@@ -4,6 +4,7 @@ import {ICLOTHES} from "./interfaces/ICLOTHES";
 import {ClothesComponent} from "../clothes/clothes.component";
 import {elementAt} from "rxjs";
 import {IUSER} from "./interfaces/IUSER";
+import {IADDRESS} from "./interfaces/IADDRESS";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,31 @@ export class BooleansService {
 
   clothes: ICLOTHES | undefined;
   user: IUSER | undefined;
+
+  changeCurrentUserOneOwnAddress(address: IADDRESS) :void {
+
+
+    this.user?.addresses
+      .forEach((value,index) => {
+        if (value.id === address.id && this.user?.addresses != null){
+          this.user.addresses[index] = address;
+        }
+      });
+
+    console.log(this.user?.addresses)
+
+    // this.clothes.content
+    //   .find(el => el.id === cloth.id)!.likes! = cloth.likes;
+
+  }
+
+  removeUserOneOwnAddress(addressId: number) : void {
+
+    // @ts-ignore
+    this.user?.addresses = this.user?.addresses
+       .filter(value => value.id !== addressId);
+
+  }
 
   likedOrUnlikedUpdateClothArray(cloth: ICLOTH | any) {
     if (this.clothes != null){
