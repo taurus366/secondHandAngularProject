@@ -114,6 +114,7 @@ export class AsideMainComponent implements OnInit {
   }
 
   visibleAdminClothWindow() :void {
+    // CALL API TO GET INFO ABOUT ADMIN CLOTH TODO
     this.hideAllWindows();
     this.booleansService.showAdminClothWindow = true;
     this.booleansService.setProfileTextName = 'CREATE NEW CLOTH';

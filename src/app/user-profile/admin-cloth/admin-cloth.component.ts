@@ -27,7 +27,13 @@ export class AdminClothComponent implements OnInit {
   constructor(private userService:UserService,private sharedService:SharedService, private renderer2:Renderer2, private booleanService:BooleansService) {
     this.booleanService.showLoadingPage();
   }
-
+/*
+HERE I HAVE A SMALL PROBLEM LIKE ->
+when admin try to open cloth add window ,
+the fields like [sex,brand,color,type,size,season...] always get from server side ,
+So the fix is I can save the fields array into boolean service then I can check if it is empty
+or not, to not flood the server every time reload.
+ */
   ngOnInit(): void {
     FORM_ERROR_MSG = this.sharedService.formMessages.FORM.FORM_ERROR_MSG;
     FORM_SUCCESSFUL_ADDED_NEW_ITEM = this.sharedService.formMessages.FORM.FORM_SUCCESSFUL_ADDED_NEW_ITEM;

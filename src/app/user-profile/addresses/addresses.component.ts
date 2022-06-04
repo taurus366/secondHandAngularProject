@@ -29,8 +29,6 @@ export class AddressesComponent implements OnInit {
   cityPrediction: ICITY[] | undefined;
   // choosedCity: ICITY | undefined;
   chosenCityId: number | undefined;
-  //SPEEDY ADDRESS
-  chosenAddressId: number | undefined;
 
   showCityPrediction: boolean = false;
   choosedCity: boolean = false;
@@ -38,7 +36,7 @@ export class AddressesComponent implements OnInit {
   // SPEEDY CITY PREDICTION (HELPER)
   showAddressPrediction: boolean = false; // only for Speedy Address
   showSpeedyCityPrediction: boolean = true; // changed to showCityPrediction
-  selectedSpeedyAddressOfficeId : number = 0;
+  selectedSpeedyAddressOfficeId: number | undefined;
   // speedyCityPrediction:
 
   isPhoneIncorrect: boolean = false;
@@ -49,19 +47,69 @@ export class AddressesComponent implements OnInit {
 
   user: IUSER | undefined;
   userEditAddress: IADDRESS | undefined;
+  // ADDRESS HELPER
   speedyAddress: IADDRESSSPEEDY[] | undefined;
 
   constructor(private userService: UserService, private sharedService: SharedService, private booleanService: BooleansService) {
   }
 
-  ngOnInit(): void {
-    this.updateInfoUser();
+  ngOnInit() {
+    // this.updateInfoUser(); relocated into down method!
+    this.checkUserAddressesExistsThenUpdate();
     FORM_SUCCESSFUL_CHANGED_ADDRESS = this.sharedService.formMessages.FORM.FORM_SUCCESSFUL_CHANGED_ADDRESS;
     FORM_SUCCESSFUL_DELETED_ADDRESS = this.sharedService.formMessages.FORM.FORM_SUCCESSFUL_DELETED_ADDRESS;
   }
 
   updateInfoUser() {
     this.user = this.booleanService.user;
+  }
+
+  checkUserAddressesExistsThenUpdate() {
+
+    //  TODO -> get user addresses from Back End side / get user speedy addresses from Back End side
+    // @ts-ignore
+    if (this.booleanService.user == undefined || this.booleanService.user!.addresses.length == 0 || this.booleanService.user?.speedyAddressList.length == 0) {
+
+      let promise = new Promise<void>((resolve, reject) => {
+
+        this.userService
+          .populateUserAddresses()
+          .subscribe({
+            next: value => {
+
+              if (value.body != null || value.body != undefined) {
+                  if (this.booleanService.user != null || this.booleanService.user != undefined){
+                    this.booleanService.user!.addresses = value.body?.addresses;
+                    this.booleanService.user!.speedyAddressList = value.body?.speedyAddressList;
+                  } else {
+                    this.booleanService.user = value.body;
+                  }
+
+                // this.booleanService.user!.addresses = value.body!.addresses;
+                // this.booleanService.user!.speedyAddressList = value.body!.speedyAddressList;
+
+              }
+            },
+            error: err => {
+              reject(err);
+            },
+            complete: () => {
+              resolve();
+            }
+          })
+
+      });
+      promise
+        .then(() => this.updateInfoUser()).catch(reason => {
+        this.sharedService
+          .showAlertMsg
+          .error(reason.message)
+
+      })
+    } else {
+      this.updateInfoUser();
+    }
+
   }
 
   visibleOwnNewAddressForm(): void {
@@ -205,8 +253,6 @@ export class AddressesComponent implements OnInit {
             this.booleanService
               .user?.addresses.push(value.body);
             this.updateInfoUser();
-            console.log(value.body.id);
-            console.log(value);
 
           }
         },
@@ -370,7 +416,7 @@ export class AddressesComponent implements OnInit {
 
       switch (formControl.phone.status) {
         case "INVALID":
-        this.isPhoneIncorrect = true;
+          this.isPhoneIncorrect = true;
           break;
         case "VALID":
           this.isPhoneIncorrect = false;
@@ -405,16 +451,35 @@ export class AddressesComponent implements OnInit {
 
     this.restartAllFields();
     console.log(formControl.firstName.value)
-    this.userService.
-      createOfficeSpeedyAddress({cityId:this.chosenCityId!,speedyOfficeId:this.selectedSpeedyAddressOfficeId, firstName:formControl.firstName.value, lastName: formControl.lastName.value, phoneNumber: formControl.phone.value})
+    this.userService.createOfficeSpeedyAddress({
+      cityId: this.chosenCityId!,
+      speedyOfficeId: this.selectedSpeedyAddressOfficeId!,
+      firstName: formControl.firstName.value,
+      lastName: formControl.lastName.value,
+      phoneNumber: formControl.phone.value
+    })
       .subscribe({
-        next:value => {
-
+        next: value => {
+          if (value.body != null) {
+            this.booleanService
+              .user?.speedyAddressList.push(value.body)
+            this.updateInfoUser();
+          }
         },
-        error:err => {},
-        complete:() => {}
+        error: err => {
+          if (err.status === 409) {
+            this.sharedService
+              .showAlertMsg
+              .error(err.error);
+          }
+        },
+        complete: () => {
+          this.hideAllForms();
+          this.sharedService
+            .showAlertMsg
+            .success("Added new office address");
+        }
       })
-
 
 
   }
@@ -427,9 +492,9 @@ export class AddressesComponent implements OnInit {
   getCity(city: any, ...type: string[]) {
 
     // DETERMINE IF IT IS SPEEDY CITY OR USER CITY
-    let theLastType = type.length > 0 && type[0] === 'speedy'? this.userService
+    let theLastType = type.length > 0 && type[0] === 'speedy' ? this.userService
       .getLocation({location: '', speedy: city.value}) : this.userService
-      .getLocation({location: city.value,speedy: ''});
+      .getLocation({location: city.value, speedy: ''});
 
     if (!this.choosedCity) {
 
@@ -518,7 +583,7 @@ export class AddressesComponent implements OnInit {
   chosenAddress(id: number, form: NgForm): void {
     let address: IADDRESSSPEEDY | undefined = this.speedyAddress?.find(el => el.id == id);
     form.form.controls.officeSpeedy.setValue(address?.name);
-    this.chosenAddressId = id;
+    this.selectedSpeedyAddressOfficeId = id;
 
     //HIDE ADDRESS PREDICTION AFTER SELECTED ADDRESS FROM ADDRESS HELPER WINDOW
     this.hideAddressPrediction();

@@ -15,7 +15,7 @@ let FORM_SUCCESSFUL_CHANGED_PERSONAL_DATA: string = "";
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit,OnChanges {
+export class ProfileComponent implements OnInit, OnChanges {
 
   constructor(public booleanService: BooleansService, private sharedService: SharedService, private userService: UserService) {
   }
@@ -37,7 +37,8 @@ export class ProfileComponent implements OnInit,OnChanges {
   user: IUSER | undefined;
 
   ngOnInit(): void {
-    this.updateUserInfo();
+    // this.updateUserInfo();
+    this.checkUserInfoExistsThenUpdate();
     FORM_ERROR_MSG = this.sharedService.formMessages.FORM.FORM_ERROR_MSG;
     FORM_PASSWORDS_ARE_NOT_MATCH_MSG = this.sharedService.formMessages.FORM.FORM_PASSWORDS_ARE_NOT_MATCH_MSG;
     FORM_SUCCESSFUL_CHANGED_PASSWORD = this.sharedService.formMessages.FORM.FORM_SUCCESSFUL_CHANGED_PASSWORD;
@@ -45,10 +46,53 @@ export class ProfileComponent implements OnInit,OnChanges {
   }
 
   updateUserInfo(): void {
-    this.user = this.booleanService.user
+    this.user = this.booleanService.user;
   }
 
-  ngOnChanges(changes:SimpleChanges): void {
+  checkUserInfoExistsThenUpdate() {
+    //  TODO -> get user info from Back End side
+    if (this.booleanService.user == undefined || this.booleanService.user.firstName.length == 0) {
+
+      let promise = new Promise<void>(((resolve, reject) => {
+
+        this.userService
+          .populateUserInfo()
+          .subscribe({
+            next: value => {
+              if (value.body != null || value.body != undefined) {
+                let info = value.body;
+                if (this.booleanService.user != null || this.booleanService.user != undefined) {
+                  this.booleanService.user!.firstName = info.firstName
+                  this.booleanService.user!.lastName = info.lastName
+                  this.booleanService.user!.email = info.email
+                  this.booleanService.user!.phoneNumber = info.phoneNumber
+                  this.booleanService.user!.sex = info.sex
+                } else {
+                  this.booleanService.user = value.body;
+                }
+              }
+            },
+            error: err => {
+              reject(err);
+            },
+            complete: () => {
+              resolve();
+            }
+          })
+      }));
+
+      promise
+        .then(() => this.updateUserInfo()).catch(reason => {
+         this.sharedService
+           .showAlertMsg
+           .error(reason.message)
+      });
+    } else {
+      this.updateUserInfo();
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     console.log("onchange works!")
     let b = changes.this.isFirstChange();
     this.updateUserInfo();
@@ -58,11 +102,11 @@ export class ProfileComponent implements OnInit,OnChanges {
 
     let formControl = form.controls;
 
-    if (formControl.firstName.value != null && formControl.firstName.value.length > 0){
+    if (formControl.firstName.value != null && formControl.firstName.value.length > 0) {
       this.isNameIncorrect = formControl.firstName.value.length < 3 || formControl.firstName.value.length > 12;
     }
 
-    if (formControl.lastName.value != null && formControl.lastName.value.length > 0){
+    if (formControl.lastName.value != null && formControl.lastName.value.length > 0) {
       this.isLastNameIncorrect = formControl.lastName.value.length < 3 || formControl.lastName.value.length > 12;
     }
 
@@ -83,61 +127,65 @@ export class ProfileComponent implements OnInit,OnChanges {
     //   // }
     // }
 
-  if ((this.isLastNameIncorrect || this.isNameIncorrect || this.isPhoneNumberIncorrect) || (formControl.firstName.value === "" && formControl.lastName.value === "" && formControl.phoneNumber.value === "") || (formControl.firstName.value == null && formControl.lastName.value == null && formControl.phoneNumber.value == null)){
-    return;
-  }
-  console.log(lastNumber)
-  this.userService
-    .changePersonalData({firstName:formControl.firstName.value,lastName:formControl.lastName.value,phoneNumber:formControl.phoneNumber.value})
-    .subscribe({
-      next:value => {
-        if (value.body != null) {
-          this.booleanService
-            .user = value.body;
-        }
+    if ((this.isLastNameIncorrect || this.isNameIncorrect || this.isPhoneNumberIncorrect) || (formControl.firstName.value === "" && formControl.lastName.value === "" && formControl.phoneNumber.value === "") || (formControl.firstName.value == null && formControl.lastName.value == null && formControl.phoneNumber.value == null)) {
+      return;
+    }
+    console.log(lastNumber)
+    this.userService
+      .changePersonalData({
+        firstName: formControl.firstName.value,
+        lastName: formControl.lastName.value,
+        phoneNumber: formControl.phoneNumber.value
+      })
+      .subscribe({
+        next: value => {
+          if (value.body != null) {
+            this.booleanService
+              .user = value.body;
+          }
 
-      },
-      error:err => {
-        let message:string= "";
-        console.log(err)
-        Array.from(err.error)
-          .forEach(value => {
-            // @ts-ignore
-            let defaultMessage = value.defaultMessage.toString();
-            // @ts-ignore
-            let field = value.field.toString().toLowerCase() === 'firstname' ? 'first name' :
+        },
+        error: err => {
+          let message: string = "";
+          console.log(err)
+          Array.from(err.error)
+            .forEach(value => {
               // @ts-ignore
-              value.field.toString().toLowerCase() === 'lastname' ? 'last name' :
+              let defaultMessage = value.defaultMessage.toString();
+              // @ts-ignore
+              let field = value.field.toString().toLowerCase() === 'firstname' ? 'first name' :
                 // @ts-ignore
-                value.field.toString().toLowerCase() === 'phonenumber' ? 'phone number' : value.field.toString().toLowerCase();
+                value.field.toString().toLowerCase() === 'lastname' ? 'last name' :
+                  // @ts-ignore
+                  value.field.toString().toLowerCase() === 'phonenumber' ? 'phone number' : value.field.toString().toLowerCase();
 
-            message += `${field + ' : ' + defaultMessage}|`;
+              message += `${field + ' : ' + defaultMessage}|`;
 
-            // @ts-ignore
-            value.code === "isSameNewPasswords" ? this.isNewPasswordAndConfirmPasswordSame = true : '';
+              // @ts-ignore
+              value.code === "isSameNewPasswords" ? this.isNewPasswordAndConfirmPasswordSame = true : '';
 
-            // @ts-ignore
-            value.code === "isCurrentPasswordMatches" ? this.isCurrentPasswordIncorrect = true : '';
+              // @ts-ignore
+              value.code === "isCurrentPasswordMatches" ? this.isCurrentPasswordIncorrect = true : '';
 
-            // @ts-ignore
-            value.field === "phoneNumber" ? this.isPhoneNumberIncorrect = true : '';
+              // @ts-ignore
+              value.field === "phoneNumber" ? this.isPhoneNumberIncorrect = true : '';
 
-          });
-        this.sharedService.showAlertMsg.error(`${message.slice(0, message.length - 1)}`);
+            });
+          this.sharedService.showAlertMsg.error(`${message.slice(0, message.length - 1)}`);
 
 
-        this.sharedService
-          .showAlertMsg
-          .error(FORM_ERROR_MSG);
-      },
-      complete:() => {
-        this.updateUserInfo();
-        this.sharedService
-          .showAlertMsg
-          .success(FORM_SUCCESSFUL_CHANGED_PERSONAL_DATA);
-        form.resetForm();
-      }
-    })
+          this.sharedService
+            .showAlertMsg
+            .error(FORM_ERROR_MSG);
+        },
+        complete: () => {
+          this.updateUserInfo();
+          this.sharedService
+            .showAlertMsg
+            .success(FORM_SUCCESSFUL_CHANGED_PERSONAL_DATA);
+          form.resetForm();
+        }
+      })
 
   }
 
@@ -208,11 +256,14 @@ export class ProfileComponent implements OnInit,OnChanges {
     this.userService.changePassword(form.value)
       .subscribe({
         next: value => {
-          if (value.body != null)
-            this.booleanService.user = value.body;
+          // if (value.body != null)
+          //   this.booleanService.user = value.body;
+
+          // if (value.status === 200){
+          //   this.sharedService.showAlertMsg.success("Successful changed the password!");
+          // }
         },
         error: err => {
-          console.log(err)
 
           let message = '';
 

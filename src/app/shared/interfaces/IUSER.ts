@@ -30,6 +30,16 @@ export interface IUSER {
       streetNumber: string
       zip: string
     }
+  ],
+  speedyAddressList: [
+    {
+      "id":number,
+      "firstName":string,
+      "lastName":string,
+      "phoneNumber":string,
+      "city":string,
+      "address":string
+    }
   ]
 
 }

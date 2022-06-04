@@ -404,48 +404,97 @@
 
   <section class="office-address-addresses">
 
-    <section class="office-address-card">
+<!--    <section class="office-address-card">-->
 
-      <article class="float-left">
-        <input type="radio" name="office-address-radio" id="radio-address">
-      </article>
+<!--      <article class="float-left">-->
+<!--        <input type="radio" name="office-address-radio" id="radio-address">-->
+<!--      </article>-->
 
-      <article class="float-right">
-        <article class="address-card-first-last-name">
-          <article class="address-card-first-name">
-            <span>ALI</span>
+<!--      <article class="float-right">-->
+<!--        <article class="address-card-first-last-name">-->
+<!--          <article class="address-card-first-name">-->
+<!--            <span>ALI</span>-->
+<!--          </article>-->
+
+<!--          <article class="address-card-last-name">-->
+<!--            <span>ZINAL</span>-->
+<!--          </article>-->
+<!--        </article>-->
+
+<!--        <article class="address-card-phonenumber">-->
+<!--          <p class="no-margin">TEL.: <span>0894396766</span></p>-->
+<!--        </article>-->
+
+<!--        <article class="address-card-city">-->
+<!--          <span>ASPARUHOVO</span>-->
+<!--        </article>-->
+
+<!--        <article class="address-card-street">-->
+<!--          <p class="no-margin"><span>SEDEMNATESETA</span> &#8470; <span>17</span></p>-->
+
+<!--        </article>-->
+
+<!--        <article class="address-card-buttons">-->
+
+<!--          <a href="#officeEditAddress" class="address-card-edit"-->
+<!--             (click)="visibleOfficeEditAddressForm();preventDefaultFunction($event)">EDIT</a>-->
+
+<!--          <a href="" class="address-card-delete">DELETE</a>-->
+
+<!--        </article>-->
+
+<!--      </article>-->
+
+<!--    </section>-->
+
+
+
+      <section class="office-address-card" *ngFor="let speedyAddresses of this.user?.speedyAddressList">
+
+<!--        RADIO CLICK BUTTON-->
+        <article class="float-left">
+          <input type="radio" name="office-address-radio" id="radio-address">
+        </article>
+
+<!--  FIRST NAME AND LAST NAME-->
+        <article class="float-right">
+          <article class="address-card-first-last-name">
+            <article class="address-card-first-name">
+              <span>{{speedyAddresses.firstName}}</span>
+            </article>
+
+            <article class="address-card-last-name">
+              <span>{{speedyAddresses.lastName}}</span>
+            </article>
           </article>
 
-          <article class="address-card-last-name">
-            <span>ZINAL</span>
+          <article class="address-card-phonenumber">
+            <p class="no-margin">TEL.: <span>{{speedyAddresses.phoneNumber}}</span></p>
           </article>
-        </article>
 
-        <article class="address-card-phonenumber">
-          <p class="no-margin">TEL.: <span>0894396766</span></p>
-        </article>
+          <article class="address-card-city">
+            <span>{{speedyAddresses.city}}</span>
+          </article>
 
-        <article class="address-card-city">
-          <span>ASPARUHOVO</span>
-        </article>
+          <article class="address-card-street">
+            <p class="no-margin"><span>{{speedyAddresses.address}}</span></p>
 
-        <article class="address-card-street">
-          <p class="no-margin"><span>SEDEMNATESETA</span> &#8470; <span>17</span></p>
+          </article>
 
-        </article>
+          <article class="address-card-buttons">
 
-        <article class="address-card-buttons">
+            <a href="#officeEditAddress" class="address-card-edit"
+               (click)="visibleOfficeEditAddressForm();preventDefaultFunction($event)">EDIT</a>
 
-          <a href="#officeEditAddress" class="address-card-edit"
-             (click)="visibleOfficeEditAddressForm();preventDefaultFunction($event)">EDIT</a>
+            <a href="" class="address-card-delete">DELETE</a>
 
-          <a href="" class="address-card-delete">DELETE</a>
+          </article>
 
         </article>
 
-      </article>
+      </section>
 
-    </section>
+<!--    <ng-container *ngFor=""></ng-container>-->
 
   </section>
   <!-- OFFICE ADD NEW ADDRESS BUTTON-->

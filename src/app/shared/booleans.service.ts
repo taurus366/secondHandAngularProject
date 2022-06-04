@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ICLOTH} from "./interfaces/ICLOTH";
 import {ICLOTHES} from "./interfaces/ICLOTHES";
-import {ClothesComponent} from "../clothes/clothes.component";
-import {elementAt} from "rxjs";
 import {IUSER} from "./interfaces/IUSER";
 import {IADDRESS} from "./interfaces/IADDRESS";
 
@@ -15,19 +13,27 @@ export class BooleansService {
   }
 
   clothes: ICLOTHES | undefined;
-  user: IUSER | undefined;
+  private _user: IUSER | undefined;
+
+  get user(): IUSER | undefined {
+    return this._user;
+  }
+
+  set user(value: IUSER | undefined) {
+    this._user = value;
+  }
 
   changeCurrentUserOneOwnAddress(address: IADDRESS) :void {
 
 
-    this.user?.addresses
+    this._user?.addresses
       .forEach((value,index) => {
-        if (value.id === address.id && this.user?.addresses != null){
-          this.user.addresses[index] = address;
+        if (value.id === address.id && this._user?.addresses != null){
+          this._user.addresses[index] = address;
         }
       });
 
-    console.log(this.user?.addresses)
+    console.log(this._user?.addresses)
 
     // this.clothes.content
     //   .find(el => el.id === cloth.id)!.likes! = cloth.likes;
@@ -37,7 +43,7 @@ export class BooleansService {
   removeUserOneOwnAddress(addressId: number) : void {
 
     // @ts-ignore
-    this.user?.addresses = this.user?.addresses
+    this._user?.addresses = this._user?.addresses
        .filter(value => value.id !== addressId);
 
   }

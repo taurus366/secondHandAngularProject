@@ -12,6 +12,7 @@ import {ICITY} from "../shared/interfaces/ICITY";
 import {IADDRESS} from "../shared/interfaces/IADDRESS";
 import {IADDRESSSPEEDY} from "../shared/interfaces/IADDRESSSPEEDY";
 import {ICITYADDRESSSPEEDY} from "../shared/interfaces/ICITYADDRESSSPEEDY";
+import {IUSERSPEEDYADDRESS} from "../shared/interfaces/IUSERSPEEDYADDRESS";
 
 
 // for lan connection
@@ -153,7 +154,7 @@ export class UserService {
 
   changePassword(data: {currentPassword: string, newPassword: string, confirmPasswordL: string}) {
 
-    return this.http.put<IUSER>(`${apiUrlLan}/users/change/password`,data, {
+    return this.http.put(`${apiUrlLan}/users/change/password`,data, {
       observe:"response"
     })
   }
@@ -362,8 +363,9 @@ export class UserService {
           }
         });
         if (value.body != null) {
-          this.booleanService
-            .user = value.body;
+          // VALIDATE DOESN'T SEND ADDRESSES , SO HERE IS THE BUG !
+          // this.booleanService
+          //   .user = value.body;
         }
       },
       error: err => {
@@ -392,7 +394,7 @@ export class UserService {
   }
 
   createOfficeSpeedyAddress(data: { cityId: number, speedyOfficeId: number, firstName: string , lastName: string, phoneNumber: string}) {
-    return this.http.post<ICITYADDRESSSPEEDY>(`${apiUrlLan}/users/new/office/address`,data,{
+    return this.http.post<IUSERSPEEDYADDRESS>(`${apiUrlLan}/users/new/office/address`,data,{
       observe:"response"
     })
   }
@@ -419,6 +421,21 @@ export class UserService {
 //   }
 
 
+//  USER INFO [INTERFACE] POPULATE
+
+  populateUserInfo() {
+    return this.http.get<IUSER>(`${apiUrlLan}/users/info/data`,{
+      observe:"response"
+    })
+  }
+
+  populateUserAddresses() {
+    return this.http.get<IUSER>(`${apiUrlLan}/users/info/addresses`,{
+      observe:"response"
+    })
+  }
+
+//  USER INFO [INTERFACE] POPULATE END
 
 
 
