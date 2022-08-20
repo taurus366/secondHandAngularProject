@@ -1,0 +1,150 @@
+.table-type-title {
+  text-align: left;
+  padding: 1px 20px;
+  background-color: #e1e1e1;
+}
+
+.address-table-type {
+  border: 1px solid #d2d2d2;
+  margin-top: 15px;
+}
+
+.table-type-delivery {
+  display: flex;
+  justify-content: space-around;
+  border-top: 2px solid #d2d2d2;
+}
+
+.table-type-delivery > article:nth-child(2) {
+  padding: 0px 35px;
+  border-left: 2px solid #d2d2d2;
+  border-right: 2px solid #d2d2d2;
+}
+
+.table-type-delivery > article:nth-child(2) > .delivery-article-radio {
+  left: 0px !important;
+}
+
+.type-delivery-article > h1 {
+  margin: 20px 0px 0px 0px;
+}
+
+.type-delivery-article > .delivery-article-total {
+  margin-bottom: 0;
+}
+
+.type-delivery-article > .delivery-article-days {
+  margin-top: 0;
+}
+
+.type-delivery-article {
+  /* display: flex; */
+  position: relative;
+  text-align: left;
+  padding: 0px 0px 50px 0px;
+}
+
+.delivery-article-radio {
+  position: absolute;
+  left: -25px;
+  top: 17px;
+}
+
+/* ADDRESS TABLE OWN */
+
+.table-own-title {
+  margin-top: 20px;
+  text-align: left;
+  background-color: #e1e1e1;
+  padding: 1px 20px;
+}
+
+.table-own-addresses {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid #d2d2d2;
+}
+
+.own-addresses-article:nth-child(2) {
+  /* padding: 0px 35px; */
+  border-left: 2px solid #d2d2d2;
+  border-right: 2px solid #d2d2d2;
+}
+
+.own-addresses-article {
+  flex-grow: 1;
+  text-align: left;
+  padding: 15px 5px;
+}
+
+.own-addresses-article > p {
+  margin: 0;
+  padding: 0px 25px;
+}
+
+.own-addresses-article {
+  position: relative;
+}
+
+.own-addresses-article > .own-radio {
+  position: absolute;
+  left: 0px;
+}
+
+/* PAYMENT */
+
+.payment-title {
+  margin: 0 auto;
+  border-bottom: 3px solid #ccab72;
+  width: 115px;
+}
+
+.payment-title > h2 {
+  margin: 25px 0 9px 0;
+}
+
+.payment-divisor {
+  margin: 0;
+  height: 2px;
+  color: red;
+  background-color: #d6d6d6;
+}
+
+.payment-pay-shipment,
+.payment-pay-epay,
+.payment-pay-card {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border: 2px solid #d6d6d6;
+  margin-top: 15px;
+  padding: 15px;
+}
+
+.payment-pay-shipment > input,
+.payment-pay-epay > input,
+.payment-pay-card > input {
+  margin-right: 25px;
+}
+
+.pay-shipment-texts,
+.pay-epay-texts,
+.pay-card-texts {
+  text-align: left;
+  flex-grow: 1;
+  width: 50%;
+}
+.pay-shipment-texts > h1,
+.pay-shipment-texts > p,
+.pay-epay-texts > h1,
+.pay-epay-texts > p,
+.pay-card-texts > h1,
+.pay-card-texts > p {
+  margin: 5px 0;
+  width: 65%;
+}
+
+.second-hand-ship-color {
+  color: green;
+}

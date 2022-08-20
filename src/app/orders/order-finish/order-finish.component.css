@@ -1,0 +1,121 @@
+.review-table-my-articles {
+  border: 1px solid #a5a3a3;
+}
+
+.review-table-count-articles {
+  text-align: left;
+  margin-left: 15px;
+}
+
+.table-my-articles-title,
+.address-payment-title,
+.table-total-title {
+  background-color: #e1e1e1;
+  text-align: left;
+  padding: 15px 30px;
+}
+
+.table-my-articles-title > h2,
+.address-payment-title > h2,
+.table-total-title > h2 {
+  margin: 0;
+}
+
+/* about article */
+
+/* .table-my-articles-articles {
+  display: flex;
+} */
+
+.articles-articles-article {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.articles-articles-article:nth-child(even) {
+  border-bottom: 1px solid #a5a3a3;
+  border-top: 1px solid #a5a3a3;
+  padding: 5px 0;
+}
+
+.articles-articles-article > img {
+  height: 120px;
+  flex-grow: 1;
+}
+
+.articles-articles-price {
+  flex-grow: 3;
+}
+
+.articles-articles-delete {
+  margin-right: 30px;
+  flex-grow: 15;
+  text-align: right;
+}
+
+.article-information-text-brand,
+.article-information-text-type,
+.article-information-text-size {
+  margin: 1px 25px;
+  text-align: left;
+}
+
+.review-table-address-payment {
+  margin-top: 15px;
+  border: 1px solid #a5a3a3;
+}
+
+.address-payment-address-payment {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 20px;
+}
+
+.address-payment-shipment-type,
+.address-payment-shipment-address,
+.address-payment-shipment-pay-type {
+  padding: 0 10px;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.address-payment-address-payment > article > p {
+  margin: 5px 0;
+  font-weight: 100;
+}
+
+.address-payment-address-payment > article > h1 {
+  margin: 10px 0;
+  font-weight: 800;
+}
+
+.review-table-total {
+  margin-top: 15px;
+  border: 1px solid #a5a3a3;
+}
+
+.table-total-total-sum {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+}
+
+.table-total-total-sum > .total-sum-info > p {
+  margin: 5px 0;
+  text-align: left;
+}
+
+.table-total-total-sum > .total-sum-total > p {
+  text-align: right;
+}
+
+.table-total-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bolder;
+  padding: 0 30px !important;
+}

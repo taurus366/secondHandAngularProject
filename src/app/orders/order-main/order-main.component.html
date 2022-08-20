@@ -1,0 +1,51 @@
+<section class="order-title">
+
+  <article class="title-article-icon bag" [class.order-title-article-active]="isFirstWindowShow">
+    <i class="fas fa-shopping-bag" [ngClass]="{'order-title-icon-deactive':!isFirstWindowShow,'order-title-icon-active':isFirstWindowShow}"></i>
+    <h1>BAG</h1>
+  </article>
+
+  <article class="title-article-line">
+    <hr>
+  </article>
+
+  <article class="title-article-icon location" [class.order-title-article-active]="isSecondWindowShow">
+    <i class="fas fa-map-marked map" [ngClass]="{'order-title-icon-deactive':!isSecondWindowShow,'order-title-icon-active':isSecondWindowShow}"></i>
+    <h1>ADDRESS AND PAYMENT</h1>
+  </article>
+
+  <article class="title-article-line">
+    <hr>
+  </article>
+
+  <article class="title-article-icon check" [class.order-title-article-active]="isThirdWindowShow">
+    <i class="fas fa-check-circle check" [ngClass]="{'order-title-icon-deactive':!isThirdWindowShow,'order-title-icon-active':isThirdWindowShow}"></i>
+    <h1>FINISH</h1>
+  </article>
+
+</section>
+
+<section class="order-division"></section>
+
+<section class="order-advertisement">
+  <h2>When you make order over than 80 EU , you get free shipping</h2>
+</section>
+
+<!-- Order First Window (BAG section)-->
+
+<app-order-bag *ngIf="isFirstWindowShow"></app-order-bag>
+<!-- Order First Window END -->
+
+<!-- Order Second Window (ADDRESS AND PAYMENT section) -->
+
+<app-order-address-payment *ngIf="isSecondWindowShow"></app-order-address-payment>
+<!-- Order Second Window END -->
+
+<!-- Order Third Window (FINISH section) -->
+
+<app-order-finish *ngIf="isThirdWindowShow"></app-order-finish>
+<!-- Order Third Window END -->
+
+<!--ORDER BUTTONS {BACK,NEXT} -->
+<app-order-nav (EventEmitterForSwitchWindows)="switchWindows($event.valueOf())"></app-order-nav>
+<!--ORDER BUTTONS {BACK,NEXT} END -->

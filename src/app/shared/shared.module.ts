@@ -6,6 +6,7 @@ import {EmailValidatorDirective} from './email-validator.directive';
 import {PasswordValidatorDirective} from './password-validator.directive';
 import {FilterPipePipe} from './filter-pipe.pipe';
 import { PhoneValidatorDirective } from './phone-validator.directive';
+import {IsCartNotNullGuardActivate} from "./guard/isCartNotNull-guard.activate";
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { PhoneValidatorDirective } from './phone-validator.directive';
     CommonModule
   ],
   providers: [
-    ParamGuardActivate
+    ParamGuardActivate,
+    IsCartNotNullGuardActivate
   ],
     exports: [
         EmailValidatorDirective,

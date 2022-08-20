@@ -46,7 +46,7 @@
         <article *ngIf="booleansService.getUserCartItemCounter() > 0" class="bubble-cart-border">{{booleansService.getUserCartItemCounter()}}</article>
         <article *ngIf="hideCartTextDropDown" class="header-bag-dropdown-box"></article>
         <article class="like-box" [class.hidden]="!showCartBox">
-          <app-cart-box ></app-cart-box>
+          <app-cart-box (eventEmitterForClickedNext)="showCartHide()"></app-cart-box>
         </article>
         <article class="cart-box" [class.hidden]="!showLikeBox">
           <app-like-box></app-like-box>

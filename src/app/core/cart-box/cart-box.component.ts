@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {UserService} from "../../authentication/user.service";
 import {BooleansService} from "../../shared/booleans.service";
 import {SharedService} from "../../shared/shared.service";
@@ -17,6 +17,8 @@ let CART_DELETE_SUCCESSFUL : string = "";
 
 
 export class CartBoxComponent implements OnInit {
+
+  @Output() eventEmitterForClickedNext = new EventEmitter<void>();
 
 
 
@@ -58,5 +60,8 @@ export class CartBoxComponent implements OnInit {
       })
   }
 
-
+  // in bag after click next for make order  then I must hide bag window
+  clickedNextBtn(): void {
+    this.eventEmitterForClickedNext.emit();
+  }
 }

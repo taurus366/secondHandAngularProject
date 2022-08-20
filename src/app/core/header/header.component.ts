@@ -202,6 +202,11 @@ export class HeaderComponent implements OnInit {
   }
 //LIKE BOX HIDE LOGIC
 
+  //
+  showCartHide(): void {
+    this.showCartBox = false;
+  }
+
 }
 
 

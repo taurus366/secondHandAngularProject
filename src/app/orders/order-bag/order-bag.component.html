@@ -1,0 +1,98 @@
+<section class="order-main-table">
+
+  <article class="order-main-table-title">
+    <h1 class="no-margin">MY PURCHASES</h1>
+  </article>
+
+  <section class="order-main-table-cloth">
+
+    <ng-container *ngFor="let item of cartBoxItems">
+
+      <article class="order-main-table-cloth-info">
+
+        <article class="order-main-table-body-img">
+          <img ng src="{{item.coverPicture.url}}" alt="">
+        </article>
+
+        <article class="table-body-cloth-info">
+          <p><span>{{item.brand}}</span></p>
+          <p><span>{{item.type}}</span></p>
+          <p><span>SIZE: {{item.size}}</span></p>
+        </article>
+
+        <article class="table-body-cloth-price">
+          <p>Recommend price from supplier<span class="padding-left low-view">{{item.startPrice}}lv.</span></p>
+          <p><span class="discount-price low-view">Discount price {{sharedService.calculatePercentOfDiscount(item.startPrice, item.newPrice)}}%</span><span class="padding-left"><b>{{item.newPrice}}
+              lv.</b></span></p>
+        </article>
+
+        <article class="table-body-cloth-delete">
+          <a href="#">
+            <i class="fa fa-times"></i>
+          </a>
+        </article>
+
+      </article>
+    </ng-container>
+
+    <!--    <article class="order-main-table-cloth-info">-->
+
+    <!--      <article class="order-main-table-body-img">-->
+    <!--        <img ng src="images/arrivedCharges/pulover-by-malene-birger-2.jpg" alt="">-->
+    <!--      </article>-->
+
+    <!--      <article class="table-body-cloth-info">-->
+    <!--        <p><span>G-STAR RAW</span></p>-->
+    <!--        <p><span>DYNKOV gashterizon</span></p>-->
+    <!--        <p><span>RAZMER: XS</span></p>-->
+    <!--      </article>-->
+
+    <!--      <article class="table-body-cloth-price">-->
+    <!--        <p>Recomendet price from supplier<span class="padding-left low-view">120.90lv.</span></p>-->
+    <!--        <p><span class="discount-price low-view">Discount price -71.5%</span><span class="padding-left"><b>34.46-->
+    <!--              lv.</b></span></p>-->
+    <!--      </article>-->
+
+    <!--      <article class="table-body-cloth-delete">-->
+    <!--        <a href="#">-->
+    <!--          <i class="fa fa-times"></i>-->
+    <!--        </a>-->
+    <!--      </article>-->
+
+    <!--    </article>-->
+
+
+  </section>
+
+</section>
+
+<section class="order-total-price-section">
+
+  <article class="total-price-promo-code">
+    <h1 class="promo-code-title">Promo Code:</h1>
+
+    <form class="total-price-promo-code-apply" action="#" method="post">
+      <input class="total-price-promo-code-apply-text" type="text" name="promocode" id="promocode">
+      <input class="second-hand-btn total-price-promo-code-apply-submit no-margin" type="submit" value="Apply">
+    </form>
+
+  </article>
+
+  <article class="total-price-all-prices">
+
+    <figure class="all-prices-price-no-pro underline-prices-figure no-margin">
+      <p class="all-prices-margin">Price: <span class="all-prices-span">{{getTotalPriceWithoutDiscount()}}lv.</span></p>
+
+    </figure>
+
+    <figure class="all-prices-price-discount underline-prices-figure no-margin">
+      <p class="all-prices-margin">Discount: <span class="all-prices-span">{{getTotalDiscountPrice()}}lv.</span></p>
+    </figure>
+
+    <figure class="all-prices-price-total no-margin">
+      <p class="all-prices-margin">Total summary: <span class="all-prices-span">{{getTotalCartPrice()}}lv.</span></p>
+    </figure>
+
+  </article>
+
+</section>

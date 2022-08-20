@@ -1,0 +1,15 @@
+<section class="order-button-back-next">
+
+  <article class="order-button-back">
+
+    <button #btnBack href="#" class="second-hand-btn" (click)="switchWindow(btnBack.value.toLowerCase())" value="Back">Continue to Purchase</button>
+
+  </article>
+
+  <article class="order-button-next">
+
+    <input #btnNext class="second-hand-btn" type="submit" (click)="switchWindow(btnNext.value.toLowerCase())" value="Next">
+
+  </article>
+
+</section>

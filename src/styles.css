@@ -238,3 +238,9 @@ html { scroll-behavior: smooth; }
 .error-border-solid2px {
   border: 2px solid red;
 }
+
+.second-hand-radio {
+  transform: scale(1.5);
+  accent-color: #b38b45;
+  margin-bottom: 20px;
+}

@@ -1,0 +1,126 @@
+.order-main-table {
+  border: 1px solid #d2d2d2;
+}
+
+.order-main-table-title {
+  background-color: #d2d2d2;
+}
+.order-main-table-title > h1 {
+  padding: 12px 20px;
+  text-align: left;
+}
+
+.order-main-table-cloth:nth-child(1n + 2) {
+  border-top: 1px solid #d2d2d2;
+}
+
+.order-main-table-cloth-info {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+  align-items: center;
+}
+
+.table-body-cloth-info {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.table-body-cloth-price {
+  flex-grow: 1;
+}
+
+.order-main-table-body-img {
+  width: 130px;
+  text-align: left;
+  padding-left: 20px;
+}
+.order-main-table-body-img > img {
+  width: 80px;
+  height: 110px;
+}
+
+.table-body-cloth-price {
+  text-align: right;
+  padding-right: 60px;
+}
+
+.table-body-cloth-delete {
+  position: absolute;
+  right: 30px;
+  top: 54px;
+}
+
+.table-body-cloth-price > p {
+  margin: 5px 0px;
+}
+
+.padding-left {
+  padding-left: 30px;
+}
+
+.discount-price {
+  font-size: 13px;
+  vertical-align: top;
+}
+
+/* TOTAL PRICE SECTION */
+
+.order-total-price-section {
+  width: 90%;
+  margin: 15px 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.total-price-promo-code-apply {
+  vertical-align: center;
+}
+
+.total-price-promo-code-apply-text {
+  /* display: inline; */
+  font-size: 20px;
+  width: 170px;
+}
+
+.total-price-promo-code-apply-submit {
+  width: 110px;
+  height: 26px;
+  padding: 0px !important;
+  /* vertical-align: center; */
+  margin: 0px !important;
+}
+
+.total-price-promo-code {
+  text-align: left;
+}
+
+/* TOTAL PRICES */
+.total-price-all-prices {
+  text-align: right;
+  width: 50%;
+}
+
+.all-prices-span {
+  padding-left: 50px;
+}
+
+.underline-prices-figure {
+  border-bottom: 1px solid black;
+}
+
+.all-prices-price-no-pro,
+.all-prices-price-discount,
+.all-prices-price-total {
+  padding-right: 60px;
+}
+
+.all-prices-margin {
+  margin: 5px 1px;
+  font-size: 20px;
+}
+
+.promo-code-title {
+  margin: 5px 0;
+}
