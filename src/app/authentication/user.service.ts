@@ -363,6 +363,7 @@ export class UserService {
           }
         });
         if (value.body != null) {
+          this.booleanService.user = value.body;
           // VALIDATE DOESN'T SEND ADDRESSES , SO HERE IS THE BUG !
           // this.booleanService
           //   .user = value.body;

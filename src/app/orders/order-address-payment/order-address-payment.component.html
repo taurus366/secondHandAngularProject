@@ -48,50 +48,68 @@
 
          <section class="table-own-addresses">
 
-           <article class="own-addresses-article">
-             <input type="radio" name="deliveryAddress" id="" class="second-hand-radio own-radio">
-             <p>FirstName LastNAme</p>
-             <p>Tel.</p>
-             <p>location</p>
-             <p>kvartal</p>
-             <p>ulitsa</p>
-             <p>nomer</p>
-             <p>blok</p>
-             <p>vhod</p>
-             <p>etaj</p>
-             <p>apartament</p>
-             <p>detayli za adres</p>
-           </article>
+           <ng-container *ngFor="let address of addresses">
+             <article class="own-addresses-article">
+               <input type="radio" name="deliveryAddress" id="" class="second-hand-radio own-radio">
+               <p>{{address.firstName}} {{address.lastName}}</p>
+               <p>{{address.phoneNumber}}</p>
+               <p>{{address.city}}</p>
+               <p>{{address.neighborhood}}</p>
+               <p>{{address.street}}</p>
+               <p>{{address.streetNumber}}</p>
+               <p>{{address.block}}</p>
+               <p>{{address.entry}}</p>
+               <p>{{address.floor}}</p>
+               <p>{{address.apartment}}</p>
+               <p>{{address.detailsAboutAddress}}</p>
+             </article>
 
-           <article class="own-addresses-article">
-             <input type="radio" name="deliveryAddress" id="" class="second-hand-radio own-radio">
-             <p>FirstName LastNAme</p>
-             <p>Tel.</p>
-             <p>location</p>
-             <p>kvartal</p>
-             <p>ulitsa</p>
-             <p>nomer</p>
-             <p>blok</p>
-             <p>vhod</p>
-             <p>etaj</p>
-             <p>apartament</p>
-             <p>detayli za adres</p>
-           </article>
+           </ng-container>
 
-           <article class="own-addresses-article">
-             <input type="radio" name="deliveryAddress" id="" class="second-hand-radio own-radio">
-             <p>FirstName LastNAme</p>
-             <p>Tel.</p>
-             <p>location</p>
-             <p>kvartal</p>
-             <p>ulitsa</p>
-             <p>nomer</p>
-             <p>blok</p>
-             <p>vhod</p>
-             <p>etaj</p>
-             <p>apartament</p>
-             <p>detayli za adres</p>
-           </article>
+<!--           <article class="own-addresses-article">-->
+<!--             <input type="radio" name="deliveryAddress" id="" class="second-hand-radio own-radio">-->
+<!--             <p>FirstName LastNAme</p>-->
+<!--             <p>Tel.</p>-->
+<!--             <p>location</p>-->
+<!--             <p>kvartal</p>-->
+<!--             <p>ulitsa</p>-->
+<!--             <p>nomer</p>-->
+<!--             <p>blok</p>-->
+<!--             <p>vhod</p>-->
+<!--             <p>etaj</p>-->
+<!--             <p>apartament</p>-->
+<!--             <p>detayli za adres</p>-->
+<!--           </article>-->
+
+<!--           <article class="own-addresses-article">-->
+<!--             <input type="radio" name="deliveryAddress" id="" class="second-hand-radio own-radio">-->
+<!--             <p>FirstName LastNAme</p>-->
+<!--             <p>Tel.</p>-->
+<!--             <p>location</p>-->
+<!--             <p>kvartal</p>-->
+<!--             <p>ulitsa</p>-->
+<!--             <p>nomer</p>-->
+<!--             <p>blok</p>-->
+<!--             <p>vhod</p>-->
+<!--             <p>etaj</p>-->
+<!--             <p>apartament</p>-->
+<!--             <p>detayli za adres</p>-->
+<!--           </article>-->
+
+<!--           <article class="own-addresses-article">-->
+<!--             <input type="radio" name="deliveryAddress" id="" class="second-hand-radio own-radio">-->
+<!--             <p>FirstName LastNAme</p>-->
+<!--             <p>Tel.</p>-->
+<!--             <p>location</p>-->
+<!--             <p>kvartal</p>-->
+<!--             <p>ulitsa</p>-->
+<!--             <p>nomer</p>-->
+<!--             <p>blok</p>-->
+<!--             <p>vhod</p>-->
+<!--             <p>etaj</p>-->
+<!--             <p>apartament</p>-->
+<!--             <p>detayli za adres</p>-->
+<!--           </article>-->
 
          </section>
 

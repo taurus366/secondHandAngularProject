@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {IADDRESS} from "../../shared/interfaces/IADDRESS";
 import {BooleansService} from "../../shared/booleans.service";
 import {UserService} from "../../authentication/user.service";
+import {SharedMethodsService} from "../../shared/shared-methods.service";
 
 @Component({
   selector: 'app-order-address-payment',
@@ -13,41 +14,31 @@ export class OrderAddressPaymentComponent implements OnInit {
   // IF IT's null or undefined then I MUST CALL TO API FOR ADDRESS
   addresses: IADDRESS[] | undefined;
 
-  constructor(private booleanService: BooleansService, private userService: UserService) {
+  constructor(private booleanService: BooleansService, private userService: UserService, private sharedMethods: SharedMethodsService) {
   }
 
   ngOnInit(): void {
 
     this.populateUserAddressIfNull();
-    this.t()
+
   }
 
 
-  // I MUST EDIT THESE CODES , THERE ARE A LOT OF BUGS!
+  // Here I check if the user.address is undefined , if it is  then I populate it again like calling the REST API
   populateUserAddressIfNull(): void {
-    console.log(this.booleanService.user)
-    // @ts-ignore
-    if ((this.booleanService.user?.addresses != undefined && this.booleanService.user?.addresses.length == 0) || this.booleanService.user?.addresses == undefined) {
-      console.log("te")
-      this.userService.populateUserAddresses()
-        .subscribe({
-          next: value => {
-            if (this.booleanService.user != undefined && value.body?.addresses != null) {
-              console.log("te3")
-              this.booleanService.user!.addresses = value.body!.addresses;
-            } else if (this.booleanService.user == undefined) {
-
-            }
-
-          }
-
-        })
+      // @ts-ignore
+    if (this.booleanService.user == undefined || this.booleanService.user.addresses == undefined || this.booleanService.user.addresses.length == 0) {
+        this.sharedMethods
+          .populateUserInfoThenAddresses().then(r => this.populateUserAddresses());
+      } else {
+      this.populateUserAddresses();
     }
-    console.log("te2")
-    this.addresses = this.booleanService.user?.addresses;
+
   }
 
-  t() {
-    console.log(this.addresses?.length)
+  populateUserAddresses(): void {
+   this.addresses = this.booleanService.user?.addresses;
   }
+
+
 }
